@@ -6,15 +6,16 @@ class VehicleController
      * @API_route /api/1/vehicles
      * @return void
      */
-    public function getVehicles() : void {
+    public function getAllVehicles() : void {
         echo null;
     }
 
+    //TODO : This method name could be renamed
     /**
      * @API_route /api/1/vehicles/id_vehicle
      * @return void
      */
-    public function getVehicle() : void {
+    public function getVehiculeData() : void {
         echo null;
     }
 
@@ -30,7 +31,7 @@ class VehicleController
      * @API_route /api/1/vehicles/id_vehicle/data_request/drive_state
      * @return void
      */
-    public function getDriveState() : void {
+    public function getDriveStateData() : void {
         echo null;
     }
 }
