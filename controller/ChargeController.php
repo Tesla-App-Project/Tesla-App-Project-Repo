@@ -1,10 +1,12 @@
 <?php
 
+use JetBrains\PhpStorm\Pure;
+
 class ChargeController
 {
     private HttpRequestHandlerModel $_httpRequestHandler;
 
-    public function __construct()
+    #[Pure] public function __construct()
     {
         $this->_httpRequestHandler = new HttpRequestHandlerModel();
     }
@@ -22,7 +24,6 @@ class ChargeController
      * @API_route /api/1/vehicles/id_vehicle/command/charge_max_range
      * @return void
      * @throws Exception
-     * @throws Exception
      */
     public function postChargeMaxRangeAction() : void {
         echo $this->_httpRequestHandler->callAPI('postChargeMaxRange', false);
@@ -34,7 +35,6 @@ class ChargeController
      * @API_route /api/1/vehicles/id_vehicle/command/charge_port_door_open | /api/1/vehicles/id_vehicle/command/charge_port_door_close
      * @return void
      * @throws Exception
-     * @throws Exception
      */
     public function postActuateChargePortAction() : void {
         echo $this->_httpRequestHandler->callAPI('postActuateChargePort', false);
@@ -43,7 +43,6 @@ class ChargeController
     /**
      * @API_route /api/1/vehicles/id_vehicle/command/set_charge_limit
      * @return void
-     * @throws Exception
      * @throws Exception
      */
     public function postSetChargeLimitAction() : void {
@@ -55,7 +54,6 @@ class ChargeController
     /**
      * @API_route /api/1/vehicles/id_vehicle/command/start_charge | /api/1/vehicles/id_vehicle/command/stop_charge
      * @return void
-     * @throws Exception
      * @throws Exception
      */
     public function postToggleChargeStatAction() : void {

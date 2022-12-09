@@ -1,10 +1,12 @@
 <?php
 
+use JetBrains\PhpStorm\Pure;
+
 class ValetController
 {
     private HttpRequestHandlerModel $_httpRequestHandler;
 
-    public function __construct()
+    #[Pure] public function __construct()
     {
         $this->_httpRequestHandler = new HttpRequestHandlerModel();
     }
