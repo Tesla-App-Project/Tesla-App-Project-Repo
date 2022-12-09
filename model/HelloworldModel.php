@@ -1,6 +1,6 @@
 <?php
 
-final class Helloworld
+final class HelloworldModel
 {
     private $_S_message = "Hello Test";
 

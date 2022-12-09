@@ -1,6 +1,6 @@
 <?php
 
-final class Vue
+final class View
 {
     public static function ouvrirTampon()
     {
@@ -16,12 +16,12 @@ final class Vue
 
     public static function montrer($S_localisation, $A_parametres = array())
     {
-        $S_fichier = Constantes::repertoireVues() . $S_localisation . '.php';
+        $S_fichier = Constants::repertoireVues() . $S_localisation . '.php';
 
-        $A_vue = $A_parametres;
+        $A_view = $A_parametres;
         // Démarrage d'un sous-tampon
         ob_start();
-        include $S_fichier; // c'est dans ce fichier que sera utilisé A_vue, la vue est inclue dans le sous-tampon
+        include $S_fichier; // c'est dans ce fichier que sera utilisé A_vue, la view est inclue dans le sous-tampon
         ob_end_flush();
     }
 }

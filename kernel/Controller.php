@@ -1,16 +1,16 @@
 <?php
 
-final class Controleur
+final class Controller
 {
     private $_A_urlDecortique;
 
     public function __construct($S_controleur, $S_action)
     {
         if (empty($S_controleur)) {
-            // Nous avons pris le parti de préfixer tous les controleurs par "Controleur"
-            $this->_A_urlDecortique['controleur'] = 'ControleurHelloworld';
+            // Nous avons pris le parti de préfixer tous les controleurs par "Controller"
+            $this->_A_urlDecortique['controleur'] = 'HelloworldController';
         } else {
-            $this->_A_urlDecortique['controleur'] = 'Controleur' . ucfirst($S_controleur);
+            $this->_A_urlDecortique['controleur'] = ucfirst($S_controleur) . 'Controller';
         }
 
         if (empty($S_action)) {
@@ -26,7 +26,7 @@ final class Controleur
     // On exécute
     public function executer()
     {
-        //fonction de rappel de notre controleur cible (ControleurHelloworld pour notre premier exemple)
+        //fonction de rappel de notre controleur cible (HelloworldController pour notre premier exemple)
         call_user_func_array(array(new $this->_A_urlDecortique['controleur'](),
             $this->_A_urlDecortique['action']), array());
     }

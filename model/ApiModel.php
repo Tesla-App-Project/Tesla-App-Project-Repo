@@ -1,28 +1,40 @@
 <?php
 
-class APIModel
+class ApiModel
 {
     private $token;
-    private $baseURL = 'http:/78.123.242.51:25000/api/1/vehicles';
+    private string $baseURL = 'http:/78.123.242.51:25000/api/1/vehicles';
 
-    private function setToken() {
+    private function setToken(string $tokenTesla): void
+    {
+
+        // TODO : DB Request to fetch encrypted token
+        // Then decrypt it
+
+        $this->token = $tokenTesla;
+    }
+
+    private function revokeToken(): void
+    {
 
         // TODO : DB Request to fetch encrypted token
         // Then decrypt it
 
         $this->token = "letokendelatesla";
     }
+
     /**
      * @param string | null $idCar id of the car you wish to interact with
      * @param string $url api endpoint url
      * @param string $requestType request type : GET or POST
      * @return array
+     * @throws Exception
      */
 
     private function makeAPIRequest(string | null $idCar, string $url, string $requestType): array {
 
         // Token assignment
-        $this->setToken();
+        $this->setToken("letokendelatesla");
         //$this->postWakeUp();
 
         // TODO : alexlebg has to be replaced by the actual car's id
@@ -64,6 +76,7 @@ class APIModel
 
     /**
      * @return array
+     * @throws Exception
      */
     public function getAllVehicles(): array {
         return $this->makeAPIRequest(null, "", "GET");
@@ -136,6 +149,7 @@ class APIModel
 
     /**
      * @return bool
+     * @throws Exception
      */
     public function postWakeUp(): bool {
         $result = $this->makeAPIRequest("alexlebg", "wake_up" , "POST");
@@ -143,7 +157,7 @@ class APIModel
             return true;
         } else {
             return false;
-        };
+        }
     }
 
     /**
