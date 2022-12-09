@@ -25,38 +25,38 @@ final class User
     // ------ Setters ------
     public function setFirstName($first_name)
     {
-        Database::querySet($this->id, $first_name);
+        Database::querySet($this->id, 'first_name', $first_name);
         $this->first_name = $first_name;
     }
 
     public function setLastName($last_name)
     {
-        Database::querySet($this->id, $last_name);
+        Database::querySet($this->id, 'last_name', $last_name);
         $this->last_name = $last_name;
     }
 
     public function setUsername($username)
     {
-        Database::querySet($this->id, $username);
+        Database::querySet($this->id, 'username', $username);
         $this->username = $username;
     }
 
     public function setEmail($email)
     {
-        Database::querySet($this->id, $email);
+        Database::querySet($this->id, 'email', $email);
         $this->email = $email;
     }
 
     public function setPassword($password)
     {
         $password = password_hash($password, PASSWORD_DEFAULT);
-        Database::querySet($this->id, $password);
+        Database::querySet($this->id, 'password', $password);
         $this->password = $password;
     }
 
     public function setToken($token = "noToken")
     {
-        Database::querySet($this->id, $token);
+        Database::querySet($this->id, 'token', $token);
         $this->token = $token;
     }
 
@@ -108,7 +108,7 @@ final class User
     // ------ Field ------
     public function getField()
     {
-        $this->field['id']          = $this->id;
+        $this->field['id']          = Database::queryGet($this->id, 'id');
         $this->field['first_name']  = Database::queryGet($this->id, 'first_name');
         $this->field['last_name']   = Database::queryGet($this->id, 'last_name');
         $this->field['username']    = Database::queryGet($this->id, 'username');
