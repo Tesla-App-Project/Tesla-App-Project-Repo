@@ -2,4 +2,4 @@
 
 ## API
 
-Branche dedier a l'api du projet
+Branche dedié a l'API du projet
