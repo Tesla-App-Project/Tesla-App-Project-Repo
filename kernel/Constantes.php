@@ -11,7 +11,7 @@ final class Constantes
 
     const REPERTOIRE_MODELE      = '/model/';
 
-    const REPERTOIRE_NOYAU       = '/Noyau/';
+    const REPERTOIRE_NOYAU       = '/kernel/';
 
     const REPERTOIRE_CONTROLEURS = '/controller/';
 

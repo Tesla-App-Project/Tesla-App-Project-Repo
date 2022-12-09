@@ -1,6 +1,6 @@
 <?php
 
-require 'Noyau/Constantes.php';
+require 'kernel/Constantes.php';
 
 final class ChargementAuto
 {

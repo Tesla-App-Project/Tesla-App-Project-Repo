@@ -2,7 +2,7 @@
 
 // Ce fichier est le point d'entrée de votre application
 
-require 'Noyau/ChargementAuto.php';
+require 'kernel/ChargementAuto.php';
 /*
  url pour notre premier test MVC Hello World,
  nous n'avons pas d'action précisée on visera celle par défaut
@@ -12,7 +12,7 @@ require 'Noyau/ChargementAuto.php';
 $S_controleur = $_GET['ctrl'] ?? null;
 $S_action = isset($_GET['action']) ? $_GET['action'] : null;
 
-Vue::ouvrirTampon(); //  /Noyau/Vue.php : on ouvre le tampon d'affichage, les contrôleurs qui appellent des vues les mettront dedans
+Vue::ouvrirTampon(); //  /kernel/Vue.php : on ouvre le tampon d'affichage, les contrôleurs qui appellent des vues les mettront dedans
 $O_controleur = new Controleur($S_controleur, $S_action);
 $O_controleur->executer();
 
