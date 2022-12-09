@@ -19,6 +19,7 @@ final class User
         $this->email = $email;
         $this->password = password_hash($password, PASSWORD_DEFAULT);
         $this->token = $token;
+        Database::newUser($first_name, $last_name, $username, $email, $this->password, $token);
     }
 
 
