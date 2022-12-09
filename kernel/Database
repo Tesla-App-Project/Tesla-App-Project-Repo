@@ -2,6 +2,7 @@
 
 final class Database
 {
+    //GET
     public function queryGetAction($id, $param){
         try {
             $S_base = new PDO('mysql:host=localhost:3308; dbname=mvc-tesla', 'root', '');
@@ -24,6 +25,7 @@ final class Database
         echo $retour;
     }
 
+    //UPDATE
     public function querySetAction($S_id, $S_param, $S_value){
         try {
             $S_base = new PDO('mysql:host=localhost:3308; dbname=mvc-tesla', 'root', '');
@@ -37,7 +39,7 @@ final class Database
         /*$S_param = "username";
         $S_value = "toto";*/
 
-        $S_insert = $S_base->query("INSERT INTO utilisateur(".$S_param.") VALUE('".$S_value."')");
+        $S_update = $S_base->query("UPDATE utilisateur SET ".$param." = '".$value."' WHERE id = '".$id."'");
         
         echo 'Success';
     }
