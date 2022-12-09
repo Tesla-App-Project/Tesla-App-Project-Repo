@@ -1,5 +1,8 @@
-# Tesla-App-Project
+# tesla app
+Découverte d'un MVC pas à pas avec PHP
 
-## API
+1 - HelloWorld à la sauce MVC
 
-Branche dedié a l'API du projet
+2 - Routage simple et Exceptions
+
+3 - Modèles et connexion BDD (coming soon...)
