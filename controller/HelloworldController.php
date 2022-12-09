@@ -16,6 +16,9 @@ final class HelloworldController
     public function wake_upAction()
     {
         $O_apimodel =  new ApiModel();
+        $O_apimodel->setToken("letokendelatesla");
+        View::montrer('helloworld/HelloworldView', array('helloworld' => var_dump($O_apimodel->postWakeUp())));
+        $O_apimodel->revokeToken();
         View::montrer('helloworld/HelloworldView', array('helloworld' => var_dump($O_apimodel->postWakeUp())));
     }
 }

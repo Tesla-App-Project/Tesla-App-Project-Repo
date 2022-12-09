@@ -5,7 +5,12 @@ class ApiModel
     private $token;
     private string $baseURL = 'http:/78.123.242.51:25000/api/1/vehicles';
 
-    private function setToken(string $tokenTesla): void
+    /**
+     * Allows you to set a token
+     * @param string $tokenTesla
+     * @return void
+     */
+    public function setToken(string $tokenTesla): void
     {
 
         // TODO : DB Request to fetch encrypted token
@@ -14,13 +19,14 @@ class ApiModel
         $this->token = $tokenTesla;
     }
 
-    private function revokeToken(): void
+    /**
+     * Allows you to revoke the current token
+     * @return void
+     */
+    public function revokeToken(): void
     {
 
-        // TODO : DB Request to fetch encrypted token
-        // Then decrypt it
-
-        $this->token = "letokendelatesla";
+        $this->setToken("");
     }
 
     /**
@@ -34,7 +40,7 @@ class ApiModel
     private function makeAPIRequest(string | null $idCar, string $url, string $requestType): array {
 
         // Token assignment
-        $this->setToken("letokendelatesla");
+        //$this->setToken("letokendelatesla");
         //$this->postWakeUp();
 
         // TODO : alexlebg has to be replaced by the actual car's id
