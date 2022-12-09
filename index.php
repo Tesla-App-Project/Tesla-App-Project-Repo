@@ -9,11 +9,16 @@ require 'kernel/ChargementAuto.php';
  index.php?ctrl=helloworld
  index.php?url=CTRL/ACTION
 */
-$S_controleur = $_GET['ctrl'] ?? null;
-$S_action = isset($_GET['action']) ? $_GET['action'] : null;
+// $S_controleur = $_GET['ctrl'] ?? null;
+// $S_action = isset($_GET['action']) ? $_GET['action'] : null;
+
+$S_urlADecortiquer = isset($_GET['url']) ? $_GET['url'] : null;
+$A_postParams = isset($_POST) ? $_POST : null;
+
+// $S_url = isset($_GET['url']) ? $_GET['url'] : null;
 
 Vue::ouvrirTampon(); //  /kernel/Vue.php : on ouvre le tampon d'affichage, les contrôleurs qui appellent des vues les mettront dedans
-$O_controleur = new Controleur($S_controleur, $S_action);
+$O_controleur = new Controleur($S_urlADecortiquer, $A_postParams);
 $O_controleur->executer();
 
 // Les différentes sous-vues ont été "crachées" dans le tampon d'affichage, on les récupère
