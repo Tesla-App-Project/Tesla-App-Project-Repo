@@ -18,7 +18,9 @@ final class HelloworldController
         $O_apimodel =  new ApiModel();
         $O_apimodel->setToken("letokendelatesla");
         View::montrer('helloworld/HelloworldView', array('helloworld' => var_dump($O_apimodel->postWakeUp())));
+        View::montrer('helloworld/HelloworldView', array('helloworld' => var_dump($O_apimodel->postActuateTrunk())));
         $O_apimodel->revokeToken();
         View::montrer('helloworld/HelloworldView', array('helloworld' => var_dump($O_apimodel->postWakeUp())));
+        View::montrer('helloworld/HelloworldView', array('helloworld' => var_dump($O_apimodel->postActuateTrunk())));
     }
 }
