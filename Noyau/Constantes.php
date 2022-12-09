@@ -7,13 +7,13 @@ final class Constantes
 {
     // Les constantes relatives aux chemins
 
-    const REPERTOIRE_VUES        = '/Vues/';
+    const REPERTOIRE_VUES        = '/vue/';
 
-    const REPERTOIRE_MODELE      = '/Modele/';
+    const REPERTOIRE_MODELE      = '/model/';
 
     const REPERTOIRE_NOYAU       = '/Noyau/';
 
-    const REPERTOIRE_CONTROLEURS = '/Controleurs/';
+    const REPERTOIRE_CONTROLEURS = '/controller/';
 
 
     public static function repertoireRacine() {
