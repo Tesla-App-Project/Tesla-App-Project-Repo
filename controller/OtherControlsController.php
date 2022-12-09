@@ -6,7 +6,7 @@ class OtherControlsController
      * @API_route /api/1/vehicles/id_vehicle/command/flash_lights
      * @return void
      */
-    public function flashLights() : void {
+    public function postFlashLights() : void {
         echo null;
     }
 
@@ -14,7 +14,7 @@ class OtherControlsController
      * @API_route /api/1/vehicles/id_vehicle/command/honk_horn
      * @return void
      */
-    public function honkHorn() : void {
+    public function postHonkHorn() : void {
         echo null;
     }
 
@@ -22,15 +22,7 @@ class OtherControlsController
      * @API_route /api/1/vehicles/id_vehicle/command/remote_start_drive
      * @return void
      */
-    public function remoteStartDrive() : void {
-        echo null;
-    }
-
-    /**
-     * @API_route /api/1/vehicles/id_vehicle/command/start_stop
-     * @return void
-     */
-    public function startStop() : void {
+    public function postRemoteStartDrive() : void {
         echo null;
     }
 }

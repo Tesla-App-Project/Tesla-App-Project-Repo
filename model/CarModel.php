@@ -2,16 +2,16 @@
 
 class CarModel
 {
-    private int $I_id;
-    private string $S_name;
+    private int $id;
+    private string $name;
 
     /**
      * @return int
      */
-    public function getIId(): int { return $this->I_id; }
+    public function getId(): int { return $this->id; }
 
     /**
      * @return string
      */
-    public function getSName() : string { return  $this->S_name; }
+    public function getName() : string { return  $this->name; }
 }
