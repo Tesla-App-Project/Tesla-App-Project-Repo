@@ -40,7 +40,7 @@ final class Database
         $S_value = "toto";*/
 
         $S_update = $S_base->query("UPDATE utilisateur SET ".$param." = '".$value."' WHERE id = '".$id."'");
-        
+
         echo 'Success';
     }
 }
