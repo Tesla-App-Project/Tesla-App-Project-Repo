@@ -5,16 +5,16 @@ final class ControleurHelloworld
     public function defautAction()
     {
         //http://localhost:8080/index.php?url=helloworld
-        $O_helloworld =  new Helloworld();
+        $O_helloWorld =  new Helloworld();
 
-        Vue::montrer('helloworld/voir', array('helloworld' =>  $O_helloworld->donneMessage()));
+        Vue::montrer('helloworld/voir', array('helloworld' =>  $O_helloWorld->donneMessage()));
     }
 
     //http://localhost:8080/index.php?url=helloworld/boat
     public function boatAction()
     {
-        $O_helloworld =  new Helloworld();
+        $O_helloWorld =  new Helloworld();
         var_dump('zzzz');
-        Vue::montrer('helloworld/voir', array('helloworld' =>  $O_helloworld->donneMessage()));
+        Vue::montrer('helloworld/voir', array('helloworld' =>  $O_helloWorld->donneMessage()));
     }
 }
