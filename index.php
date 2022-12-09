@@ -1,7 +1,7 @@
 <?php
 
 // Ce fichier est le point d'entrée de votre application
-
+require_once 'model/APIModel.php';
 require 'kernel/ChargementAuto.php';
 /*
  url pour notre premier test MVC Hello World,

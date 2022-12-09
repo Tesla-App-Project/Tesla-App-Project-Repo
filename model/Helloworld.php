@@ -2,7 +2,7 @@
 
 final class Helloworld
 {
-    private $_S_message = "Hello World";
+    private $_S_message = "Hello Test";
 
     public function donneMessage()
     {
