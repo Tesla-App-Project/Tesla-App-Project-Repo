@@ -235,11 +235,12 @@ class APIModel
     }
 
     /**
-     * @param int $driverTemp driver HVAC temp
-     * @param int $passengerTemp passenger HVAC temp
+     * @param int | null $driverTemp driver HVAC temp
+     * @param int | null $passengerTemp passenger HVAC temp
      * @return void
+     * @todo Verify if API takes null as parameter
      */
-    public function postSetTemps(int $driverTemp, int $passengerTemp): void {
+    public function postSetBothTemps(int | null $driverTemp, int | null $passengerTemp): void {
         $this->makeAPIRequest("alexlebg", "command/set_temps?driver_temp=" . $driverTemp .  "&passenger_temp=" . $passengerTemp, "POST");
     }
 
@@ -287,24 +288,15 @@ class APIModel
 
     /**
      * To use it, either pass one of the specified strings, or pass the corresponding number, or use move with a custom percentage.
-     * eg : open => 100%, closed => 0%, comfort => 80%, vent => 15% and indicate move for a custom percent
-     * @param string | int $args
+     * eg : open => 100%, closed => 0%, comfort => 80%, vent => 15% and indicate move for a custom percent.
+     * If you are using a different state than move, you don't need to pass a percent as parameter - pass null
+     * @param string $state
+     * @param int | null $percent
      * @return void
+     * @todo Verify if API takes null as parameter
      */
-    public function postSunRoofControl(...$args): void {
-
-        if(count($args) === 2 && $args[0] === "move") {
-            $state =  $args[0];
-            $percent = $args[1];
-            $this->makeAPIRequest("alexlebg", "command/sun_roof_control?state=" . $state . "&percent=" . $percent, "POST");
-        }
-        elseif(is_string($args[0])) {
-            $state = $args[0];
-            $this->makeAPIRequest("alexlebg", "command/sun_roof_control?state=" . $state, "POST");
-        }elseif(is_int($args[0])) {
-            $percent = $args[0];
-            $this->makeAPIRequest("alexlebg", "command/sun_roof_control?state=" . $percent, "POST");
-        }
+    public function postSunRoofControl(string $state, int | null $percent): void {
+        $this->makeAPIRequest("alexlebg", "command/sun_roof_control?state={$state}&percent={$percent}" , "POST");
     }
 
 }
