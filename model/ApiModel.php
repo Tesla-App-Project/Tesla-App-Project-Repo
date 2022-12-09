@@ -82,7 +82,6 @@ class ApiModel
 
     /**
      * @return array
-     * @throws Exception
      */
     public function getAllVehicles(): array {
         return $this->makeAPIRequest(null, "", "GET");
