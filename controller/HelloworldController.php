@@ -19,7 +19,7 @@ final class HelloworldController
         $O_apimodel->setToken("letokendelatesla");
         View::montrer('helloworld/HelloworldView', array('helloworld' => var_dump($O_apimodel->postWakeUp())));
         View::montrer('helloworld/HelloworldView', array('helloworld' => var_dump($O_apimodel->postActuateTrunk())));
-        $O_apimodel->revokeToken();
+        $O_apimodel->revokeToken($O_apimodel->getToken());
         View::montrer('helloworld/HelloworldView', array('helloworld' => var_dump($O_apimodel->postWakeUp())));
         View::montrer('helloworld/HelloworldView', array('helloworld' => var_dump($O_apimodel->postActuateTrunk())));
     }

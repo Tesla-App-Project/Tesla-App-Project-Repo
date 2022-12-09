@@ -3,7 +3,8 @@
 class ApiModel
 {
     private $token;
-    private string $baseURL = 'http:/78.123.242.51:25000/api/1/vehicles';
+    private string $baseURLDEV = 'http:/78.123.242.51:25000/api/1/vehicles';
+    private string $baseURLPROD = 'https://owner-api.teslamotors.com/api/1/vehicles';
 
     /**
      * Allows you to set a token
@@ -20,13 +21,47 @@ class ApiModel
     }
 
     /**
+     * return Token
+     * @return void
+     */
+    public function getToken(): string {
+
+        // TODO : DB Request to fetch encrypted token
+        // Then decrypt it
+
+        return $this->token;
+    }
+
+    /**
      * Allows you to revoke the current token
      * @return void
      */
-    public function revokeToken(): void
-    {
+    public function revokeToken(string $tokenToRemoved): array {
+        $ch = curl_init();
 
-        $this->setToken("");
+        // Check if initialization had gone wrong*
+        if ($ch === false) {
+            throw new Exception('failed to initialize');
+        }
+
+        curl_setopt($ch, CURLOPT_URL, "https://owner-api.teslamotors.com/oauth/revoke");
+
+        $headers = [];
+        $headers[] = 'Content-Type: application/json; charset=utf-8';
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, '{"token": ' . $tokenToRemoved . '}');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+
+        try {
+            $result = curl_exec($ch);
+        } catch (Exception $e) {
+            var_dump($e->getCode() . " " . $e->getMessage());
+        } finally {
+            curl_close($ch);
+            return json_decode($result, true);
+        }
     }
 
     /**
@@ -46,7 +81,7 @@ class ApiModel
         // TODO : alexlebg has to be replaced by the actual car's id
         // One person can own multiple cars
 
-        $idCar === null ? $urlRequest = "{$this->baseURL}/" : $urlRequest = "{$this->baseURL}/{$idCar}/{$url}";
+        $idCar === null ? $urlRequest = "{$this->baseURLDEV}/" : $urlRequest = "{$this->baseURLDEV}/{$idCar}/{$url}";
 
         $ch = curl_init();
 
