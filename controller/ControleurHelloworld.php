@@ -14,7 +14,7 @@ final class ControleurHelloworld
     public function boatAction()
     {
         $O_helloWorld =  new Helloworld();
-        var_dump('zzazdzdzz');
+        var_dump('boatAction');
 
         Vue::montrer('helloworld/voir', array('helloworld' =>  $O_helloWorld->donneMessage()));
     }
