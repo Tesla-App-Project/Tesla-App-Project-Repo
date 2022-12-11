@@ -115,18 +115,52 @@ class ApiModel
     // <------------------- GET methods ------------------->
 
     /**
+     * Allows you to get a list of all vehicles with the data
      * @return array
      * @throws Exception
      */
-    public function getAllVehicles(): array {
+    public function getAllVehiclesData(): array {
         return $this->makeAPIRequest(null, "", "GET");
+    }
+
+    /**
+     * Allows you to get a list of the vehicles with their id
+     * Returns an array that contains only the vehicle_id, the count() of this array is the amount of vehicle
+     * @return string | array
+     */
+    public function getVehiclesList(): string | array {
+        $result = $this->getAllVehiclesData();
+        if($result["count"] === 0) {
+            return "No cars found";
+        }
+        else {
+            $carArray = [];
+            for($i = 0; $i < $result["count"]; $i++){
+                $carArray[$i] = $result["response"][$i]["vehicle_id"];
+            }
+            return $carArray;
+        }
+    }
+
+    /**
+     * Allows you to know if a specific vehicle is online
+     * @return bool
+     * @throws Exception
+     */
+    public function isVehicleOnline($idCar): bool {
+        $result = $this->getVehicleData($idCar);
+        if ($result["response"]["state"] === "online") {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
      * @return array
      */
-    public function getVehiculeData(): array {
-        return $this->makeAPIRequest("1493131276665295", "", "GET");
+    public function getVehicleData($idCar): array {
+        return $this->makeAPIRequest($idCar, "", "GET");
     }
 
     /**
@@ -178,26 +212,16 @@ class ApiModel
         return $this->makeAPIRequest("1493131276665295", "service_data", "GET");
     }
 
-    /**
-     * @return array
-     */
-    public function getVehicleData(): array {
-        return $this->makeAPIRequest("1493131276665295", "vehicle_data", "GET");
-    }
-
     // <------------------- POST methods ------------------->
 
     /**
-     * @return bool
+     * @return array
      * @throws Exception
      */
-    public function postWakeUp(): bool {
-        $result = $this->makeAPIRequest("1493131276665295", "wake_up" , "POST");
-        if ($result["response"][0]["state"] === "online") {
-            return true;
-        } else {
-            return false;
-        }
+    public function postWakeUp(): array {
+
+        return $this->makeAPIRequest("1493131276665295", "wake_up" , "POST");
+
     }
 
     /**

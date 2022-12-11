@@ -17,7 +17,8 @@ final class HelloworldController
     {
         $O_apimodel =  new ApiModel();
         $O_apimodel->setToken("letokendelatesla");
-        View::montrer('helloworld/HelloworldView', array('helloworld' => var_dump($O_apimodel->postWakeUp())));
-        View::montrer('helloworld/HelloworldView', array('helloworld' => var_dump($O_apimodel->postChargePortClose())));
+        View::montrer('helloworld/HelloworldView', array('helloworld' => var_dump($O_apimodel->getVehiclesList())));
+        View::montrer('helloworld/HelloworldView', array('helloworld' => var_dump($O_apimodel->isVehicleOnline("1493131276665295"))));
+        //View::montrer('helloworld/HelloworldView', array('helloworld' => var_dump($O_apimodel->postChargePortClose())));
     }
 }
