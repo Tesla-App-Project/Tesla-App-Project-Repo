@@ -16,7 +16,7 @@ final class Vue
 
     public static function show($S_localisation, $A_parametres = array())
     {
-        $S_file = Constantes::repertoireViews() . $S_localisation . '.php';
+        $S_file = Constants::directoryViews() . $S_localisation . '.php';
 
         $A_view = $A_parametres;
         // Démarrage d'un sous-tampon
