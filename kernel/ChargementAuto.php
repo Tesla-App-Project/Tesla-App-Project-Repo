@@ -31,9 +31,9 @@ final class AutoLoad
         return static::_load($S_file);
     }
 
-    public static function loadClassesControleur($S_className)
+    public static function loadClassesController($S_className)
     {
-        $S_file = Constants::directoryControleurs() . "$S_className.php";
+        $S_file = Constants::directoryControllers() . "$S_className.php";
 
         return static::_load($S_file);
     }
@@ -50,4 +50,4 @@ spl_autoload_register('AutoLoad::LoadKernelClasses');
 spl_autoload_register('AutoLoad::loadClassesException');
 spl_autoload_register('AutoLoad::loadClassesModel');
 spl_autoload_register('AutoLoad::loadClassesView');
-spl_autoload_register('AutoLoad::loadClassesControleur');
+spl_autoload_register('AutoLoad::loadClassesController');

@@ -20,8 +20,8 @@ $A_postParams = isset($_POST) ? $_POST : null;
 // $S_url = isset($_GET['url']) ? $_GET['url'] : null;
 
 View::ouvrirTampon(); //  /kernel/View.php : on ouvre le tampon d'affichage, les contrôleurs qui appellent des vues les mettront dedans
-$O_controleur = new Controleur($S_urlADecortiquer, $A_postParams);
-$O_controleur->executer();
+$O_controller = new Controller($S_urlADecortiquer, $A_postParams);
+$O_controller->executer();
 
 // Les différentes sous-vues ont été "crachées" dans le tampon d'affichage, on les récupère
 $A_contenuPourAffichage = View::recupererContenuTampon();
