@@ -132,7 +132,6 @@ class ApiModel
     /**
      * Allows you to get a list of all vehicles with the data
      * @return array
-     * @throws Exception
      */
     public function getAllVehiclesData(): array {
         return $this->makeAPIRequest(null, "", "GET", array());
