@@ -544,9 +544,17 @@ class ApiModel
 
     // TODO functions for - car position - charge %  - is charging - turn on sentinel mode
 
-    public function carPosition(): void {
+    /**
+     * @return array that contains latitude, longitude, heading and timestamp, timestamp has to be converted to date
+     */
+    public function carPosition(): array {
         $result = $this->getAllData();
-
+        return $position = array(
+            "latitude" => $result["response"]["drive_state"]["latitude"],
+            "longitude" => $result["response"]["drive_state"]["longitude"],
+            "heading" => $result["response"]["drive_state"]["heading"],
+            "timestamp" => $result["response"]["drive_state"]["gps_as_of"]
+        );
     }
 
 }
