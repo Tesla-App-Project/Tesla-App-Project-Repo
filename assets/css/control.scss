@@ -1,0 +1,344 @@
+body {
+  background-color: #161718;
+  color: aliceblue;
+  margin: 0%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.header-index {
+  position: sticky;
+  top: 1px;
+  z-index: -1;
+
+}
+.border1{
+  padding-top: 7px;
+  padding-bottom: 3px;
+  border-width: 2px;
+  border-style:solid;
+  border-color : rgba(102, 102, 102, 0.192);
+  border-radius: 100px;
+}
+h1,
+h2,
+h3,
+h4 {
+  margin: .1rem 0;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  padding-left: 20px;
+}
+
+h3 {
+  font-size: 1.2rem;
+  padding-left: 40px;
+}
+
+h4 {
+  font-size: 1rem;
+  font-style: italic;
+  padding-left: 60px;
+}
+
+.textbutton {
+  font-size: 2rem;
+  text-decoration: none;
+
+}
+
+.imageflex {
+  align-self: center;
+}
+
+.horizontal {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  padding-left: 1%;
+
+
+  justify-content: space-around;
+
+}
+
+.p-padding-l {
+  padding-top: 5%;
+  padding-right: 35% ;
+  position: absolute;
+}
+
+.p-padding-r {
+  padding-top: 5%;
+  padding-left:35% ;
+  position: absolute;
+}
+.p-padding-h {
+  padding-bottom: 40%;
+  position: absolute;
+}
+
+.p-padding-b {
+  padding-top: 60%;
+  position: absolute;
+}
+
+.horizontal-controle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.cadenasPos{
+  position: absolute;
+  width: 6%;
+  padding-top: 4%;
+}
+.rotate{
+  transform: rotate(90deg);
+}
+
+.rotateArrow{
+  transform: rotate(180deg);
+  margin-top: 10px;
+}
+
+
+.vertical-controle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  justify-content: space-around;
+
+}
+
+
+.li {
+  list-style: none;
+  padding-top: 5%;
+  padding-bottom: 3%;
+}
+
+ul {
+  padding: 0%
+}
+
+.box {
+  display: flex;
+  padding-top: 10px;
+}
+
+.box-controle {
+  display: flex;
+}
+
+.box2 {
+  display: flex;
+}
+
+.boxcenter {
+  display: flex;
+  justify-content: space-around;
+}
+
+.one {
+  flex-basis: 98%;
+}
+
+.two {
+  flex-basis: 2%;
+}
+
+.one-controle {
+  flex-basis: 80%;
+}
+
+.eclair{
+  width: 28px;
+  padding-left: 25%;
+  padding-bottom: 20px;
+}
+
+.two-controle {
+  flex-basis: 80%;
+}
+
+.bdody {
+  z-index: 0;
+  background-color: #161718;
+  box-shadow: 0px -40px 30px #161718;
+}
+
+.three {
+  display: flex;
+  justify-content: space-around;
+}
+
+.buttontype1 {
+  border: 50px;
+  background-color: #161718;
+  color: aliceblue;
+  font-size: 2rem;
+  text-decoration: none;
+}
+
+.lientype1 {
+  color: aliceblue;
+  font-size: 1.5rem;
+  text-decoration: none;
+  padding-left: 3%;
+  align-self: center;
+}
+
+.center {
+  text-align: center;
+}
+
+small {
+  color: rgb(114, 115, 117);
+}
+
+.fixe {
+  position: sticky;
+}
+
+.gris {
+  color: rgb(#868787);
+  font-size: 1.2rem;
+
+}
+
+ .cacher{
+  display:none;
+}   
+
+.cacher-tablet{
+  display:contents;
+}   
+   
+
+/* telephone */
+
+@media all and (max-width: 1024px) and  (orientation: portrait) {
+  
+.header-index{
+  position: sticky;
+  top: 1px;
+  z-index: -1;
+}
+
+.bdody {
+  z-index: 0;
+  background-color: #161718;
+  box-shadow: 0px -40px 30px #161718;
+}
+
+.cacher-tablet{
+  display:none;
+}   
+
+.cacher{
+  display:inline;
+}   
+
+.voiture-controle{
+  padding-top: 50px;
+
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  max-width: 35%;
+ }
+}
+
+
+/* Tablette */
+@media all and (max-width: 1024px) and (orientation: landscape){
+  .header-index {
+    position: sticky;
+    top: 1px;
+    z-index: -1;
+  }
+
+  .bdody {
+    z-index: 0;
+    background-color: #161718;
+    box-shadow: 0px -40px 30px #161718;
+  }
+
+  .cacher{
+    display:none;
+  }   
+
+  .cacher-tablet{
+    display:contents;
+  }   
+
+  .voiture-controle{
+    padding-top: 50px;
+
+      display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    max-width: 50%;
+   }
+   #pPaddingL{
+    padding-top: 8%;
+    padding-right:35% ;
+    position: absolute;
+  
+  }
+  
+  #pPaddingR{
+    padding-top: 8%;
+    padding-left:35% ;
+    position: absolute;
+  
+  }
+}
+
+
+@media all and (min-width: 1025px) and (orientation: landscape) {
+  .header-index {
+    position: sticky;
+    top: 1px;
+    z-index: -1;
+  }
+
+  .bdody {
+    z-index: 0;
+    background-color: z#161718;
+    box-shadow: 0px -40px 30px #161718;
+  }
+
+  .cacher{
+    display:none;
+  }   
+
+  .cacher-tablet{
+    display:contents;
+  }   
+
+  .voiture-controle{
+    padding-top: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 50%;
+
+    
+    
+   }
+
+}
