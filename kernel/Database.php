@@ -29,7 +29,7 @@ final class Database
         $this->password = $config['db']['password'] ?? '';
     }
 
-    //GET - exemple : $users = $db->queryGetAction(1, ['pseudo', 'autre'], 'utilisateur');
+    //GET - exemple : $users = $db->queryGetAction(1, ['pseudo', 'other'], 'user');
     public function queryGetAction(int $id, array $params, string $table)
     {
         try {
@@ -66,7 +66,7 @@ final class Database
         }
     }
 
-    //UPDATE - exemple : return $db->queryUpdateAction(1, [['pseudo' => 'Toto'], ['autre' => 'Mimi']], 'utilisateur');
+    //UPDATE - exemple : return $db->queryUpdateAction(1, [['pseudo' => 'Toto'], ['other' => 'Mimi']], 'user');
     public function queryUpdateAction(int $id, array $params, string $table)
     {
         try {
