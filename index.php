@@ -15,16 +15,16 @@ require_once __DIR__ . '/vendor/autoload.php';
 // $S_action = isset($_GET['action']) ? $_GET['action'] : null;
 
 $S_urlADecortiquer = isset($_GET['url']) ? $_GET['url'] : null;
-$A_postParams = isset($_POST) ? $_POST : null;
+$A_postSettings = isset($_POST) ? $_POST : null;
 
 // $S_url = isset($_GET['url']) ? $_GET['url'] : null;
 
-View::ouvrirTampon(); //  /kernel/View.php : on ouvre le tampon d'affichage, les contrôleurs qui appellent des vues les mettront dedans
-$O_controller = new Controller($S_urlADecortiquer, $A_postParams);
-$O_controller->executer();
+View::openBuffer(); //  /kernel/View.php : on ouvre le tampon d'affichage, les contrôleurs qui appellent des vues les mettront dedans
+$O_controller = new Controller($S_urlADecortiquer, $A_postSettings);
+$O_controller->execute();
 
 // Les différentes sous-vues ont été "crachées" dans le tampon d'affichage, on les récupère
-$A_contenuPourAffichage = View::recupererContenuTampon();
+$A_contenuPourAffichage = View::getBufferContent();
 
-// On affiche le contenu dans la partie body du gabarit général
-View::show('gabarit', array('body' => $A_contenuPourAffichage));
+// On affiche le contenu dans la partie body du template général
+View::show('template', array('body' => $A_contenuPourAffichage));
