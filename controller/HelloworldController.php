@@ -6,7 +6,7 @@ final class HelloworldController
     {
         //http://localhost:8080/index.php?url=helloworld
         $O_helloworld =  new HelloworldModel();
-        View::montrer('helloworld/HelloworldView', array('helloworld' =>  $O_helloworld->donneMessage()));
+        View::show('helloworld/HelloworldView', array('helloworld' =>  $O_helloworld->donneMessage()));
     }
 
     //http://localhost:8080/index.php?url=helloworld&action=wake_up
@@ -17,8 +17,10 @@ final class HelloworldController
     {
         $O_apimodel =  new ApiModel();
         $O_apimodel->setToken("letokendelatesla");
-        View::montrer('helloworld/HelloworldView', array('helloworld' => var_dump($O_apimodel->postWakeUp())));
+        View::show('helloworld/HelloworldView', array('helloworld' => var_dump($O_apimodel->postWakeUp())));
+        View::show('helloworld/HelloworldView', array('helloworld' => var_dump($O_apimodel->postActuateTrunk())));
         $O_apimodel->revokeToken();
-        View::montrer('helloworld/HelloworldView', array('helloworld' => var_dump($O_apimodel->postWakeUp())));
+        View::show('helloworld/HelloworldView', array('helloworld' => var_dump($O_apimodel->postWakeUp())));
+        View::show('helloworld/HelloworldView', array('helloworld' => var_dump($O_apimodel->postActuateTrunk())));
     }
 }
