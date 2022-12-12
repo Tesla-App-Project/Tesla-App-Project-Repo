@@ -18,12 +18,12 @@ $A_postSettings = $_POST ?? null;
 
 // $S_url = isset($_GET['url']) ? $_GET['url'] : null;
 
-View::ouvrirTampon(); //  /kernel/View.php : we open the display buffer, controllers called the views
+View::openBuffer(); //  /kernel/View.php : we open the display buffer, controllers called the views
 $O_controller = new Controller($S_urlADecortiquer, $A_postSettings);
-$O_controller->executer();
+$O_controller->execute();
 
 // The few sub views were put inside the display buffer, we get them
-$A_content = View::recupererContenuTampon();
+$A_content = View::getBufferContent();
 
 // We display the content in the template body
-View::montrer('template', array('body' => $A_content));
+View::show('template', array('body' => $A_content));

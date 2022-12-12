@@ -4,12 +4,12 @@
 
 ### Premiers pas :
 
-3 - Modèles et connexion BDD (coming soon...)
 Composer :
 
 Configurer Composer
 
 - Installer Composer sur votre machine (https://getcomposer.org/)
+- Penser à ajouter une version de PHP supperieur à 7.1 dans vos variables d'environement en cas d'erreur
 - Lancer la commande d'installation dans le terminal du projet : composer install
 
 Env :

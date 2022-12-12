@@ -62,7 +62,7 @@ class ApiModel
         $headers = [];
         $headers[] = 'Content-Type: application/json; charset=utf-8';
         $headers[] = "Authorization: Bearer {$this->token}";
-    
+
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $requestType);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
@@ -74,7 +74,7 @@ class ApiModel
         } finally {
             curl_close($ch);
             return json_decode($result, true);
-        }   
+        }
     }
 
 
@@ -149,7 +149,7 @@ class ApiModel
     public function getVehicleData(): array {
         return $this->makeAPIRequest("alexlebg", "vehicle_data", "GET");
     }
-    
+
     // <------------------- POST methods ------------------->
 
     /**
@@ -169,108 +169,144 @@ class ApiModel
      * @return array
      */
     public function postActuateTrunk(): array {
-        $result = $this->makeAPIRequest("alexlebg", "command/actuate_trunk" , "POST")["response"]["result"];
-        $reason = $this->makeAPIRequest("alexlebg", "command/actuate_trunk" , "POST")["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        if($this->postWakeUp()) {
+            $result = $this->makeAPIRequest("alexlebg", "command/actuate_trunk" , "POST")["response"]["result"];
+            $reason = $this->makeAPIRequest("alexlebg", "command/actuate_trunk" , "POST")["response"]["reason"];
+            return array("result" => $result,"reason" => $reason);
+        }
+        return array("reason" => "La voiture n'est pas apte à recevoir d'ordre");
     }
 
     /**
      * @return array
      */
     public function postConditioningStart(): array {
-        $result = $this->makeAPIRequest("alexlebg", "command/auto_conditioning_start" , "POST")["response"]["result"];
-        $reason = $this->makeAPIRequest("alexlebg", "command/auto_conditioning_start" , "POST")["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        if($this->postWakeUp()) {
+            $result = $this->makeAPIRequest("alexlebg", "command/auto_conditioning_start" , "POST")["response"]["result"];
+            $reason = $this->makeAPIRequest("alexlebg", "command/auto_conditioning_start" , "POST")["response"]["reason"];
+            return array("result" => $result,"reason" => $reason);
+        }
+        return array("reason" => "La voiture n'est pas apte à recevoir d'ordre");
     }
 
     /**
      * @return array
      */
     public function postConditioningStop(): array {
-        $result = $this->makeAPIRequest("alexlebg", "command/auto_conditioning_stop" , "POST")["response"]["result"];
-        $reason = $this->makeAPIRequest("alexlebg", "command/auto_conditioning_stop" , "POST")["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        if($this->postWakeUp()) {
+            $result = $this->makeAPIRequest("alexlebg", "command/auto_conditioning_stop" , "POST")["response"]["result"];
+            $reason = $this->makeAPIRequest("alexlebg", "command/auto_conditioning_stop" , "POST")["response"]["reason"];
+            return array("result" => $result,"reason" => $reason);
+        }
+        return array("reason" => "La voiture n'est pas apte à recevoir d'ordre");
     }
 
     /**
      * @return array
      */
     public function postChargeMaxRange(): array {
-        $result = $this->makeAPIRequest("alexlebg", "command/charge_max_range" , "POST")["response"]["result"];
-        $reason = $this->makeAPIRequest("alexlebg", "command/charge_max_range" , "POST")["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        if($this->postWakeUp()) {
+            $result = $this->makeAPIRequest("alexlebg", "command/charge_max_range" , "POST")["response"]["result"];
+            $reason = $this->makeAPIRequest("alexlebg", "command/charge_max_range" , "POST")["response"]["reason"];
+            return array("result" => $result,"reason" => $reason);
+        }
+        return array("reason" => "La voiture n'est pas apte à recevoir d'ordre");
     }
 
     /**
      * @return array
      */
     public function postChargePortClose(): array {
-        $result = $this->makeAPIRequest("alexlebg", "command/charge_port_door_close" , "POST")["response"]["result"];
-        $reason = $this->makeAPIRequest("alexlebg", "command/charge_port_door_close" , "POST")["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        if($this->postWakeUp()) {
+            $result = $this->makeAPIRequest("alexlebg", "command/charge_port_door_close" , "POST")["response"]["result"];
+            $reason = $this->makeAPIRequest("alexlebg", "command/charge_port_door_close" , "POST")["response"]["reason"];
+            return array("result" => $result,"reason" => $reason);
+        }
+        return array("reason" => "La voiture n'est pas apte à recevoir d'ordre");
     }
 
     /**
      * @return array
      */
     public function postChargePortOpen(): array {
-        $result = $this->makeAPIRequest("alexlebg", "command/charge_port_door_open" , "POST")["response"]["result"];
-        $reason = $this->makeAPIRequest("alexlebg", "command/charge_port_door_open" , "POST")["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        if($this->postWakeUp()) {
+            $result = $this->makeAPIRequest("alexlebg", "command/charge_port_door_open" , "POST")["response"]["result"];
+            $reason = $this->makeAPIRequest("alexlebg", "command/charge_port_door_open" , "POST")["response"]["reason"];
+            return array("result" => $result,"reason" => $reason);
+        }
+        return array("reason" => "La voiture n'est pas apte à recevoir d'ordre");
     }
 
     /**
      * @return array
      */
     public function postDoorLock(): array {
-        $result = $this->makeAPIRequest("alexlebg", "command/door_lock" , "POST")["response"]["result"];
-        $reason = $this->makeAPIRequest("alexlebg", "command/door_lock" , "POST")["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        if($this->postWakeUp()) {
+            $result = $this->makeAPIRequest("alexlebg", "command/door_lock" , "POST")["response"]["result"];
+            $reason = $this->makeAPIRequest("alexlebg", "command/door_lock" , "POST")["response"]["reason"];
+            return array("result" => $result,"reason" => $reason);
+        }
+        return array("reason" => "La voiture n'est pas apte à recevoir d'ordre");
     }
 
     /**
      * @return array
      */
     public function postDoorUnlock(): array {
-        $result = $this->makeAPIRequest("alexlebg", "command/door_unlock" , "POST")["response"]["result"];
-        $reason = $this->makeAPIRequest("alexlebg", "command/door_unlock" , "POST")["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        if($this->postWakeUp()) {
+            $result = $this->makeAPIRequest("alexlebg", "command/door_unlock" , "POST")["response"]["result"];
+            $reason = $this->makeAPIRequest("alexlebg", "command/door_unlock" , "POST")["response"]["reason"];
+            return array("result" => $result,"reason" => $reason);
+        }
+        return array("reason" => "La voiture n'est pas apte à recevoir d'ordre");
     }
 
     /**
      * @return array
      */
     public function postFlashLights(): array {
-        $result = $this->makeAPIRequest("alexlebg", "command/flash_lights" , "POST")["response"]["result"];
-        $reason = $this->makeAPIRequest("alexlebg", "command/flash_lights" , "POST")["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        if($this->postWakeUp()) {
+            $result = $this->makeAPIRequest("alexlebg", "command/flash_lights" , "POST")["response"]["result"];
+            $reason = $this->makeAPIRequest("alexlebg", "command/flash_lights" , "POST")["response"]["reason"];
+            return array("result" => $result,"reason" => $reason);
+        }
+        return array("reason" => "La voiture n'est pas apte à recevoir d'ordre");
     }
 
     /**
      * @return array
      */
     public function postHonkHorn(): array {
-        $result = $this->makeAPIRequest("alexlebg", "command/honk_horn" , "POST")["response"]["result"];
-        $reason = $this->makeAPIRequest("alexlebg", "command/honk_horn" , "POST")["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        if($this->postWakeUp()) {
+            $result = $this->makeAPIRequest("alexlebg", "command/honk_horn" , "POST")["response"]["result"];
+            $reason = $this->makeAPIRequest("alexlebg", "command/honk_horn" , "POST")["response"]["reason"];
+            return array("result" => $result,"reason" => $reason);
+        }
+        return array("reason" => "La voiture n'est pas apte à recevoir d'ordre");
     }
 
     /**
      * @return array
      */
     public function postRemoteStartDrive(): array {
-        $result = $this->makeAPIRequest("alexlebg", "command/remote_start_drive" , "POST")["response"]["result"];
-        $reason = $this->makeAPIRequest("alexlebg", "command/remote_start_drive" , "POST")["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        if($this->postWakeUp()) {
+            $result = $this->makeAPIRequest("alexlebg", "command/remote_start_drive" , "POST")["response"]["result"];
+            $reason = $this->makeAPIRequest("alexlebg", "command/remote_start_drive" , "POST")["response"]["reason"];
+            return array("result" => $result,"reason" => $reason);
+        }
+        return array("reason" => "La voiture n'est pas apte à recevoir d'ordre");
     }
 
     /**
      * @return array
      */
     public function postResetValetPin(): array {
-        $result = $this->makeAPIRequest("alexlebg", "command/reset_valet_pin" , "POST")["response"]["result"];
-        $reason = $this->makeAPIRequest("alexlebg", "command/reset_valet_pin" , "POST")["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        if($this->postWakeUp()) {
+            $result = $this->makeAPIRequest("alexlebg", "command/reset_valet_pin" , "POST")["response"]["result"];
+            $reason = $this->makeAPIRequest("alexlebg", "command/reset_valet_pin" , "POST")["response"]["reason"];
+            return array("result" => $result,"reason" => $reason);
+        }
+        return array("reason" => "La voiture n'est pas apte à recevoir d'ordre");
     }
 
     /**
@@ -279,9 +315,12 @@ class ApiModel
      * @return array
      */
     public function postSetValetMode(bool $mode, string $password): array {
-        $result = $this->makeAPIRequest("alexlebg", "command/set_valet_mode?on={$mode}&password={$password}", "POST")["response"]["result"];
-        $reason = $this->makeAPIRequest("alexlebg", "command/set_valet_mode?on={$mode}&password={$password}", "POST")["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        if($this->postWakeUp()) {
+            $result = $this->makeAPIRequest("alexlebg", "command/set_valet_mode?on={$mode}&password={$password}", "POST")["response"]["result"];
+            $reason = $this->makeAPIRequest("alexlebg", "command/set_valet_mode?on={$mode}&password={$password}", "POST")["response"]["reason"];
+            return array("result" => $result,"reason" => $reason);
+        }
+        return array("reason" => "La voiture n'est pas apte à recevoir d'ordre");
     }
 
     /**
@@ -289,9 +328,12 @@ class ApiModel
      * @return array
      */
     public function postSetChargeLimit(int $percent): array {
-        $result = $this->makeAPIRequest("alexlebg", "command/set_charge_limit?percent={$percent}" , "POST")["response"]["result"];
-        $reason = $this->makeAPIRequest("alexlebg", "command/set_charge_limit?percent={$percent}" , "POST")["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        if($this->postWakeUp()) {
+            $result = $this->makeAPIRequest("alexlebg", "command/set_charge_limit?percent={$percent}" , "POST")["response"]["result"];
+            $reason = $this->makeAPIRequest("alexlebg", "command/set_charge_limit?percent={$percent}" , "POST")["response"]["reason"];
+            return array("result" => $result,"reason" => $reason);
+        }
+        return array("reason" => "La voiture n'est pas apte à recevoir d'ordre");
     }
 
     /**
@@ -301,63 +343,84 @@ class ApiModel
      * @todo Verify if API takes null as parameter
      */
     public function postSetBothTemps(int | null $driverTemp, int | null $passengerTemp): array {
-        $result = $this->makeAPIRequest("alexlebg", "command/set_temps?driver_temp={$driverTemp}&passenger_temp={$passengerTemp}", "POST")["response"]["result"];
-        $reason = $this->makeAPIRequest("alexlebg", "command/set_temps?driver_temp={$driverTemp}&passenger_temp={$passengerTemp}", "POST")["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        if($this->postWakeUp()) {
+            $result = $this->makeAPIRequest("alexlebg", "command/set_temps?driver_temp={$driverTemp}&passenger_temp={$passengerTemp}", "POST")["response"]["result"];
+            $reason = $this->makeAPIRequest("alexlebg", "command/set_temps?driver_temp={$driverTemp}&passenger_temp={$passengerTemp}", "POST")["response"]["reason"];
+            return array("result" => $result,"reason" => $reason);
+        }
+        return array("reason" => "La voiture n'est pas apte à recevoir d'ordre");
     }
 
     /**
      * @return array
      */
     public function postSpeedLimitActivate(): array {
-        $result = $this->makeAPIRequest("alexlebg", "command/speed_limit_activate" , "POST")["response"]["result"];
-        $reason = $this->makeAPIRequest("alexlebg", "command/speed_limit_activate" , "POST")["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        if($this->postWakeUp()) {
+            $result = $this->makeAPIRequest("alexlebg", "command/speed_limit_activate" , "POST")["response"]["result"];
+            $reason = $this->makeAPIRequest("alexlebg", "command/speed_limit_activate" , "POST")["response"]["reason"];
+            return array("result" => $result,"reason" => $reason);
+        }
+        return array("reason" => "La voiture n'est pas apte à recevoir d'ordre");
     }
 
     /**
      * @return array
      */
     public function postSpeedLimitDeactivate(): array {
-        $result = $this->makeAPIRequest("alexlebg", "command/speed_limit_deactivate" , "POST")["response"]["result"];
-        $reason = $this->makeAPIRequest("alexlebg", "command/speed_limit_deactivate" , "POST")["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        if($this->postWakeUp()) {
+            $result = $this->makeAPIRequest("alexlebg", "command/speed_limit_deactivate" , "POST")["response"]["result"];
+            $reason = $this->makeAPIRequest("alexlebg", "command/speed_limit_deactivate" , "POST")["response"]["reason"];
+            return array("result" => $result,"reason" => $reason);
+        }
+        return array("reason" => "La voiture n'est pas apte à recevoir d'ordre");
     }
 
     /**
      * @return array
      */
     public function postSpeedLimitClearPin(): array {
-        $result = $this->makeAPIRequest("alexlebg", "command/speed_limit_clear_pin" , "POST")["response"]["result"];
-        $reason = $this->makeAPIRequest("alexlebg", "command/speed_limit_clear_pin" , "POST")["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        if($this->postWakeUp()) {
+            $result = $this->makeAPIRequest("alexlebg", "command/speed_limit_clear_pin" , "POST")["response"]["result"];
+            $reason = $this->makeAPIRequest("alexlebg", "command/speed_limit_clear_pin" , "POST")["response"]["reason"];
+            return array("result" => $result,"reason" => $reason);
+        }
+        return array("reason" => "La voiture n'est pas apte à recevoir d'ordre");
     }
 
     /**
      * @return array
      */
     public function postSpeedLimitSetLimit(): array {
-        $result = $this->makeAPIRequest("alexlebg", "command/speed_limit_set_limit" , "POST")["response"]["result"];
-        $reason = $this->makeAPIRequest("alexlebg", "command/speed_limit_set_limit" , "POST")["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        if($this->postWakeUp()) {
+            $result = $this->makeAPIRequest("alexlebg", "command/speed_limit_set_limit" , "POST")["response"]["result"];
+            $reason = $this->makeAPIRequest("alexlebg", "command/speed_limit_set_limit" , "POST")["response"]["reason"];
+            return array("result" => $result,"reason" => $reason);
+        }
+        return array("reason" => "La voiture n'est pas apte à recevoir d'ordre");
     }
 
     /**
      * @return array
      */
     public function postStartCharge(): array {
-        $result = $this->makeAPIRequest("alexlebg", "command/start_charge" , "POST")["response"]["result"];
-        $reason = $this->makeAPIRequest("alexlebg", "command/start_charge" , "POST")["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        if($this->postWakeUp()) {
+            $result = $this->makeAPIRequest("alexlebg", "command/start_charge" , "POST")["response"]["result"];
+            $reason = $this->makeAPIRequest("alexlebg", "command/start_charge" , "POST")["response"]["reason"];
+            return array("result" => $result,"reason" => $reason);
+        }
+        return array("reason" => "La voiture n'est pas apte à recevoir d'ordre");
     }
 
     /**
      * @return array
      */
     public function postStopCharge(): array {
-        $result = $this->makeAPIRequest("alexlebg", "command/start_stop" , "POST")["response"]["result"];
-        $reason = $this->makeAPIRequest("alexlebg", "command/start_stop" , "POST")["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        if($this->postWakeUp()) {
+            $result = $this->makeAPIRequest("alexlebg", "command/start_stop" , "POST")["response"]["result"];
+            $reason = $this->makeAPIRequest("alexlebg", "command/start_stop" , "POST")["response"]["reason"];
+            return array("result" => $result,"reason" => $reason);
+        }
+        return array("reason" => "La voiture n'est pas apte à recevoir d'ordre");
     }
 
     /**
@@ -370,9 +433,12 @@ class ApiModel
      * @todo Verify if API takes null as parameter
      */
     public function postSunRoofControl(string $state, int | null $percent): array {
-        $result = $this->makeAPIRequest("alexlebg", "command/sun_roof_control?state={$state}&percent={$percent}" , "POST")["response"]["result"];
-        $reason = $this->makeAPIRequest("alexlebg", "command/sun_roof_control?state={$state}&percent={$percent}" , "POST")["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        if($this->postWakeUp()) {
+            $result = $this->makeAPIRequest("alexlebg", "command/sun_roof_control?state={$state}&percent={$percent}" , "POST")["response"]["result"];
+            $reason = $this->makeAPIRequest("alexlebg", "command/sun_roof_control?state={$state}&percent={$percent}" , "POST")["response"]["reason"];
+            return array("result" => $result,"reason" => $reason);
+        }
+        return array("reason" => "La voiture n'est pas apte à recevoir d'ordre");
     }
 
 }
