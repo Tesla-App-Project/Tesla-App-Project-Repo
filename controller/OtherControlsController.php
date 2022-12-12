@@ -14,7 +14,6 @@ class OtherControlsController
     /**
      * @API_route /api/1/vehicles/id_vehicle/command/flash_lights
      * @return void
-     * @throws Exception
      */
     public function postFlashLightsAction() : void {
         echo $this->_httpRequestHandler->callAPI('postFlashLights', false);
@@ -23,7 +22,6 @@ class OtherControlsController
     /**
      * @API_route /api/1/vehicles/id_vehicle/command/honk_horn
      * @return void
-     * @throws Exception
      */
     public function postHonkHornAction() : void {
         echo $this->_httpRequestHandler->callAPI('postHonkHorn', false);
@@ -32,7 +30,6 @@ class OtherControlsController
     /**
      * @API_route /api/1/vehicles/id_vehicle/command/remote_start_drive
      * @return void
-     * @throws Exception
      */
     public function postRemoteStartDriveAction() : void {
         echo $this->_httpRequestHandler->callAPI('postRemoteStartDrive', false);
