@@ -96,7 +96,7 @@ class ApiModel
      * @param string | null $requestIdCar id of the car you wish to interact with
      * @param string $requestUrl api endpoint url
      * @param string $requestType request type : GET or POST
-     * @param string $requestBody the body of the request, JSON formatted
+     * @param array $requestBody the body of the request, JSON formatted
      * @return array
      * @throws Exception
      */
@@ -257,9 +257,8 @@ class ApiModel
      */
     public function postActuateTrunk(string $chosenTrunk): array {
 
-        $result = $this->makeAPIRequest($this->idCar, "command/actuate_trunk?which_trunk={$chosenTrunk}" , "POST", array("which_trunk" => $chosenTrunk))["response"]["result"];
-        $reason = $this->makeAPIRequest($this->idCar, "command/actuate_trunk?which_trunk={$chosenTrunk}" , "POST", array("which_trunk" => $chosenTrunk))["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        $result = $this->makeAPIRequest($this->idCar, "command/actuate_trunk?which_trunk={$chosenTrunk}" , "POST", array("which_trunk" => $chosenTrunk));
+        return array("result" => $result["response"]["result"],"reason" => $result["response"]["reason"]);
 
     }
 
@@ -268,9 +267,8 @@ class ApiModel
      */
     public function postConditioningStart(): array {
 
-        $result = $this->makeAPIRequest($this->idCar, "command/auto_conditioning_start" , "POST", array())["response"]["result"];
-        $reason = $this->makeAPIRequest($this->idCar, "command/auto_conditioning_start" , "POST", array())["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        $result = $this->makeAPIRequest($this->idCar, "command/auto_conditioning_start" , "POST", array());
+        return array("result" => $result["response"]["result"],"reason" => $result["response"]["reason"]);
 
     }
 
@@ -279,9 +277,8 @@ class ApiModel
      */
     public function postConditioningStop(): array {
 
-        $result = $this->makeAPIRequest($this->idCar, "command/auto_conditioning_stop" , "POST", array())["response"]["result"];
-        $reason = $this->makeAPIRequest($this->idCar, "command/auto_conditioning_stop" , "POST", array())["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        $result = $this->makeAPIRequest($this->idCar, "command/auto_conditioning_stop" , "POST", array());
+        return array("result" => $result["response"]["result"],"reason" => $result["response"]["reason"]);
 
     }
 
@@ -290,9 +287,8 @@ class ApiModel
      */
     public function postChargeMaxRange(): array {
 
-        $result = $this->makeAPIRequest($this->idCar, "command/charge_max_range" , "POST", array())["response"]["result"];
-        $reason = $this->makeAPIRequest($this->idCar, "command/charge_max_range" , "POST", array())["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        $result = $this->makeAPIRequest($this->idCar, "command/charge_max_range" , "POST", array());
+        return array("result" => $result["response"]["result"],"reason" => $result["response"]["reason"]);
 
     }
 
@@ -300,36 +296,28 @@ class ApiModel
      * @return array
      */
     public function postChargePortClose(): array {
-        //
-        $result = $this->makeAPIRequest($this->idCar, "command/charge_port_door_close" , "POST", array())["response"]["result"];
-        $reason = $this->makeAPIRequest($this->idCar, "command/charge_port_door_close" , "POST", array())["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
-        //}
-        //
+
+        $result = $this->makeAPIRequest($this->idCar, "command/charge_port_door_close" , "POST", array());
+        return array("result" => $result["response"]["result"],"reason" => $result["response"]["reason"]);
+
     }
 
     /**
      * @return array
      */
     public function postChargePortOpen(): array {
-        //
-        $result = $this->makeAPIRequest($this->idCar, "command/charge_port_door_open" , "POST", array())["response"]["result"];
-        $reason = $this->makeAPIRequest($this->idCar, "command/charge_port_door_open" , "POST", array())["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
-        //}
-        //
+
+        $result = $this->makeAPIRequest($this->idCar, "command/charge_port_door_open" , "POST", array());
+        return array("result" => $result["response"]["result"],"reason" => $result["response"]["reason"]);
     }
 
     /**
      * @return array
      */
     public function postDoorLock(): array {
-        //
-        $result = $this->makeAPIRequest($this->idCar, "command/door_lock" , "POST", array())["response"]["result"];
-        $reason = $this->makeAPIRequest($this->idCar, "command/door_lock" , "POST", array())["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
-        //}
-        //
+
+        $result = $this->makeAPIRequest($this->idCar, "command/door_lock" , "POST", array());
+        return array("result" => $result["response"]["result"],"reason" => $result["response"]["reason"]);
     }
 
     /**
@@ -337,9 +325,8 @@ class ApiModel
      */
     public function postDoorUnlock(): array {
 
-        $result = $this->makeAPIRequest($this->idCar, "command/door_unlock" , "POST", array())["response"]["result"];
-        $reason = $this->makeAPIRequest($this->idCar, "command/door_unlock" , "POST", array())["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        $result = $this->makeAPIRequest($this->idCar, "command/door_unlock" , "POST", array());
+        return array("result" => $result["response"]["result"],"reason" => $result["response"]["reason"]);
 
     }
 
@@ -348,9 +335,8 @@ class ApiModel
      */
     public function postFlashLights(): array {
 
-        $result = $this->makeAPIRequest($this->idCar, "command/flash_lights" , "POST", array())["response"]["result"];
-        $reason = $this->makeAPIRequest($this->idCar, "command/flash_lights" , "POST", array())["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        $result = $this->makeAPIRequest($this->idCar, "command/flash_lights" , "POST", array());
+        return array("result" => $result["response"]["result"],"reason" => $result["response"]["reason"]);
 
     }
 
@@ -359,9 +345,8 @@ class ApiModel
      */
     public function postHonkHorn(): array {
 
-        $result = $this->makeAPIRequest($this->idCar, "command/honk_horn" , "POST", array())["response"]["result"];
-        $reason = $this->makeAPIRequest($this->idCar, "command/honk_horn" , "POST", array())["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        $result = $this->makeAPIRequest($this->idCar, "command/honk_horn" , "POST", array());
+        return array("result" => $result["response"]["result"],"reason" => $result["response"]["reason"]);
 
     }
 
@@ -370,9 +355,8 @@ class ApiModel
      */
     public function postRemoteStartDrive(): array {
 
-        $result = $this->makeAPIRequest($this->idCar, "command/remote_start_drive" , "POST", array())["response"]["result"];
-        $reason = $this->makeAPIRequest($this->idCar, "command/remote_start_drive" , "POST", array())["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        $result = $this->makeAPIRequest($this->idCar, "command/remote_start_drive" , "POST", array());
+        return array("result" => $result["response"]["result"],"reason" => $result["response"]["reason"]);
 
     }
 
@@ -381,9 +365,8 @@ class ApiModel
      */
     public function postResetValetPin(): array {
 
-        $result = $this->makeAPIRequest($this->idCar, "command/reset_valet_pin" , "POST", array())["response"]["result"];
-        $reason = $this->makeAPIRequest($this->idCar, "command/reset_valet_pin" , "POST", array())["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        $result = $this->makeAPIRequest($this->idCar, "command/reset_valet_pin" , "POST", array());
+        return array("result" => $result["response"]["result"],"reason" => $result["response"]["reason"]);
 
     }
 
@@ -394,9 +377,8 @@ class ApiModel
      */
     public function postSetValetMode(bool $mode, string $password): array {
 
-        $result = $this->makeAPIRequest($this->idCar, "command/set_valet_mode?on={$mode}&password={$password}", "POST", array())["response"]["result"];
-        $reason = $this->makeAPIRequest($this->idCar, "command/set_valet_mode?on={$mode}&password={$password}", "POST", array())["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        $result = $this->makeAPIRequest($this->idCar, "command/set_valet_mode?on={$mode}&password={$password}", "POST", array());
+        return array("result" => $result["response"]["result"],"reason" => $result["response"]["reason"]);
 
     }
 
@@ -406,9 +388,8 @@ class ApiModel
      */
     public function postSetChargeLimit(int $percent): array {
 
-        $result = $this->makeAPIRequest($this->idCar, "command/set_charge_limit?percent={$percent}" , "POST", array())["response"]["result"];
-        $reason = $this->makeAPIRequest($this->idCar, "command/set_charge_limit?percent={$percent}" , "POST", array())["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        $result = $this->makeAPIRequest($this->idCar, "command/set_charge_limit?percent={$percent}" , "POST", array());
+        return array("result" => $result["response"]["result"],"reason" => $result["response"]["reason"]);
 
     }
 
@@ -420,9 +401,8 @@ class ApiModel
      */
     public function postSetBothTemps(int | null $driverTemp, int | null $passengerTemp): array {
 
-        $result = $this->makeAPIRequest($this->idCar, "command/set_temps?driver_temp={$driverTemp}&passenger_temp={$passengerTemp}", "POST", array())["response"]["result"];
-        $reason = $this->makeAPIRequest($this->idCar, "command/set_temps?driver_temp={$driverTemp}&passenger_temp={$passengerTemp}", "POST", array())["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        $result = $this->makeAPIRequest($this->idCar, "command/set_temps?driver_temp={$driverTemp}&passenger_temp={$passengerTemp}", "POST", array());
+        return array("result" => $result["response"]["result"],"reason" => $result["response"]["reason"]);
 
     }
 
@@ -431,9 +411,8 @@ class ApiModel
      */
     public function postSpeedLimitActivate(): array {
 
-        $result = $this->makeAPIRequest($this->idCar, "command/speed_limit_activate" , "POST", array())["response"]["result"];
-        $reason = $this->makeAPIRequest($this->idCar, "command/speed_limit_activate" , "POST", array())["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        $result = $this->makeAPIRequest($this->idCar, "command/speed_limit_activate" , "POST", array());
+        return array("result" => $result["response"]["result"],"reason" => $result["response"]["reason"]);
 
     }
 
@@ -442,9 +421,8 @@ class ApiModel
      */
     public function postSpeedLimitDeactivate(): array {
 
-        $result = $this->makeAPIRequest($this->idCar, "command/speed_limit_deactivate" , "POST", array())["response"]["result"];
-        $reason = $this->makeAPIRequest($this->idCar, "command/speed_limit_deactivate" , "POST", array())["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        $result = $this->makeAPIRequest($this->idCar, "command/speed_limit_deactivate" , "POST", array());
+        return array("result" => $result["response"]["result"],"reason" => $result["response"]["reason"]);
 
     }
 
@@ -453,9 +431,8 @@ class ApiModel
      */
     public function postSpeedLimitClearPin(): array {
 
-        $result = $this->makeAPIRequest($this->idCar, "command/speed_limit_clear_pin" , "POST", array())["response"]["result"];
-        $reason = $this->makeAPIRequest($this->idCar, "command/speed_limit_clear_pin" , "POST", array())["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        $result = $this->makeAPIRequest($this->idCar, "command/speed_limit_clear_pin" , "POST", array());
+        return array("result" => $result["response"]["result"],"reason" => $result["response"]["reason"]);
 
     }
 
@@ -464,9 +441,8 @@ class ApiModel
      */
     public function postSpeedLimitSetLimit(): array {
 
-        $result = $this->makeAPIRequest($this->idCar, "command/speed_limit_set_limit" , "POST", array())["response"]["result"];
-        $reason = $this->makeAPIRequest($this->idCar, "command/speed_limit_set_limit" , "POST", array())["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        $result = $this->makeAPIRequest($this->idCar, "command/speed_limit_set_limit" , "POST", array());
+        return array("result" => $result["response"]["result"],"reason" => $result["response"]["reason"]);
 
     }
 
@@ -475,9 +451,8 @@ class ApiModel
      */
     public function postStartCharge(): array {
 
-        $result = $this->makeAPIRequest($this->idCar, "command/start_charge" , "POST", array())["response"]["result"];
-        $reason = $this->makeAPIRequest($this->idCar, "command/start_charge" , "POST", array())["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        $result = $this->makeAPIRequest($this->idCar, "command/start_charge" , "POST", array());
+        return array("result" => $result["response"]["result"],"reason" => $result["response"]["reason"]);
 
     }
 
@@ -486,9 +461,8 @@ class ApiModel
      */
     public function postStopCharge(): array {
 
-        $result = $this->makeAPIRequest($this->idCar, "command/start_stop" , "POST", array())["response"]["result"];
-        $reason = $this->makeAPIRequest($this->idCar, "command/start_stop" , "POST", array())["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        $result = $this->makeAPIRequest($this->idCar, "command/start_stop" , "POST", array());
+        return array("result" => $result["response"]["result"],"reason" => $result["response"]["reason"]);
 
     }
 
@@ -503,12 +477,21 @@ class ApiModel
      */
     public function postSunRoofControl(string $state, int | null $percent): array {
 
-        $result = $this->makeAPIRequest($this->idCar, "command/sun_roof_control?state={$state}&percent={$percent}" , "POST", array())["response"]["result"];
-        $reason = $this->makeAPIRequest($this->idCar, "command/sun_roof_control?state={$state}&percent={$percent}" , "POST", array())["response"]["reason"];
-        return array("result" => $result,"reason" => $reason);
+        $result = $this->makeAPIRequest($this->idCar, "command/sun_roof_control?state={$state}&percent={$percent}" , "POST", array());
+        return array("result" => $result["response"]["result"],"reason" => $result["response"]["reason"]);
 
     }
 
+    /**
+     * @param bool $state true to turn it on, false to turn it off
+     * @return array
+     */
+    public function postSentrylMode(bool $state): array {
+
+        $result = $this->makeAPIRequest($this->idCar, "command/set_sentry_mode", "POST", array("on" => $state));
+        return array("result" => $result["response"]["result"],"reason" => $result["response"]["reason"]);
+
+    }
 
     // <------------------- GET STATE methods ------------------->
 
@@ -557,8 +540,6 @@ class ApiModel
         return $result["response"]["climate_state"]["fan_status"];
     }
 
-    // TODO functions for - car position - charge %  - is charging - turn on sentinel mode
-
     /**
      * @return array that contains latitude, longitude, heading and timestamp, timestamp has to be converted to date
      */
@@ -572,12 +553,18 @@ class ApiModel
         );
     }
 
-    public function BatteryLevelData(): array {
+    /**
+     * @return int
+     */
+    public function BatteryLevelData(): int {
         $result = $this->getAllData();
         return $result["response"]["charge_state"]["battery_level"];
     }
 
-    public function BatteryState(): array {
+    /**
+     * @return string
+     */
+    public function BatteryState(): string {
         $result = $this->getAllData();
         return $result["response"]["charge_state"]["charging_state"];
     }
