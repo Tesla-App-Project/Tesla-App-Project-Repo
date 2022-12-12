@@ -16,7 +16,8 @@ final class Constants
     const REPERTOIRE_CONTROLEURS = '/controller/';
 
 
-    public static function repertoireRacine() {
+    public static function repertoireRacine(): bool|string
+    {
         return realpath(__DIR__ . '/../');
     }
 
