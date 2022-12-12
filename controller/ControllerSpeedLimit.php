@@ -2,7 +2,7 @@
 
 use JetBrains\PhpStorm\Pure;
 
-class SpeedLimitController
+class ControllerSpeedLimit
 {
     private HttpRequestHandlerModel $_httpRequestHandler;
 

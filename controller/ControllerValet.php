@@ -2,7 +2,7 @@
 
 use JetBrains\PhpStorm\Pure;
 
-class ValetController
+class ControllerValet
 {
     private HttpRequestHandlerModel $_httpRequestHandler;
 

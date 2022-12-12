@@ -2,7 +2,7 @@
 
 use JetBrains\PhpStorm\Pure;
 
-class ChargeController
+class ControllerCharge
 {
     private HttpRequestHandlerModel $_httpRequestHandler;
 

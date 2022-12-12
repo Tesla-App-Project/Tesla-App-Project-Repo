@@ -1,18 +1,5 @@
-<!doctype html>
-<html lang="fr">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-  <link href="../assets/css/style.scss" rel="stylesheet">
-  <script src="../assets/js/script.js"></script>
-  <title>Accueil</title>
-</head>
-
-<body>
-<header class="menu sticky">
+<?php
+echo '<header class="menu sticky">
   <h1>Simone</h1>
   <nav>
     <a href="#"><img src="../assets/images/user.png" alt="icone user"></a>
@@ -55,8 +42,8 @@
       <h2>Icônes contrôles de la voiture</h2>
       <button onclick="ConnexionOnClick()"><img id="ConnexionButton" srcset="../assets/images/Connexion.png"
                                                 alt="icone connexion"></button>
-      <button onclick="FanOnClick()"><img id="FanButton" srcset="../assets/images/Fan.png"
-                                          alt="icone ventilation"></button>
+      <a href="climate/postToggleConditioningState"><button onclick="FanOnClick()"><img id="FanButton" srcset="../assets/images/Fan.png"
+                                          alt="icone ventilation"></button></a>
       <button onclick="ElecOnClick()"><img id="ElecBouton" srcset="../assets/images/Thunder.png"
                                            alt="icone energie"></button>
       <button><img srcset="../assets/images/coffre.png" alt="icone coffre"></button>
@@ -188,7 +175,4 @@
 <footer>
   <hr>
   <img src="../assets/images/model3-logo.png" alt="Model3 Title">
-</footer>
-</body>
-
-</html>
+</footer>';

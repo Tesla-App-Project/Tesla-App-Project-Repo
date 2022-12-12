@@ -2,7 +2,7 @@
 
 use JetBrains\PhpStorm\Pure;
 
-class ClimateController
+class ControllerClimate
 {
     private HttpRequestHandlerModel $_httpRequestHandler;
 
@@ -25,7 +25,8 @@ class ClimateController
      * @return void
      */
     public function postToggleConditioningStateAction() : void {
-        echo $this->_httpRequestHandler->callAPI('postToggleConditioningState', false);
+        //echo $this->_httpRequestHandler->callAPI('postToggleConditioningState', false);
+        echo $this->_httpRequestHandler->callAPI('postConditioningStart', false);
     }
 
     /**

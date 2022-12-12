@@ -2,7 +2,7 @@
 
 use JetBrains\PhpStorm\Pure;
 
-class OtherControlsController
+class ControllerOtherControls
 {
     private HttpRequestHandlerModel $_httpRequestHandler;
 

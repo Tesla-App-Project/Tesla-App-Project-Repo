@@ -2,7 +2,7 @@
 
 use JetBrains\PhpStorm\Pure;
 
-class OpeningsController
+class ControllerOpenings
 {
     private HttpRequestHandlerModel $_httpRequestHandler;
 

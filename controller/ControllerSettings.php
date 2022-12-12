@@ -2,7 +2,7 @@
 
 use JetBrains\PhpStorm\Pure;
 
-class SettingsController
+class ControllerSettings
 {
     private HttpRequestHandlerModel $_httpRequestHandler;
 

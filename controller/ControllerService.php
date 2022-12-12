@@ -2,7 +2,7 @@
 
 use JetBrains\PhpStorm\Pure;
 
-class ServiceController
+class ControllerService
 {
     private HttpRequestHandlerModel $_httpRequestHandler;
 

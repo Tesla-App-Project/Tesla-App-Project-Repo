@@ -2,7 +2,7 @@
 
 use JetBrains\PhpStorm\Pure;
 
-class VehicleController
+class ControllerVehicle
 {
     private HttpRequestHandlerModel $_httpRequestHandler;
 
