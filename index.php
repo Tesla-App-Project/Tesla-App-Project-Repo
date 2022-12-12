@@ -3,7 +3,6 @@
 // Ce fichier est le point d'entrée de votre application
 require_once 'model/ApiModel.php';
 require 'kernel/AutoLoad.php';
-require 'kernel/ChargementAuto.php';
 require_once __DIR__ . '/vendor/autoload.php';
 
 /*
