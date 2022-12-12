@@ -2,32 +2,73 @@
 
 final class Controller
 {
-    private $_A_urlDecortique;
+    private $_A_dissectUrl;
 
-    public function __construct($S_controleur, $S_action)
+    private $_A_urlSettings;
+
+    private $_A_postSettings;
+
+    public function __construct($S_url, $A_postParams)
     {
-        if (empty($S_controleur)) {
-            // Nous avons pris le parti de préfixer tous les controleurs par "Controller"
-            $this->_A_urlDecortique['controleur'] = 'HelloworldController';
+        if ('/' == substr($S_url, -1, 1)) {
+            $S_url = substr($S_url, 0, strlen($S_url) - 1);
+        }
+        $A_urlDecortique = explode('/', $S_url);
+        //  Controller / Action
+
+        if (!empty($A_urlDecortique[0])) {
+            $S_controller = $A_urlDecortique[0];
+            if (!empty($A_urlDecortique[1])) {
+                $S_action = $A_urlDecortique[1];
+            } else {
+                $S_action = null;
+            }
         } else {
-            $this->_A_urlDecortique['controleur'] = ucfirst($S_controleur) . 'Controller';
+            $S_controller = null;
+        }
+
+        if (empty($S_controller)) {
+            // All controllers are prefixed by "Controller" 
+            $this->_A_dissectUrl['controller'] = 'ControllerHelloworld';
+        } else {
+            $this->_A_dissectUrl['controller'] = 'Controller' . ucfirst($S_controller);
         }
 
         if (empty($S_action)) {
-            // L'action est vide ! On la valorise par défaut
-            $this->_A_urlDecortique['action'] = 'defautAction';
+            // by default, action is empty so we increment it
+            $this->_A_dissectUrl['action'] = 'defautAction';
         } else {
-            // On part du principe que toutes nos actions sont suffixées par 'Action'...à nous de le rajouter
-            $this->_A_urlDecortique['action']  = $S_action . 'Action';
+            // We supposed that all actions are prefixed by "Action"
+            $this->_A_dissectUrl['action']  = $S_action . 'Action';
         }
-        var_dump($this->_A_urlDecortique);
+
+        // We delete the controller and the action of our array
+        // Only the settings left
+
+        // We store settings inside their instancied variable
+        $this->_A_urlSettings = $A_urlDecortique;
+
+        // We take care of the array $A_postParams
+        $this->_A_postSettings = $A_postParams;
     }
 
-    // On exécute
-    public function executer()
+    public function execute()
     {
-        //fonction de rappel de notre controleur cible (HelloworldController pour notre premier exemple)
-        call_user_func_array(array(new $this->_A_urlDecortique['controleur'](),
-            $this->_A_urlDecortique['action']), array());
+        if (!class_exists($this->_A_dissectUrl['controller'])) {
+            throw new ControllerException($this->_A_dissectUrl['controller'] . " n'est pas un controleur valide.");
+        }
+
+        if (!method_exists($this->_A_dissectUrl['controller'], $this->_A_dissectUrl['action'])) {
+            throw new ControllerException($this->_A_dissectUrl['action'] . " du contrôleur " .
+                $this->_A_dissectUrl['controller'] . " n'est pas une action valide.");
+        }
+
+        $B_called = call_user_func_array(array(new $this->_A_dissectUrl['controller'](),
+            $this->_A_dissectUrl['action']), array($this->_A_urlSettings, $this->_A_postSettings ));
+
+        if (false === $B_called) {
+            throw new ControllerException("L'action " . $this->_A_dissectUrl['action'] .
+                " du contrôleur " . $this->_A_dissectUrl['controller'] . " a rencontré une erreur.");
+        }
     }
 }

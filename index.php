@@ -1,23 +1,29 @@
 <?php
 
-// Ce fichier est le point d'entrée de votre application
-require_once 'model/ApiModel.php';
+// This file in the entry point of the application
+
 require 'kernel/AutoLoad.php';
+require_once __DIR__ . '/vendor/autoload.php';
+
 /*
- url pour notre premier test MVC Hello World,
- nous n'avons pas d'action précisée on visera celle par défaut
- index.php?ctrl=helloworld
- index.php?url=CTRL/ACTION
+to use our MVC, you have to enter inside your navbar
+    firstly : "index.php?url="
+    secondly : "index.php?url=ControllerName/ActionName"
 */
-$S_controleur = $_GET['ctrl'] ?? null;
-$S_action = $_GET['action'] ?? null;
+// $S_controller = $_GET['ctrl'] ?? null;
+// $S_action = isset($_GET['action']) ? $_GET['action'] : null;
 
-View::ouvrirTampon(); //  /kernel/View.php : on ouvre le tampon d'affichage, les contrôleurs qui appellent des vues les mettront dedans
-$O_controleur = new Controller($S_controleur, $S_action);
-$O_controleur->executer();
+$S_urlADecortiquer = $_GET['url'] ?? null;
+$A_postSettings = $_POST ?? null;
 
-// Les différentes sous-vues ont été "crachées" dans le tampon d'affichage, on les récupère
-$contenuPourAffichage = View::recupererContenuTampon();
+// $S_url = isset($_GET['url']) ? $_GET['url'] : null;
 
-// On affiche le contenu dans la partie body du gabarit général
-View::montrer('gabarit', array('body' => $contenuPourAffichage));
+View::openBuffer(); //  /kernel/View.php : we open the display buffer, controllers called the views
+$O_controller = new Controller($S_urlADecortiquer, $A_postSettings);
+$O_controller->execute();
+
+// The few sub views were put inside the display buffer, we get them
+$A_content = View::getBufferContent();
+
+// We display the content in the template body
+View::show('template', array('body' => $A_content));
