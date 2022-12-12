@@ -4,43 +4,49 @@ require 'kernel/Constants.php';
 
 final class AutoLoad
 {
-    public static function loadKernelClasses($S_nomDeClasse)
+    public static function LoadKernelClasses($S_className)
     {
-        $S_fichier = Constants::repertoireNoyau() . "$S_nomDeClasse.php";
-        return static::_load($S_fichier);
+        $S_file = Constants::kernelRepertory() . "$S_className.php";
+        return static::_load($S_file);
     }
 
-    public static function loadModelsClasses($S_nomDeClasse)
+    public static function loadClassesModel($S_className)
     {
-        $S_fichier = Constants::repertoireModele() . "$S_nomDeClasse.php";
+        $S_file = Constants::directoryModel() . "$S_className.php";
 
-        return static::_load($S_fichier);
+        return static::_load($S_file);
     }
 
-
-    public static function loadViewClasses($S_nomDeClasse)
+    public static function loadClassesException($S_className)
     {
-        $S_fichier = Constants::repertoireVues() . "$S_nomDeClasse.php";
+        $S_file = Constants::directoryExceptions() . "$S_className.php";
 
-        return static::_load($S_fichier);
+        return static::_load($S_file);
     }
 
-    public static function loadControllerClasses($S_nomDeClasse)
+    public static function loadClassesView($S_className)
     {
-        $S_fichier = Constants::repertoireControleurs() . "$S_nomDeClasse.php";
+        $S_file = Constants::directoryViews() . "$S_className.php";
 
-        return static::_load($S_fichier);
+        return static::_load($S_file);
     }
-    private static function _load($S_fichierACharger): void
+
+    public static function loadClassesController($S_className)
     {
-        if (is_readable($S_fichierACharger)) {
-            require $S_fichierACharger;
+        $S_file = Constants::directoryControllers() . "$S_className.php";
+
+        return static::_load($S_file);
+    }
+    private static function _load($S_file)
+    {
+        if (is_readable($S_file)) {
+            require $S_file;
         }
     }
 }
 
-// J'empile tout ce beau monde comme j'ai toujours appris à le faire...
-spl_autoload_register('AutoLoad::loadKernelClasses');
-spl_autoload_register('AutoLoad::loadModelsClasses');
-spl_autoload_register('AutoLoad::loadViewClasses');
-spl_autoload_register('AutoLoad::loadControllerClasses');
+spl_autoload_register('AutoLoad::LoadKernelClasses');
+spl_autoload_register('AutoLoad::loadClassesException');
+spl_autoload_register('AutoLoad::loadClassesModel');
+spl_autoload_register('AutoLoad::loadClassesView');
+spl_autoload_register('AutoLoad::loadClassesController');
