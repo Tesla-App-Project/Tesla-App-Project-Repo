@@ -18,3 +18,9 @@ Configurer votre base de données (via .env)
 - Copier, coller ".env.example"
 - Modifier le nom en ".env"
 - Modifier les données du .env, selon la configuration de votre base de données
+
+Migration :
+
+Lancer la migration des tables / colonnes dans les tables
+
+- Lancer la commande d'exécution des migrations : "php migrations.php"
