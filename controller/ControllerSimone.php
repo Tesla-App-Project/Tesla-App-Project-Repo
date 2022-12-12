@@ -4,16 +4,27 @@ final class ControllerSimone
 {
     public function defautAction()
     {
-        //http://localhost:8080/index.php?url=helloworld
+        //http://localhost:8080/index.php?url=helloworld/smthg
         $O_helloWorld =  new Simone();
 
         View::show('default/see', array('helloworld' =>  $O_helloWorld->giveMessage()));
     }
 
     //http://localhost:8080/index.php?url=helloworld/boat
+    //new way
+    //http://teslaapp/simone/boat
     public function boatAction()
     {
-        $O_helloWorld =  new Simone();
+        $O_helloWorld =  new Example();
+        var_dump('boatAction');
+
+        View::show('default/see', array('helloworld' =>  $O_helloWorld->giveMessage()));
+    }
+
+    //Example of url with my own domain name : http://teslaapp/simone/example
+    public function exampleAction()
+    {
+        $O_helloWorld =  new Example();
         var_dump('boatAction');
 
         View::show('default/see', array('helloworld' =>  $O_helloWorld->giveMessage()));
@@ -22,8 +33,6 @@ final class ControllerSimone
     //http://localhost:8080/index.php?url=helloworld/peanut
     public function frogAction()
     {
-        $O_helloWorld =  new Simone();
-
         View::show('default/frog');
     }
 }
