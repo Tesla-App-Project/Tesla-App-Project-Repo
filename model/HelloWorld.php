@@ -19,7 +19,7 @@ final class Helloworld
         // return $db->queryUpdateAction(1, [['pseudo' => 'Toto'], ['other' => 'Mimi']], 'user');
 
         //GET
-        $users = $db->queryGetAction(1, ['pseudo', 'other'], 'user');
-        print_r($users);
+        // $users = $db->queryGetAction(1, ['pseudo', 'other'], 'users');
+        // print_r($users);
     }
 }

@@ -40,7 +40,7 @@ final class AutoLoad
     private static function _load($S_file)
     {
         if (is_readable($S_file)) {
-            require $S_fileToLoad;
+            require $S_file;
         }
     }
 }

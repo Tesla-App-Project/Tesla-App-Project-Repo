@@ -14,8 +14,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 // $S_controller = $_GET['ctrl'] ?? null;
 // $S_action = isset($_GET['action']) ? $_GET['action'] : null;
 
-$S_urlADecortiquer = isset($_GET['url']) ? $_GET['url'] : null;
-$A_postSettings = isset($_POST) ? $_POST : null;
+$S_urlADecortiquer = $_GET['url'] ?? null;
+$A_postSettings = $_POST ?? null;
 
 // $S_url = isset($_GET['url']) ? $_GET['url'] : null;
 
@@ -24,7 +24,7 @@ $O_controller = new Controller($S_urlADecortiquer, $A_postSettings);
 $O_controller->execute();
 
 // Les différentes sous-vues ont été "crachées" dans le tampon d'affichage, on les récupère
-$A_contenuPourAffichage = View::getBufferContent();
+$A_content = View::getBufferContent();
 
 // On affiche le contenu dans la partie body du template général
-View::show('template', array('body' => $A_contenuPourAffichage));
+View::show('template', array('body' => $A_content));

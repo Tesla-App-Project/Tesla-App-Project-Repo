@@ -18,7 +18,7 @@ final class View
     {
         $S_file = Constants::directoryViews() . $S_location . '.php';
 
-        $A_view = $A_settings;
+        $A_View = $A_settings;
         // Démarrage d'un sous-tampon
         ob_start();
         include $S_file; // c'est dans ce fichier que sera utilisé A_vue, la vue est inclue dans le sous-tampon

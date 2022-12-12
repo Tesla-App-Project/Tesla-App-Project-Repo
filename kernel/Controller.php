@@ -8,18 +8,18 @@ final class Controller
 
     private $_A_postSettings;
 
-    public function __construct($S_url, $A_postSettings)
+    public function __construct($S_url, $A_postParams)
     {
         if ('/' == substr($S_url, -1, 1)) {
             $S_url = substr($S_url, 0, strlen($S_url) - 1);
         }
-        $A_dissectUrl = explode('/', $S_url);
+        $A_urlDecortique = explode('/', $S_url);
         //  Controller / Action
 
-        if (!empty($A_dissectUrl[0])) {
-            $S_controller = $A_dissectUrl[0];
-            if (!empty($A_dissectUrl[1])) {
-                $S_action = $A_dissectUrl[1];
+        if (!empty($A_urlDecortique[0])) {
+            $S_controller = $A_urlDecortique[0];
+            if (!empty($A_urlDecortique[1])) {
+                $S_action = $A_urlDecortique[1];
             } else {
                 $S_action = null;
             }
@@ -50,14 +50,14 @@ final class Controller
         // var_dump($this->_A_dissectUrl['action']);
 
         // ...on stocke ces éventuels parametres dans la variable d'instance qui leur est réservée
-        $this->_A_urlSettings = $A_dissectUrl;
+        $this->_A_urlSettings = $A_urlDecortique;
 
-        // On  s'occupe du tableau $A_postSettings
-        $this->A_postSettings = $A_postSettings;
+        // On  s'occupe du tableau $A_postParams
+        $this->_A_postSettings = $A_postParams;
     }
 
     // // On exécute
-    // public function execute()
+    // public function executer()
     // {
     //     //fonction de rappel de notre controleur cible (ControllerHelloworld pour notre premier exemple)
     //     call_user_func_array(array(new $this->_A_dissectUrl['controleur'](),
@@ -80,7 +80,7 @@ final class Controller
         }
 
         $B_called = call_user_func_array(array(new $this->_A_dissectUrl['controller'](),
-            $this->_A_dissectUrl['action']), array($this->_A_urlSettings, $this->A_postSettings ));
+            $this->_A_dissectUrl['action']), array($this->_A_urlSettings, $this->_A_postSettings ));
 
         if (false === $B_called) {
             throw new ControllerException("L'action " . $this->_A_dissectUrl['action'] .
