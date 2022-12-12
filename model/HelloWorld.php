@@ -10,16 +10,17 @@ final class Helloworld
 
     public function giveMessage()
     {
-        // return $this->S_message ;
-        $db = new Database();
+        //EXAMPLE
 
+            // return $this->S_message ;
+            // $db = new Database();
 
-        //UPDATE
-        // //param = (field + value) soit [['pseudo' => 'Toto'],['other' => 'Mimi']]
-        // return $db->queryUpdateAction(1, [['pseudo' => 'Toto'], ['other' => 'Mimi']], 'user');
+            //UPDATE
+            // //param = (field + value) soit [['pseudo' => 'Toto'],['other' => 'Mimi']]
+            // return $db->queryUpdateAction(1, [['pseudo' => 'Toto'], ['other' => 'Mimi']], 'user');
 
-        //GET
-        // $users = $db->queryGetAction(1, ['pseudo', 'other'], 'users');
-        // print_r($users);
+            //GET
+            // $users = $db->queryGetAction(1, ['pseudo', 'other'], 'users');
+            // print_r($users);
     }
 }

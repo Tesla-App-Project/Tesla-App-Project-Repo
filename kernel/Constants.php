@@ -1,11 +1,9 @@
 <?php
 
-// Rappel : nous sommes dans le répertoire Core, voilà pourquoi dans realpath je "remonte d'un cran" pour faire référence
-// à la VRAIE racine de mon application
 
 final class Constants
 {
-    // Les constantes relatives aux chemins
+    // Constants relatided to paths
 
     public const DIRECTORY_VIEWS       = '/View/';
 

@@ -45,7 +45,6 @@ final class AutoLoad
     }
 }
 
-// J'empile tout ce beau monde comme j'ai toujours appris à le faire...
 spl_autoload_register('AutoLoad::LoadKernelClasses');
 spl_autoload_register('AutoLoad::loadClassesException');
 spl_autoload_register('AutoLoad::loadClassesModel');

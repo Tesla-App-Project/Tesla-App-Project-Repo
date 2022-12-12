@@ -4,13 +4,13 @@ final class View
 {
     public static function openBuffer()
     {
-        // On démarre le tampon de sortie, on va l'appeler "tampon principal"
+        // Starting exit buffer, we call the main buffer
         ob_start();
     }
 
     public static function getBufferContent()
     {
-        // On retourne le contenu du tampon principal
+        // We return content of the main buffer
         return ob_get_clean();
     }
 
@@ -19,9 +19,9 @@ final class View
         $S_file = Constants::directoryViews() . $S_location . '.php';
 
         $A_View = $A_settings;
-        // Démarrage d'un sous-tampon
+        // Starting of a sub buffer
         ob_start();
-        include $S_file; // c'est dans ce fichier que sera utilisé A_vue, la vue est inclue dans le sous-tampon
+        include $S_file; // A_view is used inside this file, the view is include in the sub buffer
         ob_end_flush();
     }
 }

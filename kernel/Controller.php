@@ -28,52 +28,36 @@ final class Controller
         }
 
         if (empty($S_controller)) {
-            // Nous avons pris le parti de préfixer tous les controleurs par "Controleur"
+            // All controllers are prefixed by "Controller" 
             $this->_A_dissectUrl['controller'] = 'ControllerHelloworld';
         } else {
             $this->_A_dissectUrl['controller'] = 'Controller' . ucfirst($S_controller);
         }
 
         if (empty($S_action)) {
-            // L'action est vide ! On la valorise par défaut
+            // by default, action is empty so we increment it
             $this->_A_dissectUrl['action'] = 'defautAction';
         } else {
-            // On part du principe que toutes nos actions sont suffixées par 'Action'...à nous de le rajouter
+            // We supposed that all actions are prefixed by "Action"
             $this->_A_dissectUrl['action']  = $S_action . 'Action';
         }
-        // var_dump($this->_A_dissectUrl['action']);
 
+        // We delete the controller and the action of our array
+        // Only the settings left
 
-        // on dépile 2 fois de suite depuis le début, c'est à dire qu'on enlève de notre tableau le contrôleur et l'action
-        // il ne reste donc que les éventuels parametres (si nous en avons)...
-
-        // var_dump($this->_A_dissectUrl['action']);
-
-        // ...on stocke ces éventuels parametres dans la variable d'instance qui leur est réservée
+        // We store settings inside their instancied variable
         $this->_A_urlSettings = $A_urlDecortique;
 
-        // On  s'occupe du tableau $A_postParams
+        // We take care of the array $A_postParams
         $this->_A_postSettings = $A_postParams;
     }
 
-    // // On exécute
-    // public function executer()
-    // {
-    //     //fonction de rappel de notre controleur cible (ControllerHelloworld pour notre premier exemple)
-    //     call_user_func_array(array(new $this->_A_dissectUrl['controleur'](),
-    //         $this->_A_dissectUrl['action']), array());
-    // }
-
-        // On exécute notre triplet
-
-
     public function execute()
     {
-        // try {
         if (!class_exists($this->_A_dissectUrl['controller'])) {
             throw new ControllerException($this->_A_dissectUrl['controller'] . " n'est pas un controleur valide.");
         }
-        // var_dump($this->_A_dissectUrl['action']);
+
         if (!method_exists($this->_A_dissectUrl['controller'], $this->_A_dissectUrl['action'])) {
             throw new ControllerException($this->_A_dissectUrl['action'] . " du contrôleur " .
                 $this->_A_dissectUrl['controller'] . " n'est pas une action valide.");
@@ -86,9 +70,5 @@ final class Controller
             throw new ControllerException("L'action " . $this->_A_dissectUrl['action'] .
                 " du contrôleur " . $this->_A_dissectUrl['controller'] . " a rencontré une erreur.");
         }
-        // }
-        // catch(Exception $e) {
-        //     var_dump($this->_A_dissectUrl);
-        // }
     }
 }

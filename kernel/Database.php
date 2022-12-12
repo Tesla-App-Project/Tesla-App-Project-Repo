@@ -56,9 +56,6 @@ final class Database
             }
         }
 
-        /*$id = 1;
-        $param = "username";*/
-
         $A_selection = $S_base->query("SELECT " . $query . " FROM ". $table ." WHERE id = '" . $id . "'");
 
         while ($data = $A_selection->fetch(PDO::FETCH_ASSOC)) {
@@ -102,6 +99,11 @@ final class Database
 
     //CREATE - exemple :
     public function queryCreateAction()
+    {
+    }
+
+    //DELETE - exemple :
+    public function queryDeleteAction()
     {
     }
 }
