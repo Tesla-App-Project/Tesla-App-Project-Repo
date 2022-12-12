@@ -7,34 +7,48 @@ final class Constants
 {
     // Les constantes relatives aux chemins
 
+<<<<<<< HEAD:kernel/Constants.php
     const REPERTOIRE_VUES        = '/view/';
+=======
+    public const REPERTOIRE_VUES        = '/vue/';
+>>>>>>> feature/Framework:kernel/Constantes.php
 
-    const REPERTOIRE_MODELE      = '/model/';
+    public const REPERTOIRE_MODELE      = '/model/';
 
-    const REPERTOIRE_NOYAU       = '/kernel/';
+    public const REPERTOIRE_NOYAU       = '/kernel/';
 
-    const REPERTOIRE_CONTROLEURS = '/controller/';
+    public const REPERTOIRE_CONTROLEURS = '/controller/';
+
+    public const REPERTOIRE_EXCEPTIONS  = '/kernel/Exceptions/';
 
 
-    public static function repertoireRacine() {
+    public static function repertoireRacine()
+    {
         return realpath(__DIR__ . '/../');
     }
 
-    public static function repertoireNoyau() {
+    public static function repertoireNoyau()
+    {
         return self::repertoireRacine() . self::REPERTOIRE_NOYAU;
     }
 
-    public static function repertoireVues() {
+    public static function repertoireVues()
+    {
         return self::repertoireRacine() . self::REPERTOIRE_VUES;
     }
 
-    public static function repertoireModele() {
+    public static function repertoireModele()
+    {
         return self::repertoireRacine() . self::REPERTOIRE_MODELE;
     }
 
-    public static function repertoireControleurs() {
-        return self::repertoireRacine() . self::REPERTOIRE_CONTROLEURS;
+    public static function repertoireExceptions()
+    {
+        return self::repertoireRacine() . self::REPERTOIRE_EXCEPTIONS;
     }
 
-
+    public static function repertoireControleurs()
+    {
+        return self::repertoireRacine() . self::REPERTOIRE_CONTROLEURS;
+    }
 }
