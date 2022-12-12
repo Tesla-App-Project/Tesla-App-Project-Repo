@@ -4,7 +4,7 @@
 $filepath = realpath(dirname(__FILE__));
 require_once($filepath."/../kernel/Database.php");
 
-final class Helloworld
+final class Simone
 {
     private $S_message = "Hello World";
 

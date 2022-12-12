@@ -7,6 +7,22 @@ class ApiModel
     private string $baseURLDEV = 'http:/78.123.242.51:25000/api/1/vehicles';
     private string $baseURLPROD = 'https://owner-api.teslamotors.com/api/1/vehicles';
 
+    public function __construct() {
+        $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+        $dotenv->load();
+
+        //data from the .env
+        $config = [
+            'tokens' => [
+                'devToken' => $_ENV['DEV_TOKEN'],
+                'prodToken' => $_ENV['PROD_TOKEN'],
+            ]
+        ];
+
+        //$this->setToken($config["tokens"]["prodToken"]);
+        $this->setToken($config["tokens"]["devToken"]);
+    }
+
     /**
      * Allows you to set a token
      * @param string $tokenTesla
@@ -93,7 +109,7 @@ class ApiModel
         // TODO : 1493131276665295 has to be replaced by the actual car's id
         // One person can own multiple cars
 
-        $requestIdCar === null ? $urlRequest = "{$this->baseURLPROD}/" : $urlRequest = "{$this->baseURLPROD}/{$requestIdCar}/{$requestUrl}";
+        $requestIdCar === null ? $urlRequest = "{$this->baseURLDEV}/" : $urlRequest = "{$this->baseURLDEV}/{$requestIdCar}/{$requestUrl}";
 
         $ch = curl_init();
 
@@ -554,6 +570,16 @@ class ApiModel
             "heading" => $result["response"]["drive_state"]["heading"],
             "timestamp" => $result["response"]["drive_state"]["gps_as_of"]
         );
+    }
+
+    public function BatteryLevelData(): array {
+        $result = $this->getAllData();
+        return $result["response"]["charge_state"]["battery_level"];
+    }
+
+    public function BatteryState(): array {
+        $result = $this->getAllData();
+        return $result["response"]["charge_state"]["charging_state"];
     }
 
 }
