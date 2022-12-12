@@ -26,4 +26,4 @@ $O_controller->executer();
 $A_content = View::recupererContenuTampon();
 
 // We display the content in the template body
-View::montrer('template', array('body' => $A_content));
+View::montrer('gabarit', array('body' => $A_content));
