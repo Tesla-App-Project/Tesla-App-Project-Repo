@@ -93,6 +93,11 @@ final class Database
         }
 
         $S_update = $S_base->query("UPDATE ". $table ." SET " . $query . "' WHERE id = '" . $id . "'");
+        // $S_update->bindParam($query, $query, PDO::PARAM_STR);
+
+        // var_dump($S_update);
+
+        // $S_update->execute()
 
         echo 'Success';
     }
