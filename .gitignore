@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 .idea/
 README.md
-=======
 .env
 vendor
 .idea
->>>>>>> feature/Framework

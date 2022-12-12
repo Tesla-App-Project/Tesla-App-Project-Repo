@@ -7,11 +7,7 @@ final class Constants
 {
     // Les constantes relatives aux chemins
 
-<<<<<<< HEAD:kernel/Constants.php
     const REPERTOIRE_VUES        = '/view/';
-=======
-    public const REPERTOIRE_VUES        = '/vue/';
->>>>>>> feature/Framework:kernel/Constantes.php
 
     public const REPERTOIRE_MODELE      = '/model/';
 

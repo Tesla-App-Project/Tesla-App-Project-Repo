@@ -4,9 +4,7 @@
 
 ### Premiers pas :
 
-<<<<<<< HEAD
 3 - Modèles et connexion BDD (coming soon...)
-=======
 Composer :
 
 Configurer Composer
@@ -27,4 +25,3 @@ Migration :
 Lancer la migration des tables / colonnes dans les tables
 
 - Lancer la commande d'exécution des migrations : "php migrations.php"
->>>>>>> feature/Framework
