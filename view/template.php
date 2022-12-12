@@ -6,7 +6,7 @@
 </head>
 <body>
 <?php View::show('standard/header'); ?>
-<?php echo $A_View['body'] ?>
+<?php echo $A_view['body'] ?>
 <?php View::show('standard/footer'); ?>
 </body>
 </html>

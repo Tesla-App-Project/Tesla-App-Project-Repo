@@ -556,7 +556,7 @@ class ApiModel
     /**
      * @return int
      */
-    public function BatteryLevelData(): int {
+    public function batteryLevelData(): int {
         $result = $this->getAllData();
         return $result["response"]["charge_state"]["battery_level"];
     }
@@ -564,9 +564,20 @@ class ApiModel
     /**
      * @return string
      */
-    public function BatteryState(): string {
+    public function batteryState(): string {
         $result = $this->getAllData();
         return $result["response"]["charge_state"]["charging_state"];
+    }
+
+    public function isCharging(): bool {
+        $result = $this->getAllData();
+        $convert = array(
+            "Disconnected" => false,
+            "Complete" => false,
+            "Charging" => true
+        );
+
+        return $convert[$result["response"]["charge_state"]["charging_state"]];
     }
 
 }
