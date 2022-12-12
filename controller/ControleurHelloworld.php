@@ -1,13 +1,13 @@
 <?php
 
-final class ControleurHelloworld
+final class ControllerHelloworld
 {
     public function defautAction()
     {
         //http://localhost:8080/index.php?url=helloworld
         $O_helloWorld =  new Helloworld();
 
-        Vue::montrer('helloworld/voir', array('helloworld' =>  $O_helloWorld->donneMessage()));
+        View::show('helloworld/see', array('helloworld' =>  $O_helloWorld->giveMessage()));
     }
 
     //http://localhost:8080/index.php?url=helloworld/boat
@@ -16,6 +16,6 @@ final class ControleurHelloworld
         $O_helloWorld =  new Helloworld();
         var_dump('boatAction');
 
-        Vue::montrer('helloworld/voir', array('helloworld' =>  $O_helloWorld->donneMessage()));
+        View::show('helloworld/see', array('helloworld' =>  $O_helloWorld->giveMessage()));
     }
 }

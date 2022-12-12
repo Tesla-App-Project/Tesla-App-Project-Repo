@@ -1,5 +1,5 @@
 <?php
 
-class ControleurException extends Exception
+class ControllerException extends Exception
 {
 }

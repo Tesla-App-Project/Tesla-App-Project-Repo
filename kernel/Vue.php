@@ -14,14 +14,14 @@ final class Vue
         return ob_get_clean();
     }
 
-    public static function montrer($S_localisation, $A_parametres = array())
+    public static function show($S_localisation, $A_parametres = array())
     {
-        $S_fichier = Constantes::repertoireVues() . $S_localisation . '.php';
+        $S_file = Constantes::repertoireViews() . $S_localisation . '.php';
 
-        $A_vue = $A_parametres;
+        $A_view = $A_parametres;
         // Démarrage d'un sous-tampon
         ob_start();
-        include $S_fichier; // c'est dans ce fichier que sera utilisé A_vue, la vue est inclue dans le sous-tampon
+        include $S_file; // c'est dans ce fichier que sera utilisé A_vue, la vue est inclue dans le sous-tampon
         ob_end_flush();
     }
 }

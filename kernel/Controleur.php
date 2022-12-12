@@ -17,21 +17,21 @@ final class Controleur
         //  Controleur / Action
 
         if (!empty($A_urlDecortique[0])) {
-            $S_controleur = $A_urlDecortique[0];
+            $S_controller = $A_urlDecortique[0];
             if (!empty($A_urlDecortique[1])) {
                 $S_action = $A_urlDecortique[1];
             } else {
                 $S_action = null;
             }
         } else {
-            $S_controleur = null;
+            $S_controller = null;
         }
 
-        if (empty($S_controleur)) {
+        if (empty($S_controller)) {
             // Nous avons pris le parti de préfixer tous les controleurs par "Controleur"
-            $this->_A_urlDecortique['controleur'] = 'ControleurHelloworld';
+            $this->_A_urlDecortique['controleur'] = 'ControllerHelloworld';
         } else {
-            $this->_A_urlDecortique['controleur'] = 'Controleur' . ucfirst($S_controleur);
+            $this->_A_urlDecortique['controleur'] = 'Controleur' . ucfirst($S_controller);
         }
 
         if (empty($S_action)) {
@@ -59,7 +59,7 @@ final class Controleur
     // // On exécute
     // public function executer()
     // {
-    //     //fonction de rappel de notre controleur cible (ControleurHelloworld pour notre premier exemple)
+    //     //fonction de rappel de notre controleur cible (ControllerHelloworld pour notre premier exemple)
     //     call_user_func_array(array(new $this->_A_urlDecortique['controleur'](),
     //         $this->_A_urlDecortique['action']), array());
     // }
@@ -71,11 +71,11 @@ final class Controleur
     {
         // try {
         if (!class_exists($this->_A_urlDecortique['controleur'])) {
-            throw new ControleurException($this->_A_urlDecortique['controleur'] . " n'est pas un controleur valide.");
+            throw new ControllerException($this->_A_urlDecortique['controleur'] . " n'est pas un controleur valide.");
         }
         // var_dump($this->_A_urlDecortique['action']);
         if (!method_exists($this->_A_urlDecortique['controleur'], $this->_A_urlDecortique['action'])) {
-            throw new ControleurException($this->_A_urlDecortique['action'] . " du contrôleur " .
+            throw new ControllerException($this->_A_urlDecortique['action'] . " du contrôleur " .
                 $this->_A_urlDecortique['controleur'] . " n'est pas une action valide.");
         }
 
@@ -83,7 +83,7 @@ final class Controleur
             $this->_A_urlDecortique['action']), array($this->_A_urlParametres, $this->_A_postParams ));
 
         if (false === $B_called) {
-            throw new ControleurException("L'action " . $this->_A_urlDecortique['action'] .
+            throw new ControllerException("L'action " . $this->_A_urlDecortique['action'] .
                 " du contrôleur " . $this->_A_urlDecortique['controleur'] . " a rencontré une erreur.");
         }
         // }

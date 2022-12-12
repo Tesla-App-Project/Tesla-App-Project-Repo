@@ -8,7 +8,7 @@ final class Helloworld
 {
     private $S_message = "Hello World";
 
-    public function donneMessage()
+    public function giveMessage()
     {
         // return $this->S_message ;
         $db = new Database();

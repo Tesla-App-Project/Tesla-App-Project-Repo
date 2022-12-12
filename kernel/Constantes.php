@@ -7,7 +7,7 @@ final class Constantes
 {
     // Les constantes relatives aux chemins
 
-    public const REPERTOIRE_VUES        = '/vue/';
+    public const REPERTOIRE_VIEWS       = '/View/';
 
     public const REPERTOIRE_MODELE      = '/model/';
 
@@ -23,17 +23,17 @@ final class Constantes
         return realpath(__DIR__ . '/../');
     }
 
-    public static function repertoireNoyau()
+    public static function kernelRepertory()
     {
         return self::repertoireRacine() . self::REPERTOIRE_NOYAU;
     }
 
-    public static function repertoireVues()
+    public static function repertoireViews()
     {
-        return self::repertoireRacine() . self::REPERTOIRE_VUES;
+        return self::repertoireRacine() . self::REPERTOIRE_VIEWS;
     }
 
-    public static function repertoireModele()
+    public static function directoryModel()
     {
         return self::repertoireRacine() . self::REPERTOIRE_MODELE;
     }
