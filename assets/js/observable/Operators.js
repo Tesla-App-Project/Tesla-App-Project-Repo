@@ -151,3 +151,37 @@ const switchMap = (innerObsReturningFunc) => (sourceObs) => {
       }
     });
   }
+
+  /**
+   *  Applique une ou plusieurs fonctions passées en argument par un observable aux valeurs renvoyées
+   *  par un observable, ne 'ferme' pas l'observable de fonction à l'ouverture d'un nouvel contrairement
+   *  à switchmap
+   * @param {*} innerObsReturningFunc observable renvoyant les fonctions
+   * @returns les valeurs sous formes d'observables
+   */
+  const mergeMap = (innerObsReturningFunc) => (sourceObs) => {
+    let A_innerSubscriptions = [];
+    let mostRecentInnerSubscription;
+    let innerObs;
+    return new Observable(observer => {
+        const sourceSubscription = sourceObs.subscribe({
+            next(val){
+                innerObs = innerObsReturningFunc(val);
+                mostRecentInnerSubscription = innerObs.subscribe({
+                    next: (val) => observer.next(val),
+                    error: (err) => observer.error(err),
+                    complete: () => observer.complete()
+                });
+                A_innerSubscriptions.push(mostRecentInnerSubscription);
+            },
+            error(){},
+            complete() {}
+        });
+        return () => {
+            A_innerSubscriptions.forEach(innerSub => {
+                innerSub.unsubscribe();
+            });
+            sourceSubscription.unsubscribe();
+        }
+    });
+}
