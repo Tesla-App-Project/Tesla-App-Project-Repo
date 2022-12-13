@@ -504,7 +504,7 @@ class ApiModel
     public function isTrunkOpen(string $chosenTrunk): bool {
         $result = $this->getAllData();
         $convert = ["front" => "ft", "rear" => "rt"];
-        return (bool)$result["response"]["vehicle_state"][$convert[$chosenTrunk]];
+        return !!$result["response"]["vehicle_state"][$convert[$chosenTrunk]];
     }
 
 
@@ -539,6 +539,22 @@ class ApiModel
     public function HVACState(): int {
         $result = $this->getAllData();
         return $result["response"]["climate_state"]["fan_status"];
+    }
+
+    /**
+     * @return float la température à l'intérieur dans la voiture
+     */
+    public function TempInside (): float {
+        $result = $this->getChargeClimateData();
+        return $result["response"]["inside_temp"];
+    }
+
+    /**
+     * @return float la température à l'extérieur de la voiture
+     */
+    public function TempOutside(): float {
+        $result = $this->getChargeClimateData();
+        return $result["response"]["outside_temp"];
     }
 
     /**
@@ -586,10 +602,10 @@ class ApiModel
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function batteryRange(): int {
+    public function batteryRange(): float {
         $result = $this->getChargeStateData();
-        return $result["response"]["charge_state"]["battery_range"];
+        return $result["response"]["battery_range"];
     }
 }
