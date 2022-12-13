@@ -1,6 +1,6 @@
 <?php
 
-class OpeningsController
+class ControllerOpenings
 {
     private HttpRequestHandlerModel $_httpRequestHandler;
 

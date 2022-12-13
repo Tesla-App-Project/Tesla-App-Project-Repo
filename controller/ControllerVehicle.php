@@ -1,6 +1,6 @@
 <?php
 
-class VehicleController
+class ControllerVehicle
 {
     private HttpRequestHandlerModel $_httpRequestHandler;
 
