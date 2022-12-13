@@ -23,15 +23,13 @@ final class Example
         $users = $db->queryCreateAction(
             [
                 //colum name //DATA
-                ['smthg','Toto'],
-
-                // ['firstname','Sandra'],
-                // ['lastname' => 'Gomassaille'],
-                // ['token' => 'peanut'] ,
-                // ['password' => 'forget']
+                ['email','Toto@aaa.com'],
+                ['firstname','Sandra'],
+                ['lastname', 'Gomassaille'],
+                ['token', 'peanut'] ,
+                ['password', 'forget'],
             ],
-            'frog'
+            'users'
         );
-        print_r($users);
     }
 }

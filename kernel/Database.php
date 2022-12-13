@@ -151,13 +151,13 @@ final class Database
         }
 
         //Data to see
-        // echo '<pre>';
-        // echo 'column : ';
-        // print_r($column);
-        // echo '<br>';
-        // echo 'data : ';
-        // print_r($data);
-        // echo '</pre>';
+        echo '<pre>';
+        echo 'column : ';
+        print_r($column);
+        echo '<br>';
+        echo 'data : ';
+        print_r($data);
+        echo '</pre>';
         $S_update = $S_base->query("INSERT INTO $table ($column)
         VALUES ($data)");
 
