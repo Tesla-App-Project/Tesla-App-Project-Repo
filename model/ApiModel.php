@@ -536,14 +536,23 @@ class ApiModel
      * @return int
      */
     public function HVACState(): int {
-        $result = $this->getAllData();
-        return $result["response"]["climate_state"]["fan_status"];
+        $result = $this->getClimateData();
+        return $result["response"]["fan_status"];
+    }
+
+    /**
+     * Allows you to know if the HVAC is on or off
+     * @return bool
+     */
+    public function isHVACOn(): bool {
+        $result = $this->getClimateData();
+        return !!$result["response"]["fan_status"];
     }
 
     /**
      * @return array returns the inside and outside temps
      */
-    public function tempInside (): array {
+    public function tempInfos (): array {
         $result = $this->getClimateData();
         return array(
             "inside_temp" => $result["response"]["inside_temp"],
