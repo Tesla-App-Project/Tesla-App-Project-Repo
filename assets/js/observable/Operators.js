@@ -122,7 +122,7 @@ const pipeInterval = (I_period) => (sourceObservable) => {
 }
 
 /**
- * Applique un ou plusieurs fonctions passées en argument par un observable aux valeurs renvoyées
+ * Applique une ou plusieurs fonctions passées en argument par un observable aux valeurs renvoyées
  * par un observable
  * @param {*} innerObsReturningFunc observable renvoyant les fonctions
  * @returns les valeurs sous formes d'observables
