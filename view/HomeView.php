@@ -42,7 +42,7 @@ echo '<header class="menu sticky">
       <h2>Icônes contrôles de la voiture</h2>
       <button onclick="ConnexionOnClick()"><img id="ConnexionButton" srcset="../assets/images/Connexion.png"
                                                 alt="icone connexion"></button>
-      <a href="climate/postToggleConditioningState"><button onclick="FanOnClick()"><img id="FanButton" srcset="../assets/images/Fan.png"
+      <a href="index.php?url=climate/postToggleConditioningState"><button onclick="FanOnClick()"><img id="FanButton" srcset="../assets/images/Fan.png"
                                           alt="icone ventilation"></button></a>
       <button onclick="ElecOnClick()"><img id="ElecBouton" srcset="../assets/images/Thunder.png"
                                            alt="icone energie"></button>

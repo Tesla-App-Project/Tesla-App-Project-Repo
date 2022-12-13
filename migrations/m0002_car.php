@@ -8,12 +8,13 @@ class m0002_car
         $SQL = "CREATE TABLE car (
             id_car INT PRIMARY KEY,
             name_car VARCHAR(255) NOT NULL,
-            base_timezone time NOT NULL ,
+            base_timezone VARCHAR(10) NOT NULL,
             address_domicile VARCHAR(255) NOT NULL,
             address_work VARCHAR(255) NOT NULL,
-            CONSTRAINT FK_UserCar FOREIGN KEY (id_user) REFERENCES Persons(id_user),
+            id_user INT NOT NULL ,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             ) ENGINE=INNODB;";
+
         $db->pdo->exec($SQL);
     }
 
