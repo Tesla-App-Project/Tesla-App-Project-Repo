@@ -541,20 +541,21 @@ class ApiModel
     }
 
     /**
-     * @return array that contains latitude, longitude, heading and timestamp, timestamp has to be converted to date
+     * @return array that contains latitude, longitude, heading and timestamp, timestamp has to be converted to date, and date is already converted
      */
     public function carPosition(): array {
         $result = $this->getAllData();
-        return $position = array(
+        return array(
             "latitude" => $result["response"]["drive_state"]["latitude"],
             "longitude" => $result["response"]["drive_state"]["longitude"],
             "heading" => $result["response"]["drive_state"]["heading"],
-            "timestamp" => $result["response"]["drive_state"]["gps_as_of"]
+            "timestamp" => $result["response"]["drive_state"]["gps_as_of"],
+            "date" => getdate($result["response"]["drive_state"]["gps_as_of"])
         );
     }
 
     /**
-     * @return int
+     * @return int% of charge level
      */
     public function batteryLevelData(): int {
         $result = $this->getAllData();
@@ -562,13 +563,16 @@ class ApiModel
     }
 
     /**
-     * @return string
+     * @return string the current charge state of the car
      */
     public function batteryState(): string {
         $result = $this->getAllData();
         return $result["response"]["charge_state"]["charging_state"];
     }
 
+    /**
+     * @return bool false if the car is disconnected or at 100%, and true if its  charging
+     */
     public function isCharging(): bool {
         $result = $this->getAllData();
         $convert = array(
