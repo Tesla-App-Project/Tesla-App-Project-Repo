@@ -120,3 +120,34 @@ const pipeInterval = (I_period) => (sourceObservable) => {
         }
     });
 }
+
+/**
+ * Applique un ou plusieurs fonctions passées en argument par un observable aux valeurs renvoyées
+ * par un observable
+ * @param {*} innerObsReturningFunc observable renvoyant les fonctions
+ * @returns les valeurs sous formes d'observables
+ */
+const switchMap = (innerObsReturningFunc) => (sourceObs) => {
+    let innerSubscription;
+    return new Observable(observer => {
+      const sourceSubscription = sourceObs.subscribe({
+        next(val) {
+          if(innerSubscription){
+              innerSubscription.unsubscribe();
+          }
+          const innerObs = innerObsReturningFunc(val);
+          innerSubscription = innerObs.subscribe({
+            next: (_val) => observer.next(_val),
+            error: (_err) => observer.error(_err),
+            complete: () => observer.complete()
+          });
+        },
+        error() {},
+        complete() {}
+      });
+      return () => {
+        innerSubscription.unsubscribe();
+        sourceSubscription.unsubscribe();
+      }
+    });
+  }
