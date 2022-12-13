@@ -1,3 +1,3 @@
 <?php
 
-echo "<p>" . $A_View['helloworld']  . "</p>";
+echo "<p>" . $A_view['helloworld']  . "</p>";
