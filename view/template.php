@@ -5,8 +5,8 @@
     <title>My sweet MVC</title>
 </head>
 <body>
-<?php View::montrer('standard/entete'); ?>
+<?php View::show('standard/header'); ?>
 <?php echo $A_view['body'] ?>
-<?php View::montrer('standard/pied'); ?>
+<?php View::show('standard/footer'); ?>
 </body>
 </html>

@@ -1,41 +1,48 @@
 <?php
 
-// Rappel : nous sommes dans le répertoire Core, voilà pourquoi dans realpath je "remonte d'un cran" pour faire référence
-// à la VRAIE racine de mon application
 
 final class Constants
 {
-    // Les constantes relatives aux chemins
+    // Constants relatided to paths
 
-    const REPERTOIRE_VUES        = '/view/';
+    public const DIRECTORY_VIEWS       = '/view/';
 
-    const REPERTOIRE_MODELE      = '/model/';
+    public const DIRECTORY_MODEL       = '/model/';
 
-    const REPERTOIRE_NOYAU       = '/kernel/';
+    public const DIRECTORY_KERNEL      = '/kernel/';
 
-    const REPERTOIRE_CONTROLEURS = '/controller/';
+    public const DIRECTORY_CONTROLLERS = '/controller/';
+
+    public const DIRECTORY_EXCEPTIONS  = '/kernel/Exceptions/';
 
 
-    public static function repertoireRacine(): bool|string
+    public static function rootDirectory()
     {
         return realpath(__DIR__ . '/../');
     }
 
-    public static function repertoireNoyau() {
-        return self::repertoireRacine() . self::REPERTOIRE_NOYAU;
+    public static function kernelRepertory()
+    {
+        return self::rootDirectory() . self::DIRECTORY_KERNEL;
     }
 
-    public static function repertoireVues() {
-        return self::repertoireRacine() . self::REPERTOIRE_VUES;
+    public static function directoryViews()
+    {
+        return self::rootDirectory() . self::DIRECTORY_VIEWS;
     }
 
-    public static function repertoireModele() {
-        return self::repertoireRacine() . self::REPERTOIRE_MODELE;
+    public static function directoryModel()
+    {
+        return self::rootDirectory() . self::DIRECTORY_MODEL;
     }
 
-    public static function repertoireControleurs() {
-        return self::repertoireRacine() . self::REPERTOIRE_CONTROLEURS;
+    public static function directoryExceptions()
+    {
+        return self::rootDirectory() . self::DIRECTORY_EXCEPTIONS;
     }
 
-
+    public static function directoryControllers()
+    {
+        return self::rootDirectory() . self::DIRECTORY_CONTROLLERS;
+    }
 }

@@ -2,26 +2,26 @@
 
 final class View
 {
-    public static function ouvrirTampon()
+    public static function openBuffer()
     {
-        // On démarre le tampon de sortie, on va l'appeler "tampon principal"
+        // Starting exit buffer, we call the main buffer
         ob_start();
     }
 
-    public static function recupererContenuTampon()
+    public static function getBufferContent()
     {
-        // On retourne le contenu du tampon principal
+        // We return content of the main buffer
         return ob_get_clean();
     }
 
-    public static function montrer($S_localisation, $A_parametres = array())
+    public static function show($S_location, $A_settings = array())
     {
-        $S_fichier = Constants::repertoireVues() . $S_localisation . '.php';
+        $S_file = Constants::directoryViews() . $S_location . '.php';
 
-        $A_view = $A_parametres;
-        // Démarrage d'un sous-tampon
+        $A_view = $A_settings;
+        // Starting of a sub buffer
         ob_start();
-        include $S_fichier; // c'est dans ce fichier que sera utilisé A_vue, la view est inclue dans le sous-tampon
+        include $S_file; // A_view is used inside this file, the view is include in the sub buffer
         ob_end_flush();
     }
 }
