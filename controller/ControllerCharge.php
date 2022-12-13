@@ -1,6 +1,6 @@
 <?php
 
-class ChargeController
+class ControllerCharge
 {
     private HttpRequestHandlerModel $_httpRequestHandler;
 

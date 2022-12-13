@@ -1,6 +1,6 @@
 <?php
 
-class SettingsController
+class ControllerSettings
 {
     private HttpRequestHandlerModel $_httpRequestHandler;
 

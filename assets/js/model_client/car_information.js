@@ -22,6 +22,7 @@ export default class CarInformation{
 
         });
         */
-       return "azazazaz"; // test
+       
+      return null;
     }
 }

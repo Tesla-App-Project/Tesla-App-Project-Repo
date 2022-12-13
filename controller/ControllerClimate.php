@@ -1,6 +1,6 @@
 <?php
 
-class ClimateController
+class ControllerClimate
 {
     private HttpRequestHandlerModel $_httpRequestHandler;
 

@@ -1,6 +1,6 @@
 <?php
 
-class ServiceController
+class ControllerService
 {
     private HttpRequestHandlerModel $_httpRequestHandler;
 
