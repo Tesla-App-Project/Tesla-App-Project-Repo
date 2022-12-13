@@ -1,0 +1,28 @@
+.hover-img:hover {
+  filter: invert(0%) sepia(93%) saturate(0%) hue-rotate(335deg) brightness(150%) contrast(108%);
+}
+
+.header-section-control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0;
+}
+
+.header-section-control h1 {
+    align-items: center;
+    justify-content: center;
+
+    margin: 1rem 0 0 0;
+    padding-bottom: 0.8rem;
+}
+
+.header-arrow {
+  transform: rotate(180deg);
+
+  width: 3rem;
+  height: 3rem;
+
+  margin: 0 5rem 0 3rem;
+}

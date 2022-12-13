@@ -70,14 +70,13 @@ li{
 }
 
 .Abs_Elec{
-  position:absolute;
-  top:250px;
-  left:225px;
   z-index:1;
   border: solid #212223;
   background-color: #212223;
   border-radius: 5%;
   padding: 5px;
+  box-shadow: 0px 0px 60px blueviolet;
+
 }
 
 .Bord_Ampere{
@@ -112,6 +111,14 @@ li{
   display: flex;
   justify-content: start;
   align-items: center;
+}
+
+.Flex_Text{
+  color: #F3F3F3;
+  text-decoration: none;
+  padding-left: 6%;
+  text-align: left;
+  width: 250%;
 }
 
 .icones {
@@ -229,7 +236,13 @@ footer img {
   height: 100%;
 }
 
+.time-small {
+  text-align: center;
+  width : 30%;
+  display: inline-block;
+}
 
+/* Ordinateur media queries */
 @media screen and (min-width: 790px) {
   #graphique, #blocs, #stat-info, .bloc-gauche, .nav {
     width: 49%;
@@ -248,12 +261,19 @@ footer img {
     background-color: #161718;
     box-shadow: -20px 0px 20px #161718;
   }
+  .Abs_Elec{
+  position:absolute;
+  top:30vh;
+  left:15vw;
+  }
 }
 // @media screen and (min-width: 1000px) {
 //   .bloc-voiture {
 //     width: 600px;
 //   }  
 // }
+
+/* Téléphone media queries */
 @media all and (max-width: 789px) {
   .sticky{
     position: sticky;
@@ -275,6 +295,10 @@ footer img {
   flex-wrap: wrap;
   justify-content: space-around;
   margin-top: 60%;
-}
-
+  }
+  .Abs_Elec{
+  position:absolute;
+  top:8vh;
+  left:15vw;
+  }
 }

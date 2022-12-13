@@ -30,11 +30,9 @@ function ElecOnClick() {
   if (document.getElementById("ElecBouton").srcset == "./assets/images/Thunder.png") {
     document.getElementById("ElecBouton").srcset = "./assets/images/ThunderLight.png";
     document.getElementById("Elec_Aff").hidden = false;
-    document.getElementById("simone").style.opacity = "0.5";
   } else {
     document.getElementById("ElecBouton").srcset = "./assets/images/Thunder.png";
     document.getElementById("Elec_Aff").hidden = true;
-    document.getElementById("simone").style.opacity = "1";
   }
 }
 
