@@ -30,8 +30,8 @@ final class Controller
         }
 
         if (empty($S_controller)) {
-            // All controllers are prefixed by "Controller" 
-            $this->_A_dissectUrl['controller'] = 'ControllerHelloworld';
+            // All controllers are prefixed by "Controller"
+            $this->_A_dissectUrl['controller'] = 'ControllerSimone';
         } else {
             $this->_A_dissectUrl['controller'] = 'Controller' . ucfirst($S_controller);
         }
