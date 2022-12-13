@@ -4,14 +4,14 @@
   <meta charset = "utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-  <link href="./assets/css/style.scss" rel="stylesheet">
+  <link href="../assets/css/style.scss" rel="stylesheet">
 
   <title> Statistiques </title>
 </head>
 <body>
     <header>
         <nav>
-            <a href="index.html"><img src="./assets/images/retour.png" alt="icone user" /></a>
+            <a href="index.html"><img src="../assets/images/retour.png" alt="icone user" /></a>
         </nav>
         <h1>Statistiques de recharge</h1>
     </header>
@@ -31,34 +31,34 @@
             </section>
         </section>
         <h2>Graphique statistique de recharge</h2>
-        <p class="graph"><img class="simone_img" src="./assets/images/graphique.png" alt="image graphique" /></p>
+        <p class="graph"><img class="simone_img" src="../assets/images/graphique.png" alt="image graphique" /></p>
         <section id="infos-stats">
             <h2>Navigation options de la voiture</h2>
             <nav>
                 <ul class="infos-stats">
                     <li class="infos">
-                        <img class="icones" src="./assets/images/home.png" alt="icone ventilation" />
+                        <img class="icones" src="../assets/images/home.png" alt="icone ventilation" />
                         <a href="#">
                             <h3>100%</h3>
                             <p>Domicile</p>
                         </a>
                     </li>
                     <li class="infos">
-                        <img class="icones" src="./assets/images/work.png" alt="icone position" />
+                        <img class="icones" src="../assets/images/work.png" alt="icone position" />
                         <a href="#">
                             <h3>0%</h3>
                             <p >Lieu de travail</p>
                         </a>
                     </li>
                     <li class="infos">
-                        <img class="icones" src="./assets/images/charge.png" alt="icone ventilation" />
+                        <img class="icones" src="../assets/images/charge.png" alt="icone ventilation" />
                         <a href="#">
                             <h3>0%</h3>
                             <p>Superchargeur</p>
                         </a>
                     </li>
                     <li class="infos">
-                        <img class="icones" src="./assets/images/autre.png" alt="icone position" />
+                        <img class="icones" src="../assets/images/autre.png" alt="icone position" />
                         <a href="#">
                             <h3>0%</h3>
                             <p>Autre</p>
@@ -104,9 +104,9 @@
         <nav>
             <ul>
                 <li>
-                    <img class="icones" src="./assets/images/controle.png" alt="icone contrôle" />
+                    <img class="icones" src="../assets/images/controle.png" alt="icone contrôle" />
                     <a href="#"><h3>Paramètres</h3></a>
-                    <img class="icones fleche" src="./assets/images/suivant.png" alt="controles" />
+                    <img class="icones fleche" src="../assets/images/suivant.png" alt="controles" />
                 </li>
             </ul>
         </nav>
