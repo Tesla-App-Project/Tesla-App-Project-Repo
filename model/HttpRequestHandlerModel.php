@@ -26,8 +26,8 @@ class HttpRequestHandlerModel
         $apiModel = new ApiModel();
         if ($isGET) {
             $response = match ($APICallFunction) {
-                'getAllVehicles' => $apiModel->getAllVehicles(),
-                'getVehiculeData' => $apiModel->getVehiculeData(),
+                'getAllVehiclesData' => $apiModel->getAllVehiclesData(),
+                'getVehicleData' => $apiModel->getVehicleData(),
                 'getChargeStateData' => $apiModel->getChargeStateData(),
                 'getChargeClimateData' => $apiModel->getChargeClimateData(),
                 'getDriveStateData' => $apiModel->getDriveStateData(),

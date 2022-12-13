@@ -15,7 +15,7 @@ class ControllerVehicle
      * @throws Exception
      */
     public function getAllVehiclesAction() : void {
-        echo $this->_httpRequestHandler->callAPI('getAllVehicles', true);
+        echo $this->_httpRequestHandler->callAPI('getAllVehiclesData', true);
     }
 
     //TODO : This method name could be renamed
@@ -26,7 +26,7 @@ class ControllerVehicle
      * @throws Exception
      */
     public function getVehiculeDataAction() : void {
-        echo $this->_httpRequestHandler->callAPI('getVehiculeData', true);
+        echo $this->_httpRequestHandler->callAPI('getVehicleData', true);
     }
 
     /**
@@ -34,8 +34,8 @@ class ControllerVehicle
      * @return void
      * @throws Exception
      */
-    public function getVehicleDataAction() : void {
-        echo $this->_httpRequestHandler->callAPI('getVehicleData', true);
+    public function getAllVehicleDataAction() : void {
+        echo $this->_httpRequestHandler->callAPI('getAllData', true);
     }
 
     /**
