@@ -5,7 +5,7 @@ final class Constants
 {
     // Constants relatided to paths
 
-    public const DIRECTORY_VIEWS       = '/View/';
+    public const DIRECTORY_VIEWS       = '/view/';
 
     public const DIRECTORY_MODEL       = '/model/';
 

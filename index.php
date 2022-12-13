@@ -3,7 +3,7 @@
 // This file in the entry point of the application
 
 require 'kernel/AutoLoad.php';
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/kernel/AutoLoad.php';
 
 /*
 to use our MVC, you have to enter inside your navbar

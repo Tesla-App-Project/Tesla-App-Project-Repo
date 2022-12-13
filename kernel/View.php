@@ -18,7 +18,7 @@ final class View
     {
         $S_file = Constants::directoryViews() . $S_location . '.php';
 
-        $A_View = $A_settings;
+        $A_view = $A_settings;
         // Starting of a sub buffer
         ob_start();
         include $S_file; // A_view is used inside this file, the view is include in the sub buffer
