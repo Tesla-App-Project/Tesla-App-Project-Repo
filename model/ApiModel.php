@@ -174,6 +174,7 @@ class ApiModel
         }
     }
 
+
     /**
      * @return array
      */
@@ -503,7 +504,7 @@ class ApiModel
     public function isTrunkOpen(string $chosenTrunk): bool {
         $result = $this->getAllData();
         $convert = ["front" => "ft", "rear" => "rt"];
-        return !!$result["response"]["vehicle_state"][$convert[$chosenTrunk]];
+        return (bool)$result["response"]["vehicle_state"][$convert[$chosenTrunk]];
     }
 
 
@@ -584,4 +585,11 @@ class ApiModel
         return $convert[$result["response"]["charge_state"]["charging_state"]];
     }
 
+    /**
+     * @return int
+     */
+    public function batteryRange(): int {
+        $result = $this->getChargeStateData();
+        return $result["response"]["charge_state"]["battery_range"];
+    }
 }
