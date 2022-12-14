@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-  <link href="./assets/css/style.scss" rel="stylesheet">
-  <script src="./assets/js/script.js"></script>
+  <link href="../assets/css/style.scss" rel="stylesheet">
+  <script src="../assets/js/script.js"></script>
   <title>Accueil</title>
 </head>
 
@@ -15,7 +15,7 @@
   <header class="menu sticky">
     <h1>Simone</h1>
     <nav>
-      <a href="#"><img src="./assets/images/user.png" alt="icone user"></a>
+      <a href="#"><img src="../assets/images/user.png" alt="icone user"></a>
     </nav>
   </header>
   <section class="fixed">
@@ -31,7 +31,7 @@
       <h2>Bloc Principal Image et Bouton</h2>
       <section class="bloc-voiture">
         <h2>Image de la voiture</h2>
-        <p class="simone"><img id="simone" class="simone-img" src="./assets/images/voiture.png" alt="image voiture"></p>
+        <p class="simone"><img id="simone" class="simone-img" src="../assets/images/voiture.png" alt="image voiture"></p>
       </section>
 
       <!-- Panneau Electricite -->
@@ -53,13 +53,13 @@
     <section>
       <section class="button-icone">
         <h2>Icônes contrôles de la voiture</h2>
-        <button onclick="ConnexionOnClick()"><img id="ConnexionButton" srcset="./assets/images/Connexion.png"
+        <button onclick="ConnexionOnClick()"><img id="ConnexionButton" srcset="../assets/images/Connexion.png"
             alt="icone connexion"></button>
-        <button onclick="FanOnClick()"><img id="FanButton" srcset="./assets/images/Fan.png"
+        <button onclick="FanOnClick()"><img id="FanButton" srcset="../assets/images/Fan.png"
             alt="icone ventilation"></button>
-        <button onclick="ElecOnClick()"><img id="ElecBouton" srcset="./assets/images/Thunder.png"
+        <button onclick="ElecOnClick()"><img id="ElecBouton" srcset="../assets/images/Thunder.png"
             alt="icone energie"></button>
-        <button><img srcset="./assets/images/coffre.png" alt="icone coffre"></button>
+        <button><img srcset="../assets/images/coffre.png" alt="icone coffre"></button>
       </section>
     </section>
   </div>
@@ -72,12 +72,12 @@
         <li>
           <button class="Flex_Button">
             <section class="Flex_Cadre">
-              <img src="./assets/images/controle.png" height="28%" width="28%">
-              <a href="/control.php">
+              <img src="../assets/images/controle.png" height="28%" width="28%">
+              <a href="/view/control.phpl.php">
                 <h3>Contrôles</h3>
               </a>
             </section>
-            <img class="button-arrow" src="./assets/images/suivant.png" height="25px">
+            <img class="button-arrow" src="../assets/images/suivant.png" height="25px">
           </button>
         </li>
 
@@ -85,7 +85,7 @@
         <li>
           <button class="Flex_Button">
             <section class="Flex_Cadre">
-              <img src="./assets/images/Fan.png" height="28%" width="28%">
+              <img src="../assets/images/Fan.png" height="28%" width="28%">
               <a href="ventilation.php">
                 <h3>Ventilation</h3>
                 <section style="display: flex; justify-content: start; align-items: center;">
@@ -94,7 +94,7 @@
                 </section>
               </a>
             </section>
-            <img class="button-arrow" src="./assets/images/suivant.png" height="25px">
+            <img class="button-arrow" src="../assets/images/suivant.png" height="25px">
           </button>
         </li>
 
@@ -102,13 +102,13 @@
         <li>
           <button class="Flex_Button">
             <section class="Flex_Cadre">
-              <img src="./assets/images/position.png" height="28%" width="28%">
+              <img src="../assets/images/position.png" height="28%" width="28%">
               <a href="position.php">
                 <h3>Position</h3>
                 <p>13 Rue Paul Guigou</p>
               </a>
             </section>
-            <img class="button-arrow" src="./assets/images/suivant.png" height="25px">
+            <img class="button-arrow" src="../assets/images/suivant.png" height="25px">
           </button>
         </li>
 
@@ -116,12 +116,12 @@
         <li>
           <button class="Flex_Button">
             <section class="Flex_Cadre">
-              <img src="./assets/images/planifier.png" height="28%" width="28%">
+              <img src="../assets/images/planifier.png" height="28%" width="28%">
               <a href="#">
                 <h3>Planifier</h3>
               </a>
             </section>
-            <img class="button-arrow" src="./assets/images/suivant.png" height="25px">
+            <img class="button-arrow" src="../assets/images/suivant.png" height="25px">
           </button>
         </li>
 
@@ -129,16 +129,16 @@
         <li>
           <button class="Flex_Button">
             <section class="Flex_Cadre">
-              <img src="./assets/images/securite.png" height="28%" width="28%">
+              <img src="../assets/images/securite.png" height="28%" width="28%">
               <a href="#">
                 <h3>Sécurité et conducteurs</h3>
                 <section style="display: flex; justify-content: start; align-items: center;">
-                  <img id="littleRedConnexion" srcset="./assets/images/ConnexionRed.png" style="width: 20px;" hidden>
+                  <img id="littleRedConnexion" srcset="../assets/images/ConnexionRed.png" style="width: 20px;" hidden>
                   <p>iMoi - Connectée</p>
                 </section>
               </a>
             </section>
-            <img class="button-arrow" src="./assets/images/suivant.png" height="25px">
+            <img class="button-arrow" src="../assets/images/suivant.png" height="25px">
           </button>
         </li>
 
@@ -146,12 +146,12 @@
         <li>
           <button class="Flex_Button">
             <section class="Flex_Cadre">
-              <img src="./assets/images/statsrecharge.png" height="28%" width="28%">
+              <img src="../assets/images/statsrecharge.png" height="28%" width="28%">
               <a href="stats_reload.php">
                 <h3>Stats recharge</h3>
               </a>
             </section>
-            <img class="button-arrow" src="./assets/images/suivant.png" height="25px">
+            <img class="button-arrow" src="../assets/images/suivant.png" height="25px">
           </button>
         </li>
 
@@ -159,12 +159,12 @@
         <li>
           <button class="Flex_Button">
             <section class="Flex_Cadre">
-              <img src="./assets/images/miseaniveau.png" height="28%" width="28%">
+              <img src="../assets/images/miseaniveau.png" height="28%" width="28%">
               <a href="#">
                 <h3>Mise à niveau</h3>
               </a>
             </section>
-            <img class="button-arrow" src="./assets/images/suivant.png" height="25px">
+            <img class="button-arrow" src="../assets/images/suivant.png" height="25px">
           </button>
         </li>
 
@@ -172,12 +172,12 @@
         <li>
           <button class="Flex_Button">
             <section class="Flex_Cadre">
-              <img src="./assets/images/service.png" height="28%" width="28%">
+              <img src="../assets/images/service.png" height="28%" width="28%">
               <a href="#">
                 <h3>Service</h3>
               </a>
             </section>
-            <img class="button-arrow" src="./assets/images/suivant.png" height="25px">
+            <img class="button-arrow" src="../assets/images/suivant.png" height="25px">
           </button>
         </li>
 
@@ -187,7 +187,7 @@
 
   <footer>
     <hr>
-    <img src="./assets/images/model3-logo.png" alt="Model3 Title">
+    <img src="../assets/images/model3-logo.png" alt="Model3 Title">
   </footer>
 </body>
 

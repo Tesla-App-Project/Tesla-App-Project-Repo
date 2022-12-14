@@ -5,6 +5,10 @@
 require 'kernel/AutoLoad.php';
 require_once __DIR__ . '/vendor/autoload.php';
 
+session_start();
+if (!isset($_SESSION['user_id'])) session_unset();
+
+
 /*
 to use our MVC, you have to enter inside your navbar
     firstly : "index.php?url="
@@ -23,10 +27,7 @@ $O_controller = new Controller($S_urlADecortiquer, $A_postSettings);
 $O_controller->execute();
 
 // The few sub views were put inside the display buffer, we get them
-$A_content = View::getBufferContent();
-
+$S_View = View::getBufferContent();
+echo $S_View;
 // We display the content in the template body
-View::show('template', array('body' => $A_content));
-
-
-
+//View::show('template', array('body' => $A_content));

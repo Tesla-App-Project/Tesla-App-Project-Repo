@@ -8,7 +8,10 @@ class ControllerCharge
 
     #[Pure] public function __construct()
     {
-        $this->_httpRequestHandler = new HttpRequestHandlerModel();
+        //$_SESSION['user_id']
+        //$user = new User();
+        //$token =
+        $this->_httpRequestHandler = new HttpRequestHandlerModel('1493131276665295');
     }
 
     /**
