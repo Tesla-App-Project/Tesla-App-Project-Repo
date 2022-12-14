@@ -1,6 +1,6 @@
 <?php
 
-class m0003_example
+class m0003_example_function
 {
     public function up()
     {

@@ -12,7 +12,7 @@ final class ControllerSimone
 
     //http://localhost:8080/index.php?url=helloworld/boat
     //new way
-    //http://teslaapp/simone/boat
+    //http://teslapp/simone/boat
     public function boatAction()
     {
         $O_helloWorld =  new Example();
@@ -21,7 +21,7 @@ final class ControllerSimone
         View::show('default/see', array('helloworld' =>  $O_helloWorld->giveMessage()));
     }
 
-    //Example of url with my own domain name : http://teslaapp/simone/example
+    //Example of url with my own domain name : http://tesloggy/simone/example
     public function exampleAction()
     {
         $O_helloWorld =  new Example();
