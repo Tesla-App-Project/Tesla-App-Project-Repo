@@ -2,6 +2,12 @@
 
 class HttpRequestHandlerModel
 {
+    private string $_token;
+
+    public function __construct($token) {
+        $this->_token = $token;
+    }
+
     /**
      * @param array $keys
      * @return array
@@ -23,7 +29,7 @@ class HttpRequestHandlerModel
      */
     public function callAPI(string $APICallFunction, bool $isGET) : string|bool {
         $apiModel = new ApiModel();
-        $apiModel->setToken('letokendelatesla');
+        $apiModel->setToken($this->_token);
 
         if ($isGET) {
             $response = match ($APICallFunction) {

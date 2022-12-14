@@ -1,10 +1,3 @@
-<?php
-echo '<header class="menu sticky">
-  <h1>Simone</h1>
-  <nav>
-    <a href="#"><img src="./assets/images/user.png" alt="icone user"></a>
-  </nav>
-</header>
 <section class="fixed">
   <section class="flex_batterie">
     <meter class="meter" min="0" max="100" value="50"></meter>
@@ -172,7 +165,3 @@ echo '<header class="menu sticky">
   </nav>
 </section>
 <script async src="httprequest.js"></script>
-<footer>
-  <hr>
-  <img src="./assets/images/model3-logo.png" alt="Model3 Title">
-</footer>';
