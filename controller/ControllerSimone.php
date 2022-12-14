@@ -25,7 +25,7 @@ final class ControllerSimone
     public function exampleAction()
     {
         $O_helloWorld =  new Example();
-        var_dump('boatAction');
+        var_dump('exempleAction');
 
         View::show('default/see', array('helloworld' =>  $O_helloWorld->giveMessage()));
     }
