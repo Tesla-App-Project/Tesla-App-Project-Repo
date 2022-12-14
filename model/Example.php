@@ -1,8 +1,5 @@
 <?php
 
-$filepath = realpath(dirname(__FILE__));
-require_once($filepath."/../kernel/Database.php");
-
 final class Example
 {
     public function giveMessage()
@@ -10,26 +7,43 @@ final class Example
         //EXAMPLE
 
         $db = new Database();
+        //if that's not working read the README, you have to apply the migrations
 
-        //UPDATE
-        // //param = (field + value) soit [['pseudo' => 'Toto'],['other' => 'Mimi']]
-        // return $db->queryUpdateAction(1, [['email' => 'Toto'], ['lastname' => 'Mimi']], 'user');
 
-        //GET if it's not working read the README, you have to apply the migrations
+        /**
+         * UPDATE (id, [['column'=>'value'], ['second column'=>'value']], table name)
+         * **/
+        // return $db->queryUpdateAction(4, [['email' => 'Totzzzzzzzzzzzzzo@fazfa.com'], ['lastname' => 'Mimi']], 'users');
+
+
+        /**
+         *  GET  (id, [['column'=>'value'], ['second column'=>'value']], table name)
+         * // not working if you don't have the correspond data in you table
+         * **/
         // $users = $db->queryUpdateAction(1, [['email' => 'Toto'], ['token' => 'Mimi']], 'users');
         // print_r($users);
 
-        //CREATE user for example
+
+        /**
+         * CREATE ([['column'=>'value'], ['second column'=>'value']], table name)
+         * **/
         $users = $db->queryCreateAction(
             [
-                //colum name //DATA
-                ['email','Toto@aaa.com'],
-                ['firstname','Sandra'],
-                ['lastname', 'Gomassaille'],
-                ['token', 'peanut'] ,
-                ['password', 'forget'],
+                //colum name / DATA
+                'email' => 'Toto@aaa.com',
+                'username' => 'loa',
+                'firstname' => 'Sandra',
+                'lastname' => 'Gomassaille',
+                'token' => 'peanut',
+                'password' => 'forget',
             ],
             'users'
         );
+
+
+        /**
+         * DELETE (id, table name) //not working if you don't have the correspond data in you table
+         * **/
+        // $users = $db->queryDeleteAction(2, 'users');
     }
 }

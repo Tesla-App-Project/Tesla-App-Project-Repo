@@ -29,6 +29,7 @@ final class Database
         $this->password = $config['db']['password'] ?? '';
     }
 
+
     //GET - exemple : $users = $db->queryGetAction(1, ['pseudo', 'other'], 'user');
     public function queryGetAction(int $id, array $params, string $table)
     {
@@ -63,6 +64,7 @@ final class Database
         }
     }
 
+
     //UPDATE - exemple : return $db->queryUpdateAction(1, [['pseudo' => 'Toto'], ['other' => 'Mimi']], 'user');
     public function queryUpdateAction(int $id, array $params, string $table)
     {
@@ -91,19 +93,50 @@ final class Database
                 }
             }
         }
+        var_dump($table);
 
-        $S_update = $S_base->query("UPDATE ". $table ." SET " . $query . "' WHERE id = '" . $id . "'");
+        $S_update = $S_base->query("DELETE FROM ". $table ." WHERE id ='$id'");
+        // $S_update = $S_base->query("UPDATE ". $table ." SET " . $query . "' WHERE id = '" . $id . "'");
         // $S_update->bindParam($query, $query, PDO::PARAM_STR);
 
-        // var_dump($S_update);
+        var_dump($S_update);
 
         // $S_update->execute()
 
         echo 'Success';
     }
 
+
     //CREATE - exemple :
-    public function queryCreateAction(array $params, string $table)
+    public function queryCreateAction(array $keyValueMap, string $table)
+    {
+        try {
+            $S_base = new PDO($this->dsn, $this->user, $this->password);
+            // $S_base = new PDO('mysql:host=localhost:3306; dbname=tesla_app', 'root', '');
+        } catch (exception $S_e) {
+            die('Erreur ' . $S_e->getMessage());
+        }
+
+        $S_base->exec("SET CHARACTER SET utf8");
+
+        $keys = array_keys($keyValueMap);
+        $values = array_values($keyValueMap);
+
+        $preparedStatementExpressionArray = array_map(
+            fn (string $keyName) => "{$keyName} = ?",
+            $keys,
+        );
+        $preparedStatementExpression = join(',', $preparedStatementExpressionArray);
+
+        $statement = $S_base->prepare("INSERT INTO $table SET $preparedStatementExpression;");
+        $create =$statement->execute($values);
+
+        echo 'Success, data got inserted';
+    }
+
+
+    // DELETE - exemple :
+    public function queryDeleteAction(int $id, string $table)
     {
         try {
             $S_base = new PDO($this->dsn, $this->user, $this->password);
@@ -113,59 +146,8 @@ final class Database
         }
         $S_base->exec("SET CHARACTER SET utf8");
 
-        $column = '';
-        $data = '';
-        $counter = 0;
-
-        //if we have only one param
-        if (count($params) === 1) {
-            $column = $params[0][0];
-            $data .="'" .$params[0][1]. "'";
-        //if we have more than one param
-        } else {
-            foreach ($params as $param) {
-                //we do a foreach of params
-                foreach ($param as $key => $value) {
-                    //we do a foreach of the values inside the params
-                    //"if / else" we put "," after our data but not after the last one
-                    if ($counter < count($params)*2-2) {
-                        //if the key is equal to 0, it's a column
-                        if ($key ==0) {
-                            $column .= $value. ",";
-                        //else the key is equal to 1, it's a data from an user...
-                        } else {
-                            $data .="'" .$value. "'". ",";
-                        }
-                    } else {
-                        //if the key is equal to 0, it's a column
-                        if ($key ==0) {
-                            $column .= $value;
-                        //else the key is equal to 1, it's a data from an user...
-                        } else {
-                            $data .="'" .$value. "'";
-                        }
-                    }
-                    $counter++;
-                }
-            }
-        }
-
-        //Data to see
-        // echo '<pre>';
-        // echo 'column : ';
-        // print_r($column);
-        // echo '<br>';
-        // echo 'data : ';
-        // print_r($data);
-        // echo '</pre>';
-        $S_update = $S_base->query("INSERT INTO $table ($column)
-        VALUES ($data)");
-
-        echo 'Success, data got inserted';
-    }
-
-    // DELETE - exemple :
-    public function queryDeleteAction()
-    {
+        $S_update = $S_base->query("DELETE FROM `{$table}` WHERE id={$id};");
+        var_dump($S_update);
+        echo 'Success, data got deleted';
     }
 }
