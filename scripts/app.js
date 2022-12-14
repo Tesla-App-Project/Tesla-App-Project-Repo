@@ -8,6 +8,7 @@ window.addEventListener('load', async () => {
                 console.log('Service Worker is registered', swReg);
                 swRegistration = swReg;
 
+                displayNotification("Tesla", "Bienvenue sur l'application Tesla");
             })
             .catch(error => {
                 console.error('Service Worker Error', error);
