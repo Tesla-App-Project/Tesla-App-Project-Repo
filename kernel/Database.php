@@ -29,6 +29,7 @@ final class Database
         $this->password = $config['db']['password'] ?? '';
     }
 
+
     //GET - exemple : $users = $db->queryGetAction(1, ['pseudo', 'other'], 'user');
     public function queryGetAction(int $id, array $params, string $table)
     {
@@ -42,17 +43,17 @@ final class Database
 
         $query = '';
         $nb = count($params);
-        $int = 0;
+        $counter = 0;
         if (count($params) === 1) {
             $query = $params[0];
         } else {
             foreach ($params as $param) {
-                if ($int < $nb-1) {
+                if ($counter < $nb-1) {
                     $query .= $param . ', ';
                 } else {
                     $query .= $param;
                 }
-                $int++;
+                $counter++;
             }
         }
 
@@ -62,6 +63,7 @@ final class Database
             return $data;
         }
     }
+
 
     //UPDATE - exemple : return $db->queryUpdateAction(1, [['pseudo' => 'Toto'], ['other' => 'Mimi']], 'user');
     public function queryUpdateAction(int $id, array $params, string $table)
@@ -76,34 +78,76 @@ final class Database
 
         $query = '';
         $nb = count($params);
-        $int = 0;
+        $counter = 0;
         if (count($params) === 1) {
             $query = $params[0];
         } else {
             foreach ($params as $param) {
                 foreach ($param as $key => $value) {
-                    if ($int < $nb-1) {
+                    if ($counter < $nb-1) {
                         $query .= $key . "='". $value. "',";
                     } else {
                         $query .= $key . "='". $value;
                     }
-                    $int++;
+                    $counter++;
                 }
             }
         }
+        var_dump($table);
 
-        $S_update = $S_base->query("UPDATE ". $table ." SET " . $query . "' WHERE id = '" . $id . "'");
+        $S_update = $S_base->query("DELETE FROM ". $table ." WHERE id ='$id'");
+        // $S_update = $S_base->query("UPDATE ". $table ." SET " . $query . "' WHERE id = '" . $id . "'");
+        // $S_update->bindParam($query, $query, PDO::PARAM_STR);
+
+        var_dump($S_update);
+
+        // $S_update->execute()
 
         echo 'Success';
     }
 
+
     //CREATE - exemple :
-    public function queryCreateAction()
+    public function queryCreateAction(array $keyValueMap, string $table)
     {
+        try {
+            $S_base = new PDO($this->dsn, $this->user, $this->password);
+            // $S_base = new PDO('mysql:host=localhost:3306; dbname=tesla_app', 'root', '');
+        } catch (exception $S_e) {
+            die('Erreur ' . $S_e->getMessage());
+        }
+
+        $S_base->exec("SET CHARACTER SET utf8");
+
+        $keys = array_keys($keyValueMap);
+        $values = array_values($keyValueMap);
+
+        $preparedStatementExpressionArray = array_map(
+            fn (string $keyName) => "{$keyName} = ?",
+            $keys,
+        );
+        $preparedStatementExpression = join(',', $preparedStatementExpressionArray);
+
+        $statement = $S_base->prepare("INSERT INTO $table SET $preparedStatementExpression;");
+        $create =$statement->execute($values);
+
+        echo 'Success, data got inserted';
     }
 
-    //DELETE - exemple :
-    public function queryDeleteAction()
+
+    // DELETE - exemple :
+    public function queryDeleteAction(int $id, string $table)
     {
+        try {
+            $S_base = new PDO($this->dsn, $this->user, $this->password);
+            // $S_base = new PDO('mysql:host=localhost:3306; dbname=tesla_app', 'root', '');
+        } catch (exception $S_e) {
+            die('Erreur ' . $S_e->getMessage());
+        }
+        $S_base->exec("SET CHARACTER SET utf8");
+
+        $S_update = $S_base->query("DELETE FROM `{$table}` WHERE id={$id};");
+        var_dump($S_update);
+        echo 'Success, data got deleted';
     }
 }

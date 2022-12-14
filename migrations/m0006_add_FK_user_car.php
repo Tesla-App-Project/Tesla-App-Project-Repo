@@ -1,6 +1,6 @@
 <?php
 
-class m0003_add_FK_user
+class m0006_add_FK_user_car
 {
 
     public function up()

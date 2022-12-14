@@ -1,6 +1,6 @@
 <?php
 
-class m0004_charge
+class m0007_charge
 {
     public function up()
     {

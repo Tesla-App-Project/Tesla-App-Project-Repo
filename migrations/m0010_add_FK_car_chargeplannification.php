@@ -1,6 +1,6 @@
 <?php
 
-class m0007_add_FK_car_chargeplannification
+class m0010_add_FK_car_chargeplannification
 {
     public function up()
     {

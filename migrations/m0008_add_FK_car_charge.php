@@ -1,12 +1,12 @@
 <?php
 
-class m0009_add_FK_car_climateplannification
+class m0008_add_FK_car_charge
 {
     public function up()
     {
         $db = new DbMigration();
-        $SQL = "ALTER TABLE climate_plannification 
-                ADD CONSTRAINT FK_car_climateplannification 
+        $SQL = "ALTER TABLE charge 
+                ADD CONSTRAINT FK_carcharge 
                 FOREIGN KEY (id_car) REFERENCES car(id_car);";
 
         $db->pdo->exec($SQL);
@@ -15,7 +15,8 @@ class m0009_add_FK_car_climateplannification
     public function down()
     {
         $db = new DbMigration();
-        $SQL = "ALTER TABLE climate_plannification DROP CONSTRAINT FK_car_climateplannification  ";
+        $SQL = "ALTER TABLE charge DROP CONSTRAINT FK_carcharge  ";
         $db->pdo->exec($SQL);
     }
+
 }

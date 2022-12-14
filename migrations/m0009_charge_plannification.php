@@ -1,6 +1,6 @@
 <?php
 
-class m0006_charge_plannification
+class m0009_charge_plannification
 {
 
     public function up()

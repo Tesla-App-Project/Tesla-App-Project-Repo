@@ -1,6 +1,6 @@
 <?php
 
-class m0002_car
+class m0005_car
 {
     public function up()
     {

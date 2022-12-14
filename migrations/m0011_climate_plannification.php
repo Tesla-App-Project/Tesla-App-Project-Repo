@@ -1,6 +1,6 @@
 <?php
 
-class m0008_climate_plannification
+class m0011_climate_plannification
 {
 
     public function up()

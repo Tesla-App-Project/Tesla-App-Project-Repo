@@ -1,6 +1,6 @@
 <?php
 
-class m0001_user
+class m0004_user
 {
     public function up()
     {

@@ -27,3 +27,6 @@ $A_content = View::getBufferContent();
 
 // We display the content in the template body
 View::show('template', array('body' => $A_content));
+
+
+
