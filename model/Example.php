@@ -31,11 +31,11 @@ final class Example
             [
                 //colum name / DATA
                 'email' => 'Toto@aaa.com',
-                'username' => 'loa',
+                'username' => 'revolvers',
                 'firstname' => 'Sandra',
                 'lastname' => 'Gomassaille',
-                'token' => 'peanut',
-                'password' => 'forget',
+                'token' => 'pdm!c+1dç=UHFn',
+                'password' => 'jalopalo', 
             ],
             'users'
         );
