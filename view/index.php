@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-  <link href="./assets/css/style.scss" rel="stylesheet">
-  <script src="./assets/js/index.js"></script>
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <script src="../assets/js/index.js"></script>
   <title>Accueil</title>
 </head>
 
@@ -21,7 +21,9 @@
   <section class="fixed">
     <section class="flex_batterie">
       <meter class="meter" min="0" max="100" value="50"></meter>
-      <p>71%</p>
+      <p><?php
+        echo $A_view["batteryCharge"] . "%";
+      ?></p>
     </section>
     <p>Stationnée</p>
   </section>

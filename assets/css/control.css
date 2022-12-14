@@ -1,0 +1,371 @@
+body {
+  background-color: #161718;
+  color: aliceblue;
+  margin: 0%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.hover-img:hover {
+  -webkit-filter: invert(0%) sepia(93%) saturate(0%) hue-rotate(335deg) brightness(150%) contrast(108%);
+          filter: invert(0%) sepia(93%) saturate(0%) hue-rotate(335deg) brightness(150%) contrast(108%);
+}
+
+.header-index {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 1px;
+  z-index: -1;
+}
+
+.border1 {
+  padding-top: 7px;
+  padding-bottom: 3px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: rgba(102, 102, 102, 0.192);
+  border-radius: 100px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: .1rem 0;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  padding-left: 20px;
+}
+
+h3 {
+  font-size: 1.2rem;
+  padding-left: 40px;
+}
+
+h4 {
+  font-size: 1rem;
+  font-style: italic;
+  padding-left: 60px;
+}
+
+.textbutton {
+  font-size: 2rem;
+  text-decoration: none;
+}
+
+.imageflex {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.horizontal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  list-style-type: none;
+  padding-left: 1%;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.p-padding-l {
+  padding-top: 5%;
+  padding-right: 35%;
+  position: absolute;
+}
+
+.p-padding-r {
+  padding-top: 5%;
+  padding-left: 35%;
+  position: absolute;
+}
+
+.p-padding-h {
+  padding-bottom: 40%;
+  position: absolute;
+}
+
+.p-padding-b {
+  padding-top: 60%;
+  position: absolute;
+}
+
+.horizontal-controle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.cadenasPos {
+  position: absolute;
+  width: 6%;
+  padding-top: 4%;
+}
+
+.rotate {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.rotateArrow {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  margin-top: 10px;
+}
+
+.vertical-controle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.li {
+  list-style: none;
+  padding-top: 5%;
+  padding-bottom: 3%;
+}
+
+ul {
+  padding: 0%;
+}
+
+.box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 10px;
+}
+
+.box-controle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.box2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.boxcenter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.one {
+  -ms-flex-preferred-size: 98%;
+      flex-basis: 98%;
+}
+
+.two {
+  -ms-flex-preferred-size: 2%;
+      flex-basis: 2%;
+}
+
+.one-controle {
+  -ms-flex-preferred-size: 80%;
+      flex-basis: 80%;
+}
+
+.eclair {
+  width: 28px;
+  padding-left: 25%;
+  padding-bottom: 20px;
+}
+
+.two-controle {
+  -ms-flex-preferred-size: 80%;
+      flex-basis: 80%;
+}
+
+.bdody {
+  z-index: 0;
+  background-color: #161718;
+  -webkit-box-shadow: 0px -40px 30px #161718;
+          box-shadow: 0px -40px 30px #161718;
+}
+
+.three {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.buttontype1 {
+  border: 50px;
+  background-color: #161718;
+  color: aliceblue;
+  font-size: 2rem;
+  text-decoration: none;
+}
+
+.lientype1 {
+  color: aliceblue;
+  font-size: 1.5rem;
+  text-decoration: none;
+  padding-left: 3%;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.center {
+  text-align: center;
+}
+
+small {
+  color: #727375;
+}
+
+.fixe {
+  position: -webkit-sticky;
+  position: sticky;
+}
+
+.gris {
+  color: #868786;
+  font-size: 1.2rem;
+}
+
+.cacher {
+  display: none;
+}
+
+.cacher-tablet {
+  display: contents;
+}
+
+/* telephone */
+@media all and (max-width: 1024px) and (orientation: portrait) {
+  .header-index {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 1px;
+    z-index: -1;
+  }
+  .bdody {
+    z-index: 0;
+    background-color: #161718;
+    -webkit-box-shadow: 0px -40px 30px #161718;
+            box-shadow: 0px -40px 30px #161718;
+  }
+  .cacher-tablet {
+    display: none;
+  }
+  .cacher {
+    display: inline;
+  }
+  .voiture-controle {
+    padding-top: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    max-width: 35%;
+  }
+}
+
+/* Tablette */
+@media all and (max-width: 1024px) and (orientation: landscape) {
+  .header-index {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 1px;
+    z-index: -1;
+  }
+  .bdody {
+    z-index: 0;
+    background-color: #161718;
+    -webkit-box-shadow: 0px -40px 30px #161718;
+            box-shadow: 0px -40px 30px #161718;
+  }
+  .cacher {
+    display: none;
+  }
+  .cacher-tablet {
+    display: contents;
+  }
+  .voiture-controle {
+    padding-top: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    max-width: 50%;
+  }
+  #pPaddingL {
+    padding-top: 8%;
+    padding-right: 35%;
+    position: absolute;
+  }
+  #pPaddingR {
+    padding-top: 8%;
+    padding-left: 35%;
+    position: absolute;
+  }
+}
+
+@media all and (min-width: 1025px) and (orientation: landscape) {
+  .header-index {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 1px;
+    z-index: -1;
+  }
+  .bdody {
+    z-index: 0;
+    background-color: #161718;
+    -webkit-box-shadow: 0px -40px 30px #161718;
+            box-shadow: 0px -40px 30px #161718;
+  }
+  .cacher {
+    display: none;
+  }
+  .cacher-tablet {
+    display: contents;
+  }
+  .voiture-controle {
+    padding-top: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 50%;
+  }
+}
+/*# sourceMappingURL=control.css.map */

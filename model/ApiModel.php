@@ -640,15 +640,15 @@ class ApiModel
         );
     }
 
-    /**
-     * @return bool false if flashlights off and true if flashlights on
-     */
-    public function isFlashLightsON(): bool {
-        $result = $this->getAllData();
-        return $result["response"]["command"]["flash_lights"];
-    }
+//    /**
+//     * @return bool false if flashlights off and true if flashlights on
+//     */
+//    public function isFlashLightsON(): bool {
+//        $result = $this->getAllData();
+//        return $result["response"]["vehicle_state"]["flash_lights"];
+//    }
 
-    public function PositionState(): array {
+    public function positionState(): array {
         $result = $this->getDriveStateData();
         return array(
             "heading"          => $result["response"]["heading"],

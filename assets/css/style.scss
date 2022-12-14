@@ -150,9 +150,9 @@ header {
 meter::-webkit-meter-optimum-value {
   background: blue;
 }
-meter::-moz-meter-bar {
-  background: blue;
-}
+//meter::-moz-meter-bar {
+//  background: blue;
+//}
 .flex_batterie{
   display: flex;
   justify-content: start;

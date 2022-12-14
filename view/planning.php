@@ -15,7 +15,7 @@
 <body>
   <header>
       <section class="header-section-control">
-          <a href="./index.html"><img class="header-arrow hover-img" src="assets/images/symbole-fleche-droite-noir.png" alt="Retour"></a>
+          <a href="./index.php"><img class="header-arrow hover-img" src="assets/images/symbole-fleche-droite-noir.png" alt="Retour"></a>
           <h1>Planning</h1>
       </section>
   </header>
