@@ -1,0 +1,304 @@
+/*h2 {
+/*h2 {
+    visibility: hidden;
+}*/
+/* Section voiture img*/
+/* Header */
+body {
+  background-color: #161717;
+  margin: 10px;
+  border: none;
+  vertical-align: top;
+}
+button {
+  background-color: #161717;
+  border: none;
+  margin-top: 10px;
+}
+h1 {
+  color: #F3F3F3;
+  text-decoration: none;
+}
+h2 {
+  color: #F3F3F3;
+  text-decoration: none;
+  display: none;
+}
+h3 {
+  color: #F3F3F3;
+  text-decoration: none;
+  font-size: 20px;
+}
+a {
+  color: #F3F3F3;
+  text-decoration: none;
+  padding-left: 6%;
+  text-align: left;
+  width: 250%;
+}
+h4 {
+  color: #F3F3F3;
+  text-decoration: none;
+}
+p {
+  margin: 0;
+  color: #8A8B8B;
+}
+img {
+  color: #8A8B8B;
+  width: 2rem;
+}
+small {
+  color: #8A8B8B;
+}
+ul{
+  margin-top: 5vh
+}
+.button-icone {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+li{
+  list-style-type: none;
+  display: flex;
+}
+
+.Abs_Elec{
+  z-index:1;
+  border: solid #212223;
+  background-color: #212223;
+  border-radius: 5%;
+  padding: 5px;
+  box-shadow: 0px 0px 60px blueviolet;
+
+}
+
+.Bord_Ampere{
+    border: solid #333333;
+    background-color: #333333;
+    border-radius: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Flex_Button{
+  width: 80vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button-arrow {
+  transition-duration: 400ms;
+}
+
+.Flex_Button:hover .button-arrow {
+  transform: rotate(90deg);
+}
+
+.Flex_Button:hover img {
+  filter: invert(0%) sepia(93%) saturate(0%) hue-rotate(335deg) brightness(150%) contrast(108%);
+}
+
+.Flex_Cadre{
+  width: 70%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.Flex_Text{
+  color: #F3F3F3;
+  text-decoration: none;
+  padding-left: 6%;
+  text-align: left;
+  width: 250%;
+}
+
+.icones {
+  align-self: center;
+  height: 35px;
+}
+
+.fleche {
+  height: 25px;
+}
+
+.simone-img {
+  width: 100%;
+}
+.simone {
+  width: 100%;
+}
+header {
+  display: flex;
+  align-items: center;
+  >h1 {
+    margin-left: 10%;
+  }
+}
+.meter {
+  width: 9%;
+  height: 20px;
+}
+meter::-webkit-meter-optimum-value {
+  background: blue;
+}
+meter::-moz-meter-bar {
+  background: blue;
+}
+.flex_batterie{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.fleche {
+  position: absolute;
+  right: 5%;
+}
+.bloc {
+  >.info {
+    position: absolute;
+    right: 5%;
+    top: 2%;
+  }
+}
+.graph {
+  padding: 10%;
+}
+.infos-stats {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#bloc1 {
+  background-color: #212223;
+  padding-left: 5%;
+  padding-right: 5%;
+  margin: 0%;
+  width: 100%;
+}
+
+.bloc-voiture {
+  display: flex;
+  justify-content: center;
+}
+
+.titre-3 {
+  width: 100%;
+}
+
+li.infos {
+  width: 50%;
+}
+
+#stat {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+  }
+
+.titre-4 {
+  color: #8A8B8B;
+  font-size: 16px;
+}
+.sup {
+  color: #fff;
+  font-size: 25px;
+}
+#bloc2 {
+    background-color: #212223;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin: 0%;
+    width: 100%;
+  }
+
+footer hr {
+  /* top | right | bottom | left */
+  margin: 1.5rem 2.5rem 1rem 2.5rem;
+  border-top: 3px solid white;
+}
+
+footer img {
+  display: flex;
+  margin: auto;
+  margin-bottom: 2rem;
+
+  width: 25%;
+  height: 100%;
+}
+
+.time-small {
+  text-align: center;
+  width : 30%;
+  display: inline-block;
+}
+
+/* Ordinateur media queries */
+@media screen and (min-width: 790px) {
+  #graphique, #blocs, #stat-info, .bloc-gauche, .nav {
+    width: 49%;
+    display: inline-block;
+    flex-wrap: wrap-reverse;
+  }
+  #stat {
+    text-align: center;
+  } 
+  .bloc-voiture {
+    width: 45em;
+
+  }
+  .scroll {
+    z-index: 0;
+    background-color: #161718;
+    box-shadow: -20px 0px 20px #161718;
+  }
+  .Abs_Elec{
+  position:absolute;
+  top:30vh;
+  left:15vw;
+  }
+}
+// @media screen and (min-width: 1000px) {
+//   .bloc-voiture {
+//     width: 600px;
+//   }  
+// }
+
+/* Téléphone media queries */
+@media all and (max-width: 789px) {
+  .sticky{
+    position: sticky;
+    top: 10px;
+    z-index: -1;
+  }
+  .scroll {
+      z-index: 0;
+          background-color: #161718;
+  box-shadow: 0px -75px 30px #161718;
+    }
+  .fixed{
+    position: fixed;
+    z-index: -1;
+    top: 60px;
+  }
+  .button-icone {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 60%;
+  }
+  .Abs_Elec{
+  position:absolute;
+  top:8vh;
+  left:15vw;
+  }
+}
