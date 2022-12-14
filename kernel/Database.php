@@ -29,81 +29,76 @@ final class Database
         $this->password = $config['db']['password'] ?? '';
     }
 
-
-    //GET - exemple : $users = $db->queryGetAction(1, ['pseudo', 'other'], 'user');
-    public function queryGetAction(int $id, array $params, string $table)
+    public function try_catch()
     {
         try {
             $S_base = new PDO($this->dsn, $this->user, $this->password);
-            // $S_base = new PDO('mysql:host=localhost:3306; dbname=tesla_app', 'root', '');
         } catch (exception $S_e) {
             die('Erreur ' . $S_e->getMessage());
         }
         $S_base->exec("SET CHARACTER SET utf8");
 
-        $query = '';
-        $nb = count($params);
-        $counter = 0;
-        if (count($params) === 1) {
-            $query = $params[0];
-        } else {
-            foreach ($params as $param) {
-                if ($counter < $nb-1) {
-                    $query .= $param . ', ';
-                } else {
-                    $query .= $param;
-                }
-                $counter++;
-            }
-        }
+        return $S_base;
+    }
 
-        $A_selection = $S_base->query("SELECT " . $query . " FROM ". $table ." WHERE id = '" . $id . "'");
-
-        while ($data = $A_selection->fetch(PDO::FETCH_ASSOC)) {
-            return $data;
+    // TODO : pb d'affichage de retour de la valeur
+    //GET - exemple : $users = $db->queryGetAction(1, ['pseudo', 'other'], 'user');
+    public function queryGetAction(int $id, array $keyValueMap, string $table)
+    {
+        try {
+            $S_base = new PDO($this->dsn, $this->user, $this->password);
+        } catch (exception $S_e) {
+            die('Erreur ' . $S_e->getMessage());
         }
+        $S_base->exec("SET CHARACTER SET utf8");
+
+        $keys = array_keys($keyValueMap);
+        $values = array_values($keyValueMap);
+
+        $preparedStatementExpressionArray = array_map(
+            fn (string $keyName) => "{$keyName} = ?",
+            $keys,
+        );
+        $preparedStatementExpression = join(',', $preparedStatementExpressionArray);
+        $preparedStatementData = join(',', $preparedStatementExpressionArray);
+
+        $statement = $S_base->prepare("SELECT $preparedStatementData FROM $table WHERE id= {$id};");
+        var_dump($statement);
+        $statement->execute($values);
+        $A_selection = $statement->fetchAll();
+        var_dump($A_selection);
+        // $A_selection = $S_base->query("SELECT " . $query . " FROM ". $table ." WHERE id = '" . $id . "'");
+        // var_dump($A_selection);
+        // while ($data = $A_selection->fetch(PDO::FETCH_ASSOC)) {
+        //     return $data;
+        // }
     }
 
 
     //UPDATE - exemple : return $db->queryUpdateAction(1, [['pseudo' => 'Toto'], ['other' => 'Mimi']], 'user');
-    public function queryUpdateAction(int $id, array $params, string $table)
+    public function queryUpdateAction(int $id, array $keyValueMap, string $table)
     {
         try {
             $S_base = new PDO($this->dsn, $this->user, $this->password);
-            // $S_base = new PDO('mysql:host=localhost:3306; dbname=tesla_app', 'root', '');
         } catch (exception $S_e) {
             die('Erreur ' . $S_e->getMessage());
         }
         $S_base->exec("SET CHARACTER SET utf8");
 
-        $query = '';
-        $nb = count($params);
-        $counter = 0;
-        if (count($params) === 1) {
-            $query = $params[0];
-        } else {
-            foreach ($params as $param) {
-                foreach ($param as $key => $value) {
-                    if ($counter < $nb-1) {
-                        $query .= $key . "='". $value. "',";
-                    } else {
-                        $query .= $key . "='". $value;
-                    }
-                    $counter++;
-                }
-            }
-        }
-        var_dump($table);
+        $keys = array_keys($keyValueMap);
+        $values = array_values($keyValueMap);
 
-        $S_update = $S_base->query("DELETE FROM ". $table ." WHERE id ='$id'");
-        // $S_update = $S_base->query("UPDATE ". $table ." SET " . $query . "' WHERE id = '" . $id . "'");
-        // $S_update->bindParam($query, $query, PDO::PARAM_STR);
+        $preparedStatementExpressionArray = array_map(
+            fn (string $keyName) => "{$keyName} = ?",
+            $keys,
+        );
+        $preparedStatementExpression = join(',', $preparedStatementExpressionArray);
+        $preparedStatementData = join(',', $preparedStatementExpressionArray);
 
-        var_dump($S_update);
+        $statement = $S_base->prepare("UPDATE $table SET $preparedStatementExpression WHERE id= {$id};");
+        $create =$statement->execute($values);
 
-        // $S_update->execute()
-
-        echo 'Success';
+        echo 'Success, nice update';
     }
 
 
@@ -112,7 +107,6 @@ final class Database
     {
         try {
             $S_base = new PDO($this->dsn, $this->user, $this->password);
-            // $S_base = new PDO('mysql:host=localhost:3306; dbname=tesla_app', 'root', '');
         } catch (exception $S_e) {
             die('Erreur ' . $S_e->getMessage());
         }
@@ -140,14 +134,16 @@ final class Database
     {
         try {
             $S_base = new PDO($this->dsn, $this->user, $this->password);
-            // $S_base = new PDO('mysql:host=localhost:3306; dbname=tesla_app', 'root', '');
         } catch (exception $S_e) {
             die('Erreur ' . $S_e->getMessage());
         }
         $S_base->exec("SET CHARACTER SET utf8");
 
-        $S_update = $S_base->query("DELETE FROM `{$table}` WHERE id={$id};");
-        var_dump($S_update);
+        $sql = "DELETE FROM `$table` WHERE `id`=:id";
+        $request = $S_base->prepare($sql);
+        $request->bindParam(":id", $id, PDO::PARAM_STR);
+        $request->execute();
+
         echo 'Success, data got deleted';
     }
 }
