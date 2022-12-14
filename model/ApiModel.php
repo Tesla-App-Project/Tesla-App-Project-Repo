@@ -648,4 +648,15 @@ class ApiModel
         return $result["response"]["command"]["flash_lights"];
     }
 
+    public function PositionState(): array {
+        $result = $this->getDriveStateData();
+        return array(
+            "heading"          => $result["response"]["heading"],
+            "latitude"         => $result["response"]["latitude"],
+            "longitude"        => $result["response"]["longitude"],
+            "native_latitude"  => $result["response"]["native_latitude"],
+            "native_longitude" => $result["response"]["native_longitude"],
+            "native_type"      => $result["response"]["native_type"]
+        );
+    }
 }
