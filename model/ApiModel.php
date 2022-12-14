@@ -205,7 +205,7 @@ class ApiModel
     /**
      * @return array
      */
-    public function getChargeClimateData(): array {
+    public function getClimateData(): array {
         return $this->makeAPIRequest($this->idCar, "data_request/climate_state", "GET", array());
     }
 
@@ -536,8 +536,28 @@ class ApiModel
      * @return int
      */
     public function HVACState(): int {
-        $result = $this->getAllData();
-        return $result["response"]["climate_state"]["fan_status"];
+        $result = $this->getClimateData();
+        return $result["response"]["fan_status"];
+    }
+
+    /**
+     * Allows you to know if the HVAC is on or off
+     * @return bool
+     */
+    public function isHVACOn(): bool {
+        $result = $this->getClimateData();
+        return !!$result["response"]["fan_status"];
+    }
+
+    /**
+     * @return array returns the inside and outside temps
+     */
+    public function tempInfos (): array {
+        $result = $this->getClimateData();
+        return array(
+            "inside_temp" => $result["response"]["inside_temp"],
+            "outside_temp" =>  $result["response"]["outside_temp"]
+        );
     }
 
     /**
@@ -555,33 +575,77 @@ class ApiModel
     }
 
     /**
-     * @return int% of charge level
+     * @return array that contains % of charge level and % of usable charge
      */
-    public function batteryLevelData(): int {
-        $result = $this->getAllData();
-        return $result["response"]["charge_state"]["battery_level"];
+    public function batteryLevelData(): array {
+        $result = $this->getChargeStateData();
+        return array (
+            "level" => $result["response"]["battery_level"],
+            "usable_level" => $result["response"]["usable_battery_level"]
+        );
     }
 
     /**
      * @return string the current charge state of the car
      */
     public function batteryState(): string {
-        $result = $this->getAllData();
-        return $result["response"]["charge_state"]["charging_state"];
+        $result = $this->getChargeStateData();
+        return $result["response"]["charging_state"];
     }
 
     /**
      * @return bool false if the car is disconnected or at 100%, and true if its  charging
      */
     public function isCharging(): bool {
-        $result = $this->getAllData();
+        $result = $this->getChargeStateData();
         $convert = array(
             "Disconnected" => false,
             "Complete" => false,
             "Charging" => true
         );
 
-        return $convert[$result["response"]["charge_state"]["charging_state"]];
+        return $convert[$result["response"]["charging_state"]];
+    }
+
+    /**
+     * @return float
+     */
+    public function batteryRange(): float {
+        $result = $this->getChargeStateData();
+        return $result["response"]["battery_range"];
+    }
+    /**
+     * @param bool $convert pass true to convert to km/h, false to keep mp/h
+     * @return float the current speed limit of the car
+     */
+    public function speedLimiterCurrentLimit(bool $convert): float {
+        $result = $this->getAllData();
+        if($convert) return $result["response"]["vehicle_state"]["speed_limit_mode"]["current_limit_mph"] *1.609;
+        return $result["response"]["vehicle_state"]["speed_limit_mode"]["current_limit_mph"];
+    }
+
+    /**
+     * @return bool false if the speed limiter is turned off, true otherwise
+     */
+    public function speedLimitOn(): bool {
+        $result = $this->getAllData();
+        return $result["response"]["vehicle_state"]["speed_limit_mode"]["active"];
+    }
+
+    public function getSpeedLimiterData(): array {
+        $result = $this->getAllData();
+        return array(
+            "max_limit_mph" => $result["response"]["vehicle_state"]["speed_limit_mode"]["max_limit_mph"],
+            "min_limit_mph" => $result["response"]["vehicle_state"]["speed_limit_mode"]["min_limit_mph"]
+        );
+    }
+
+    /**
+     * @return bool false if flashlights off and true if flashlights on
+     */
+    public function isFlashLightsON(): bool {
+        $result = $this->getAllData();
+        return $result["response"]["command"]["flash_lights"];
     }
 
 }
