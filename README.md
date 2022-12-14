@@ -1,8 +1,10 @@
-# tesla app
-Découverte d'un MVC pas à pas avec PHP
+Pour démarrer la compilation automatique du **scss** -> **css** : 
 
-1 - HelloWorld à la sauce MVC
-
-2 - Routage simple et Exceptions
-
-3 - Modèles et connexion BDD (coming soon...)
+Se placer dans le dossier `assets`, depuis l'onglet **Shell**
+```
+cd assets
+```
+Puis copier la commande : 
+```
+sass --watch scss:css
+```
