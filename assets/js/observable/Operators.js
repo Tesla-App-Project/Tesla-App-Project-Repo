@@ -58,7 +58,7 @@ const map = (mapFunc) => (sourceObservable) => {
  */
 
 const take = (I_combien) => (sourceObservable) => {
-    let I_counter = 0
+    let I_counter = 0;
     return new Observable(observer => {
       const sourceSubscription = sourceObservable.subscribe({
         next: (val) => {
@@ -79,6 +79,38 @@ const take = (I_combien) => (sourceObservable) => {
       return () => sourceSubscription.unsubscribe();
     });
   }
+
+  /**
+   * Renvoie les valeurs envoyées par un observable source jusqu'à notification
+   * d'un observable passé en paramètre
+   * @param {} notifierObservable observable arrêtant l'emission de valeur
+   * @returns valeurs de l'observable source sous forme d"observable
+   */
+  const takeUntil = (notifierObservable) => (sourceObservable) =>{
+    let notifierSubscription;
+    return new Observable(observer =>{
+        const sourceSubscription = sourceObservable.subscribe({
+            next: (val) => {
+                if(!notifierSubscription){
+                    notifierSubscription = notifierObservable.subscribe({
+                        next: (val) => {
+                            sourceSubscription.unsubscribe();
+                        },
+                        error: (err) => {
+                            observer.error(err);
+                        },
+                        complete: () => {}
+                    });
+                }
+                observer.next(val);
+            },
+            error: (err) => {
+                observer.error(err);
+            },
+            complete: () => {}
+        });
+    });
+}
 
 /**
    * Renvoie des datas passées en argument sous forme d'observable
