@@ -36,6 +36,14 @@ function ElecOnClick() {
   }
 }
 
+function ChestOnClick() {
+  if (document.getElementById("simone").srcset == "./assets/images/voiture.png") {
+    document.getElementById("simone").srcset = "./assets/images/voiture1.png";
+  } else {
+    document.getElementById("simone").srcset = "./assets/images/voiture.png";
+  }
+}
+
 function LeftButtonOnClick() {
   str = document.getElementById("number").innerHTML;
   str = str.substring(0, str.length - 2);
@@ -44,7 +52,7 @@ function LeftButtonOnClick() {
 
   if (str == 0) { document.getElementById("LeftButton").innerText = "_"; }
 
-  if (str < 16) { document.getElementById("RightButton").innerText = ">"; }
+  if (str < 16) { document.getElementById("RightButton").innerText = "&rt"; }
 
   document.getElementById("number").innerHTML = str + " A"
 }
@@ -57,7 +65,7 @@ function RightButtonOnClick() {
 
   if (str == 16) { document.getElementById("RightButton").innerText = "_"; }
 
-  if (str > 0) { document.getElementById("LeftButton").innerText = "<"; }
+  if (str > 0) { document.getElementById("LeftButton").innerText = "&lt"; }
 
   document.getElementById("number").innerHTML = str + " A"
 }

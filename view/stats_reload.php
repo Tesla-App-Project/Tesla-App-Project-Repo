@@ -4,14 +4,15 @@
   <meta charset = "utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-  <link href="./assets/css/style.scss" rel="stylesheet">
+<!--   <link href="./assets/css/style.scss" rel="stylesheet"> -->
+  <link href="./assets/css/style.css" rel="stylesheet">
 
   <title> Statistiques </title>
 </head>
 <body>
     <header>
         <nav>
-            <a href="index.html"><img src="./assets/images/retour.png" alt="icone user"></a>
+            <a href="index.php"><img src="./assets/images/retour.png" alt="icone user"></a>
         </nav>
         <h1>Statistiques de recharge</h1>
     </header>
