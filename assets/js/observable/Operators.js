@@ -109,6 +109,10 @@ const take = (I_combien) => (sourceObservable) => {
             },
             complete: () => {}
         });
+        return () => {
+            sourceSubscription.unsubscribe();
+            notifierSubscription.unsubscribe();
+        }
     });
 }
 
