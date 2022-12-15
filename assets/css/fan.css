@@ -5,14 +5,11 @@ body {
 
 h1 {
   color: #f3f3f3;
-  -ms-grid-column: 1;
-      grid-column-start: 1;
-  -ms-grid-row: 1;
-      grid-row-start: 1;
+  grid-column-start: 1;
+  grid-row-start: 1;
   font-size: 1.5rem;
   justify-self: flex-start;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
+  align-self: flex-end;
 }
 
 h2 {
@@ -26,94 +23,65 @@ p {
 }
 
 .hover-img:hover {
-  -webkit-filter: invert(0%) sepia(93%) saturate(0%) hue-rotate(335deg) brightness(150%) contrast(108%);
-          filter: invert(0%) sepia(93%) saturate(0%) hue-rotate(335deg) brightness(150%) contrast(108%);
+  filter: invert(0%) sepia(93%) saturate(0%) hue-rotate(335deg) brightness(150%) contrast(108%);
 }
 
 .tempBod {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 50% 50%;
-      grid-template-rows: 50% 50%;
-  -ms-grid-columns: 5%;
-      grid-template-columns: 5%;
+  grid-template-rows: 50% 50%;
+  grid-template-columns: 5%;
 }
 
 .tempBod input {
-  -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .model3Int {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
   width: 22rem;
-  -ms-grid-column: 3;
   grid-column: 3;
-  -ms-grid-row: 1;
   grid-row: 1;
 }
 
 .return {
   width: 3rem;
-  -ms-grid-column: 1;
   grid-column: 1;
-  -ms-grid-row: 1;
   grid-row: 1;
 }
 
 .tempCont {
   padding: 0%;
-  -webkit-box-shadow: 0px -10px 8px #000000;
-          box-shadow: 0px -10px 8px #000000;
-  display: -ms-grid;
+  box-shadow: 0px -10px 8px #000000;
   display: grid;
-  -ms-grid-rows: 25% 25% 25% 25%;
-      grid-template-rows: 25% 25% 25% 25%;
-  -ms-grid-columns: 20% 20% 20% 20% 20%;
-      grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-rows: 25% 25% 25% 25%;
+  grid-template-columns: 20% 20% 20% 20% 20%;
 }
 
 .bar {
   width: 5rem;
-  -ms-grid-column: 3;
   grid-column: 3;
-  -ms-grid-row: 1;
   grid-row: 1;
-  -ms-grid-column-align: center;
-      justify-self: center;
+  justify-self: center;
 }
 
 .TextTemp {
-  -ms-grid-column: 2;
-  -ms-grid-column-span: 3;
   grid-column: 2/5;
-  -ms-grid-row: 2;
   grid-row: 2;
-  -ms-grid-column-align: center;
-      justify-self: center;
+  justify-self: center;
 }
 
 .MarArr {
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 1;
   grid-column: 1/2;
-  -ms-grid-row: 3;
   grid-row: 3;
-  -ms-grid-column-align: center;
-      justify-self: center;
+  justify-self: center;
   width: 2.5rem;
   height: 2.5rem;
 }
 
 .AerFer {
-  -ms-grid-column: 5;
   grid-column: 5;
-  -ms-grid-row: 3;
   grid-row: 3;
-  -ms-grid-column-align: center;
-      justify-self: center;
+  justify-self: center;
   width: 2.5rem;
   height: 2.5rem;
 }
@@ -121,43 +89,27 @@ p {
 .LeftT {
   width: 2.5rem;
   height: 3rem;
-  -ms-grid-column: 2;
   grid-column: 2;
-  -ms-grid-row: 3;
   grid-row: 3;
-  -ms-grid-column-align: center;
-      justify-self: center;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
-  -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
+  justify-self: center;
+  align-self: flex-end;
+  transform: rotate(180deg);
 }
 
 .RightT {
   width: 2.5rem;
   height: 3rem;
-  -ms-grid-column: 4;
   grid-column: 4;
-  -ms-grid-row: 3;
-  -ms-grid-row-span: 1;
   grid-row: 3/4;
-  -ms-grid-column-align: center;
-      justify-self: center;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
+  justify-self: center;
+  align-self: flex-end;
 }
 
 .TempPR {
-  -ms-grid-column: 3;
   grid-column: 3;
-  -ms-grid-row: 3;
-  -ms-grid-row-span: 1;
   grid-row: 3/4;
-  -ms-grid-column-align: center;
-      justify-self: center;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+  justify-self: center;
+  align-self: center;
   font-size: 2.5rem;
 }
 
@@ -168,12 +120,9 @@ p {
   padding: 0%;
   text-align: center;
   font-size: 0.8rem;
-  -ms-grid-column: 1;
   grid-column: 1;
-  -ms-grid-row: 4;
   grid-row: 4;
-  -ms-flex-item-align: start;
-      align-self: flex-start;
+  align-self: flex-start;
 }
 
 #btn2 {
@@ -183,11 +132,9 @@ p {
   padding: 0%;
   text-align: center;
   font-size: 0.8rem;
-  -ms-grid-column: 5;
   grid-column: 5;
-  -ms-grid-row: 4;
   grid-row: 4;
-  -ms-flex-item-align: start;
-      align-self: flex-start;
+  align-self: flex-start;
 }
+
 /*# sourceMappingURL=fan.css.map */

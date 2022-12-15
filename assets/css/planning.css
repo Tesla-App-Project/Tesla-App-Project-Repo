@@ -7,39 +7,28 @@ body {
 }
 
 .hover-img:hover {
-  -webkit-filter: invert(0%) sepia(93%) saturate(0%) hue-rotate(335deg) brightness(150%) contrast(108%);
-          filter: invert(0%) sepia(93%) saturate(0%) hue-rotate(335deg) brightness(150%) contrast(108%);
+  filter: invert(0%) sepia(93%) saturate(0%) hue-rotate(335deg) brightness(150%) contrast(108%);
 }
 
 .header-section-control {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   margin: 0;
 }
 
 .header-section-control h1 {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   margin: 1rem 0 0 0;
   padding-bottom: 0.8rem;
 }
 
 .header-arrow {
-  -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
+  transform: rotate(180deg);
   width: 3rem;
   height: 3rem;
   margin: 0 5rem 0 3rem;
 }
+
 /*# sourceMappingURL=planning.css.map */
