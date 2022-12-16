@@ -29,143 +29,194 @@ final class Database
         $this->password = $config['db']['password'] ?? '';
     }
 
-    //GET - exemple : $users = $db->queryGetAction(1, ['pseudo', 'other'], 'user');
-    public function queryGetAction(int $id, array $params, string $table)
+    public function try_catch()
     {
         try {
             $S_base = new PDO($this->dsn, $this->user, $this->password);
-            // $S_base = new PDO('mysql:host=localhost:3306; dbname=tesla_app', 'root', '');
         } catch (exception $S_e) {
             die('Erreur ' . $S_e->getMessage());
         }
         $S_base->exec("SET CHARACTER SET utf8");
 
-        $query = '';
-        $nb = count($params);
-        $counter = 0;
-        if (count($params) === 1) {
-            $query = $params[0];
-        } else {
-            foreach ($params as $param) {
-                if ($counter < $nb-1) {
-                    $query .= $param . ', ';
-                } else {
-                    $query .= $param;
-                }
-                $counter++;
-            }
-        }
-
-        $A_selection = $S_base->query("SELECT " . $query . " FROM ". $table ." WHERE id = '" . $id . "'");
-
-        while ($data = $A_selection->fetch(PDO::FETCH_ASSOC)) {
-            return $data;
-        }
+        return $S_base;
     }
+
+    // TODO : pb d'affichage de retour de la valeur
+    //GET - exemple : $users = $db->queryGetAction(1, ['pseudo', 'other'], 'user');
+    public function queryGetAction(int $id, array $keyValueMap, string $table)
+    {
+        try {
+            $S_base = new PDO($this->dsn, $this->user, $this->password);
+        } catch (exception $S_e) {
+            die('Erreur ' . $S_e->getMessage());
+        }
+        $S_base->exec("SET CHARACTER SET utf8");
+
+        $keys = array_keys($keyValueMap);
+        $values = array_values($keyValueMap);
+
+        $preparedStatementExpressionArray = array_map(
+            fn (string $keyName) => "{$keyName} = ?",
+            $keys,
+        );
+        $preparedStatementExpression = join(',', $preparedStatementExpressionArray);
+        $preparedStatementData = join(',', $preparedStatementExpressionArray);
+
+        $statement = $S_base->prepare("SELECT $preparedStatementData FROM $table WHERE id= {$id};");
+        var_dump($statement);
+        $statement->execute($values);
+        $A_selection = $statement->fetchAll();
+        var_dump($A_selection);
+        // $A_selection = $S_base->query("SELECT " . $query . " FROM ". $table ." WHERE id = '" . $id . "'");
+        // var_dump($A_selection);
+        // while ($data = $A_selection->fetch(PDO::FETCH_ASSOC)) {
+        //     return $data;
+        // }
+    }
+
 
     //UPDATE - exemple : return $db->queryUpdateAction(1, [['pseudo' => 'Toto'], ['other' => 'Mimi']], 'user');
-    public function queryUpdateAction(int $id, array $params, string $table)
+    public function queryUpdateAction(int $id, array $keyValueMap, string $table)
     {
         try {
             $S_base = new PDO($this->dsn, $this->user, $this->password);
-            // $S_base = new PDO('mysql:host=localhost:3306; dbname=tesla_app', 'root', '');
         } catch (exception $S_e) {
             die('Erreur ' . $S_e->getMessage());
         }
         $S_base->exec("SET CHARACTER SET utf8");
 
-        $query = '';
-        $nb = count($params);
-        $counter = 0;
-        if (count($params) === 1) {
-            $query = $params[0];
-        } else {
-            foreach ($params as $param) {
-                foreach ($param as $key => $value) {
-                    if ($counter < $nb-1) {
-                        $query .= $key . "='". $value. "',";
-                    } else {
-                        $query .= $key . "='". $value;
-                    }
-                    $counter++;
-                }
-            }
-        }
+        $keys = array_keys($keyValueMap);
+        $values = array_values($keyValueMap);
 
-        $S_update = $S_base->query("UPDATE ". $table ." SET " . $query . "' WHERE id = '" . $id . "'");
-        // $S_update->bindParam($query, $query, PDO::PARAM_STR);
+        $preparedStatementExpressionArray = array_map(
+            fn (string $keyName) => "{$keyName} = ?",
+            $keys,
+        );
+        $preparedStatementExpression = join(',', $preparedStatementExpressionArray);
+        $preparedStatementData = join(',', $preparedStatementExpressionArray);
 
-        // var_dump($S_update);
+        $statement = $S_base->prepare("UPDATE $table SET $preparedStatementExpression WHERE id= {$id};");
+        $create =$statement->execute($values);
 
-        // $S_update->execute()
-
-        echo 'Success';
+        echo 'Success, nice update';
     }
 
+
     //CREATE - exemple :
-    public function queryCreateAction(array $params, string $table)
+    public function queryCreateAction(array $keyValueMap, string $table)
     {
         try {
             $S_base = new PDO($this->dsn, $this->user, $this->password);
-            // $S_base = new PDO('mysql:host=localhost:3306; dbname=tesla_app', 'root', '');
         } catch (exception $S_e) {
             die('Erreur ' . $S_e->getMessage());
         }
+
         $S_base->exec("SET CHARACTER SET utf8");
 
-        $column = '';
-        $data = '';
-        $counter = 0;
+        $keys = array_keys($keyValueMap);
+        $values = array_values($keyValueMap);
 
-        //if we have only one param
-        if (count($params) === 1) {
-            $column = $params[0][0];
-            $data .="'" .$params[0][1]. "'";
-        //if we have more than one param
-        } else {
-            foreach ($params as $param) {
-                //we do a foreach of params
-                foreach ($param as $key => $value) {
-                    //we do a foreach of the values inside the params
-                    //"if / else" we put "," after our data but not after the last one
-                    if ($counter < count($params)*2-2) {
-                        //if the key is equal to 0, it's a column
-                        if ($key ==0) {
-                            $column .= $value. ",";
-                        //else the key is equal to 1, it's a data from an user...
-                        } else {
-                            $data .="'" .$value. "'". ",";
-                        }
-                    } else {
-                        //if the key is equal to 0, it's a column
-                        if ($key ==0) {
-                            $column .= $value;
-                        //else the key is equal to 1, it's a data from an user...
-                        } else {
-                            $data .="'" .$value. "'";
-                        }
-                    }
-                    $counter++;
-                }
+
+        //==========DEBUT TEST FORMULAIRE============
+        if (isset($keyValueMap['email'])) {
+            if (filter_var($keyValueMap['email'], FILTER_VALIDATE_EMAIL)) {
+            } else {
+                echo "Sorry! Invalid Email Format!";
+                die;
             }
         }
 
-        //Data to see
-        // echo '<pre>';
-        // echo 'column : ';
-        // print_r($column);
-        // echo '<br>';
-        // echo 'data : ';
-        // print_r($data);
-        // echo '</pre>';
-        $S_update = $S_base->query("INSERT INTO $table ($column)
-        VALUES ($data)");
+        if (isset($keyValueMap['password'])) {
+            if (strlen($keyValueMap['password']) >= 8) {
+            } else {
+                echo "Sorry! Password too short!";
+                die;
+            }
+        }
+
+        $illegalusername = "#$%^&*()+=[]';,./{}|:<>?!~ ";
+
+        if (isset($keyValueMap['username'])) {
+            if (strlen($keyValueMap['username']) >= 2) {
+                if (strpbrk($keyValueMap['username'], $illegalusername)) {
+                    echo "No special characters allowed!";
+                    die;
+                }
+            } else {
+                echo "Sorry! Username too short!";
+                die;
+            }
+        }
+
+        $illegalname = "#$%^&*()+=[]';,./{}|:<>?!~";
+
+        if (isset($keyValueMap['firstname'])) {
+            if (strlen($keyValueMap['firstname']) >= 1) {
+                if (strpbrk($keyValueMap['firstname'], $illegalname)) {
+                    echo "No special characters allowed!";
+                    die;
+                }
+            } else {
+                echo "Sorry! First Name too short!";
+                die;
+            }
+        }
+
+        if (isset($keyValueMap['lastname'])) {
+            if (strlen($keyValueMap['lastname']) >= 1) {
+                if (strpbrk($keyValueMap['lastname'], $illegalname)) {
+                    echo "No special characters allowed!";
+                    die;
+                }
+            } else {
+                echo "Sorry! Last Name too short!";
+                die;
+            }
+        }
+
+        $illegaltoken = " ";
+
+        if (isset($keyValueMap['token'])) {
+            if (strlen($keyValueMap['token']) >= 1) {
+                if (strpbrk($keyValueMap['token'], $illegaltoken)) {
+                    echo "No space allowed!";
+                    die;
+                }
+            } else {
+                echo "Sorry! Token too short!";
+                die;
+            }
+        }
+        //==========FIN TEST FORMULAIRE============
+
+        $preparedStatementExpressionArray = array_map(
+            fn (string $keyName) => "{$keyName} = ?",
+            $keys,
+        );
+        $preparedStatementExpression = join(',', $preparedStatementExpressionArray);
+
+        $statement = $S_base->prepare("INSERT INTO $table SET $preparedStatementExpression;");
+        $create =$statement->execute($values);
 
         echo 'Success, data got inserted';
     }
 
+
     // DELETE - exemple :
-    public function queryDeleteAction()
+    public function queryDeleteAction(int $id, string $table)
     {
+        try {
+            $S_base = new PDO($this->dsn, $this->user, $this->password);
+        } catch (exception $S_e) {
+            die('Erreur ' . $S_e->getMessage());
+        }
+        $S_base->exec("SET CHARACTER SET utf8");
+
+        $sql = "DELETE FROM `$table` WHERE `id`=:id";
+        $request = $S_base->prepare($sql);
+        $request->bindParam(":id", $id, PDO::PARAM_STR);
+        $request->execute();
+
+        echo 'Success, data got deleted';
     }
 }

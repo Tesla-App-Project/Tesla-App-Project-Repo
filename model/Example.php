@@ -1,8 +1,5 @@
 <?php
 
-$filepath = realpath(dirname(__FILE__));
-require_once($filepath."/../kernel/Database.php");
-
 final class Example
 {
     public function giveMessage()
@@ -10,26 +7,59 @@ final class Example
         //EXAMPLE
 
         $db = new Database();
+        //if that's not working read the README, you have to apply the migrations
 
-        //UPDATE
-        // //param = (field + value) soit [['pseudo' => 'Toto'],['other' => 'Mimi']]
-        // return $db->queryUpdateAction(1, [['email' => 'Toto'], ['lastname' => 'Mimi']], 'user');
 
-        //GET if it's not working read the README, you have to apply the migrations
+        /**
+         * CREATE (['column'=>'value', 'second column'=>'value'], table name)
+         * **/
+        // $users = $db->queryCreateAction(
+        //     [
+        //         //colum name / DATA
+        //         'email' => 'lucky@luke.com',
+        //         'username' => 'jollyjumper',
+        //         'firstname' => 'Mary',
+        //         'lastname' => 'Jane',
+        //         'token' => 'peanut',
+        //         'password' => 'forget',
+        //     ],
+        //     'users'
+        // );
+
+        /**
+         * UPDATE (id, ['column'=>'value', 'second column'=>'value'], table name)
+         * **/
+        // $users = $db->queryUpdateAction(1, ['username' => 'Dracula', 'email' => 'archibald@haddock.com'], 'users');
+
+        /**
+         *  GET  (id, ['column'=>'value', 'second column'=>'value'], table name)
+         * // not working if you don't have the correspond data in you table
+         * **/
+        // return $db->queryGetAction(4, ['username' => 'jollyjumper', 'email' => 'lucky@luke.com'], 'users');
         // $users = $db->queryUpdateAction(1, [['email' => 'Toto'], ['token' => 'Mimi']], 'users');
         // print_r($users);
 
-        //CREATE user for example
+
+        /**
+         * CREATE ([['column'=>'value'], ['second column'=>'value']], table name)
+         * **/
         $users = $db->queryCreateAction(
             [
-                //colum name //DATA
-                ['email','Toto@aaa.com'],
-                ['firstname','Sandra'],
-                ['lastname', 'Gomassaille'],
-                ['token', 'peanut'] ,
-                ['password', 'forget'],
+                //colum name / DATA
+                'email' => 'Toto@aaa.com',
+                'username' => 'revolvers',
+                'firstname' => 'Sandra',
+                'lastname' => 'Gomassaille',
+                'token' => 'pdm!c+1dç=UHFn',
+                'password' => 'jalopalo',
             ],
             'users'
         );
+
+
+        /**
+         * DELETE (id, table name) //not working if you don't have the correspond data in you table
+         * **/
+        // $users = $db->queryDeleteAction(5, 'users');
     }
 }
