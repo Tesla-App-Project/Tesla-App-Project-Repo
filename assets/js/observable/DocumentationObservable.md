@@ -33,12 +33,12 @@ const maSubscription = monObservable.subscribe({
 maSubscription.unsubscribe(); //l'observable n'est plus actif
 ```
 # Opérateurs
-interval(I_period).
 Les opérateurs sont des fonctions renvoyant des observables. On a deux types d'opérateurs: les 
 opérateurs de création qui peuvent être utilisés de façon indépendante et les opérateurs pipeable qui 
 sont combinés avec d'autres observables
 ## Opérateurs de création
 ### Interval
+interval(I_period)\
 Interval crée un observable qui émet des nombres s'incrémentant chaque période de temps spécifié.
 On choisira la période de temps avec le paramètre.
 Exemple :
@@ -59,7 +59,7 @@ const maSubscription = monInterval.subscribe({
 //etc... jusqu'à ce qu'on unsubscribe
 ```
 ### Of
-of(A_data).
+of(A_data)\
 Of crée un observable émettant les valeurs qui lui sont passées en argument. 
 Exemple :
 ```js
@@ -79,7 +79,7 @@ const maSubscription = monInterval.subscribe({
 //4
 ```
 ### FromEvent
-fromEvent(targetElement, evenement)
+fromEvent(targetElement, evenement)\
 FromEvent crée un un observable qui permet d'assigner une fonction de gestion d'événement une fonction à 
 un élément cible à chaque fois qu'il est souscrit.
 Exemple :
@@ -161,7 +161,7 @@ const maSubscription = maChaineDObservable.subscribe({
 }); 
 ```
 ### Map
-map(function)
+map(function)\
 Map applique une fonction passée en argument aux valeurs émises par l'observable source puis les émet 
 sous forme d'observable.
 Exemple :
@@ -192,7 +192,7 @@ const maSubscription = maChaine.subscribe({
 }); 
 ```
 ### SwitchMap
-switchMap(observableEmetteurDeFonction)
+switchMap(observableEmetteurDeFonction)\
 SwitchMap applique plusieurs fonctions émises par un observable passé en argument aux valeurs émises par 
 un observable source, puis les émet sous forme d'observable.
 Exemple :
@@ -222,13 +222,13 @@ const maSubscription = maChaine.subscribe({
 //12
 ```
 ### MergeMap
-mergeMap(observableEmetteurDeFonction)
+mergeMap(observableEmetteurDeFonction)\
 Même principe que switchMap, la différence est que lorsque switchMap reçoit la deuxième fonction de la 
 part de son observable émetteur de fonction, les valeurs ne pourront plus être soumises à la première 
 fonction. Concrètement les 2 foncctionnent de la même façon, mais mergeMap pourra appliquer la première 
 fonction à une nouvelle valeur reçue même s'il a commencé à émettre avec la deuxième fonction.
 ### Take
-take(I_nombreDeValeursAPrendre)
+take(I_nombreDeValeursAPrendre)\
 Take prend un certain nombre de valeurs passé en argument émises par un observable source.
 Exemple :
 ```js
@@ -247,7 +247,7 @@ const maSubscription = maChaine.subscribe({
 //fini
 ```
 ### TakeUntil
-takeUntil(observableDeNotification)
+takeUntil(observableDeNotification)\
 TakeUntil émet des valeurs émises par un observable source jusqu'à recevoir une notification de 
 l'observable passé en argument.
 Exemple :
@@ -269,7 +269,7 @@ const maSubscription = maChaine.subscribe({
 //4
 ```
 ### PipeInterval
-pipeInterval(I_period)
+pipeInterval(I_period)\
 PipeInterval émet les valeurs émises par l'observable source chaque période de temps spécifiée en 
 paramètre.
 Exemple:
