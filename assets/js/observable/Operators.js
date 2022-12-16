@@ -7,13 +7,30 @@ import {Subscription} from "./Subscription.js";
  * @param {Integer} I_period en ms, l'intervalle d'envoie des valeurs
  * @returns flux de valeur incrémentées sous forme d'observable
  */
-
 const interval = (I_period) => {
     return new Observable(observer => {
         let I_counter = 0;
         const id = setInterval(() => observer.next(++I_counter), I_period);
         return() => {
             clearInterval(id);
+        }
+    });
+}
+
+/**
+ * crée un un observable qui permet d'assigner une fonction de 
+ * gestion d'événement une fonction à un élément cible 
+ * à chaque fois qu'il est souscrit.
+ * @param {*} eventTarget élément cible auquel ajouter la fonction
+ * @param {*} S_eventType type d'évènement auquel ajouter la fonction
+ * @returns 
+ */
+const fromEvent = (eventTarget, S_eventType) => {
+    return new Observable(observer => {
+        const eventHandler = e =>observer.next(e);
+        eventTarget.addEventListener(S_eventType, eventHandler);
+        return () => {
+            eventTarget.removeEventListener(S_eventType, eventHandler);
         }
     });
 }
