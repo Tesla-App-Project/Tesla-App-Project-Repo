@@ -1,6 +1,11 @@
 let swRegistration;
 
+let store = new Dexie("TeslaApp");
+let database = new Database(store, "car");
 window.addEventListener('load', async () => {
+    if (!database.storeExists("car"))
+        database.initializeCar();
+
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker
             .register('./service-worker.js')
