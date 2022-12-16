@@ -2,6 +2,8 @@ let swRegistration;
 
 let store = new Dexie("TeslaApp");
 let database = new Database(store, "car");
+
+let api = new API();
 window.addEventListener('load', async () => {
     if (!database.storeExists("car"))
         database.initializeCar();
