@@ -601,6 +601,7 @@ class ApiModel
         $convert = array(
             "Disconnected" => false,
             "Complete" => false,
+            "Stopped" => false,
             "Charging" => true
         );
 
