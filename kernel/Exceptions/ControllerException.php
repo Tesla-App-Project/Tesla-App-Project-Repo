@@ -5,7 +5,7 @@ class ControllerException extends Exception
     public static function formError($keyValueMap){
         if(isset($keyValueMap['email'])){
             if(filter_var($keyValueMap['email'], FILTER_VALIDATE_EMAIL)){
-
+                
             }
             else{
                 echo "Sorry! Invalid Email Format!";
