@@ -1,8 +1,6 @@
 <?php
 
-
 require_once __DIR__ . '/../vendor/autoload.php';
-
 
 final class Database
 {
@@ -41,9 +39,8 @@ final class Database
         return $S_base;
     }
 
-    // TODO : pb d'affichage de retour de la valeur
-    //GET - exemple : $users = $db->queryGetAction(1, ['pseudo', 'other'], 'user');
-    public function queryGetAction(int $id, array $keyValueMap, string $table)
+    //GET :
+    public function queryGetAction(array $keyValueMap, string $table)
     {
         try {
             $S_base = new PDO($this->dsn, $this->user, $this->password);
@@ -62,20 +59,16 @@ final class Database
         $preparedStatementExpression = join(',', $preparedStatementExpressionArray);
         $preparedStatementData = join(',', $preparedStatementExpressionArray);
 
-        $statement = $S_base->prepare("SELECT $preparedStatementData FROM $table WHERE id= {$id};");
-        var_dump($statement);
+        $statement = $S_base->prepare("SELECT $preparedStatementData FROM $table;");
+
         $statement->execute($values);
-        $A_selection = $statement->fetchAll();
-        var_dump($A_selection);
-        // $A_selection = $S_base->query("SELECT " . $query . " FROM ". $table ." WHERE id = '" . $id . "'");
-        // var_dump($A_selection);
-        // while ($data = $A_selection->fetch(PDO::FETCH_ASSOC)) {
-        //     return $data;
-        // }
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
+
+        return $statement->fetch();
     }
 
 
-    //UPDATE - exemple : return $db->queryUpdateAction(1, [['pseudo' => 'Toto'], ['other' => 'Mimi']], 'user');
+    //UPDATE :
     public function queryUpdateAction(int $id, array $keyValueMap, string $table)
     {
         try {
@@ -102,7 +95,7 @@ final class Database
     }
 
 
-    //CREATE - exemple :
+    //CREATE :
     public function queryCreateAction(array $keyValueMap, string $table)
     {
         try {
@@ -202,7 +195,7 @@ final class Database
     }
 
 
-    // DELETE - exemple :
+    // DELETE :
     public function queryDeleteAction(int $id, string $table)
     {
         try {
