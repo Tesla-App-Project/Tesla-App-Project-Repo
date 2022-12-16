@@ -6,16 +6,16 @@ Documentation sur les Observables
     1.2. [Subscription](#subscription)
 2. [Opérateurs](#opérateurs)\
     2.1. [Opérateurs de création](#opérateurs-de-création)\
-        2.1.1. [Interval](#interval)\
-        2.1.2. [Of](#of)\
-        2.1.3. [FromEvent](#fromevent)\
+            2.1.1. [Interval](#interval)\
+            2.1.2. [Of](#of)\
+            2.1.3. [FromEvent](#fromevent)\
     2.2. [Opérateurs pipeaple](#opérateurs-pipeable)\
-        2.2.1. [Map](#map)\
-        2.2.2. [SwitchMap](#switchmap)\
-        2.2.3. [MergeMap](#mergemap)\
-        2.2.4. [Take](#take)\
-        2.2.5. [TakeUntil](#takeuntil)\
-        2.2.6. [PipeInterval](#pipeinterval)
+            2.2.1. [Map](#map)\
+            2.2.2. [SwitchMap](#switchmap)\
+            2.2.3. [MergeMap](#mergemap)\
+            2.2.4. [Take](#take)\
+            2.2.5. [TakeUntil](#takeuntil)\
+            2.2.6. [PipeInterval](#pipeinterval)
 # Introduction
 ## Observer
 Pour utiliser un observable, on aura besoin d'un observer. Un observer est un objet possédant 3 
