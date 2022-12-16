@@ -7,13 +7,30 @@ import {Subscription} from "./Subscription.js";
  * @param {Integer} I_period en ms, l'intervalle d'envoie des valeurs
  * @returns flux de valeur incrémentées sous forme d'observable
  */
-
 const interval = (I_period) => {
     return new Observable(observer => {
         let I_counter = 0;
         const id = setInterval(() => observer.next(++I_counter), I_period);
         return() => {
             clearInterval(id);
+        }
+    });
+}
+
+/**
+ * crée un un observable qui permet d'assigner une fonction de 
+ * gestion d'événement une fonction à un élément cible 
+ * à chaque fois qu'il est souscrit.
+ * @param {*} eventTarget élément cible auquel ajouter la fonction
+ * @param {*} S_eventType type d'évènement auquel ajouter la fonction
+ * @returns 
+ */
+const fromEvent = (eventTarget, S_eventType) => {
+    return new Observable(observer => {
+        const eventHandler = e =>observer.next(e);
+        eventTarget.addEventListener(S_eventType, eventHandler);
+        return () => {
+            eventTarget.removeEventListener(S_eventType, eventHandler);
         }
     });
 }
@@ -58,7 +75,7 @@ const map = (mapFunc) => (sourceObservable) => {
  */
 
 const take = (I_combien) => (sourceObservable) => {
-    let I_counter = 0
+    let I_counter = 0;
     return new Observable(observer => {
       const sourceSubscription = sourceObservable.subscribe({
         next: (val) => {
@@ -79,6 +96,42 @@ const take = (I_combien) => (sourceObservable) => {
       return () => sourceSubscription.unsubscribe();
     });
   }
+
+  /**
+   * Renvoie les valeurs envoyées par un observable source jusqu'à notification
+   * d'un observable passé en paramètre
+   * @param {} notifierObservable observable arrêtant l'emission de valeur
+   * @returns valeurs de l'observable source sous forme d"observable
+   */
+  const takeUntil = (notifierObservable) => (sourceObservable) =>{
+    let notifierSubscription;
+    return new Observable(observer =>{
+        const sourceSubscription = sourceObservable.subscribe({
+            next: (val) => {
+                if(!notifierSubscription){
+                    notifierSubscription = notifierObservable.subscribe({
+                        next: (val) => {
+                            sourceSubscription.unsubscribe();
+                        },
+                        error: (err) => {
+                            observer.error(err);
+                        },
+                        complete: () => {}
+                    });
+                }
+                observer.next(val);
+            },
+            error: (err) => {
+                observer.error(err);
+            },
+            complete: () => {}
+        });
+        return () => {
+            sourceSubscription.unsubscribe();
+            notifierSubscription.unsubscribe();
+        }
+    });
+}
 
 /**
    * Renvoie des datas passées en argument sous forme d'observable
@@ -116,6 +169,71 @@ const pipeInterval = (I_period) => (sourceObservable) => {
         });
         return() => {
             clearInterval(id);
+            sourceSubscription.unsubscribe();
+        }
+    });
+}
+
+/**
+ * Applique une ou plusieurs fonctions passées en argument par un observable aux valeurs renvoyées
+ * par un observable
+ * @param {*} innerObsReturningFunc observable renvoyant les fonctions
+ * @returns les valeurs sous formes d'observables
+ */
+const switchMap = (innerObsReturningFunc) => (sourceObs) => {
+    let innerSubscription;
+    return new Observable(observer => {
+      const sourceSubscription = sourceObs.subscribe({
+        next(val) {
+          if(innerSubscription){
+              innerSubscription.unsubscribe();
+          }
+          const innerObs = innerObsReturningFunc(val);
+          innerSubscription = innerObs.subscribe({
+            next: (_val) => observer.next(_val),
+            error: (_err) => observer.error(_err),
+            complete: () => observer.complete()
+          });
+        },
+        error() {},
+        complete() {}
+      });
+      return () => {
+        innerSubscription.unsubscribe();
+        sourceSubscription.unsubscribe();
+      }
+    });
+  }
+
+  /**
+   *  Applique une ou plusieurs fonctions passées en argument par un observable aux valeurs renvoyées
+   *  par un observable, ne 'ferme' pas l'observable de fonction à l'ouverture d'un nouvel contrairement
+   *  à switchmap
+   * @param {*} innerObsReturningFunc observable renvoyant les fonctions
+   * @returns les valeurs sous formes d'observables
+   */
+  const mergeMap = (innerObsReturningFunc) => (sourceObs) => {
+    let A_innerSubscriptions = [];
+    let mostRecentInnerSubscription;
+    let innerObs;
+    return new Observable(observer => {
+        const sourceSubscription = sourceObs.subscribe({
+            next(val){
+                innerObs = innerObsReturningFunc(val);
+                mostRecentInnerSubscription = innerObs.subscribe({
+                    next: (val) => observer.next(val),
+                    error: (err) => observer.error(err),
+                    complete: () => observer.complete()
+                });
+                A_innerSubscriptions.push(mostRecentInnerSubscription);
+            },
+            error(){},
+            complete() {}
+        });
+        return () => {
+            A_innerSubscriptions.forEach(innerSub => {
+                innerSub.unsubscribe();
+            });
             sourceSubscription.unsubscribe();
         }
     });
