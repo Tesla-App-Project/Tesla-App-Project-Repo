@@ -1,18 +1,22 @@
 <?php
 
-class ChargeController
+use JetBrains\PhpStorm\Pure;
+
+class ControllerCharge
 {
     private HttpRequestHandlerModel $_httpRequestHandler;
 
-    public function __construct()
+    #[Pure] public function __construct()
     {
-        $this->_httpRequestHandler = new HttpRequestHandlerModel();
+        //$_SESSION['user_id']
+        //$user = new User();
+        //$token =
+        $this->_httpRequestHandler = new HttpRequestHandlerModel('1493131276665295');
     }
 
     /**
      * @API_route /api/1/vehicles/id_vehicle/data_request/charge_state
      * @return void
-     * @throws Exception
      */
     public function getChargeStateDataAction() : void {
         echo $this->_httpRequestHandler->callAPI('getChargeStateData', true);
@@ -21,20 +25,15 @@ class ChargeController
     /**
      * @API_route /api/1/vehicles/id_vehicle/command/charge_max_range
      * @return void
-     * @throws Exception
-     * @throws Exception
      */
     public function postChargeMaxRangeAction() : void {
         echo $this->_httpRequestHandler->callAPI('postChargeMaxRange', false);
     }
 
     //TODO : Rename this function when opening and closing routes are used together
-
     /**
      * @API_route /api/1/vehicles/id_vehicle/command/charge_port_door_open | /api/1/vehicles/id_vehicle/command/charge_port_door_close
      * @return void
-     * @throws Exception
-     * @throws Exception
      */
     public function postActuateChargePortAction() : void {
         echo $this->_httpRequestHandler->callAPI('postActuateChargePort', false);
@@ -43,20 +42,15 @@ class ChargeController
     /**
      * @API_route /api/1/vehicles/id_vehicle/command/set_charge_limit
      * @return void
-     * @throws Exception
-     * @throws Exception
      */
     public function postSetChargeLimitAction() : void {
         echo $this->_httpRequestHandler->callAPI('postSetChargeLimit', false);
     }
 
     //TODO : Rename this function when starting and stopping routes are put together
-
     /**
      * @API_route /api/1/vehicles/id_vehicle/command/start_charge | /api/1/vehicles/id_vehicle/command/stop_charge
      * @return void
-     * @throws Exception
-     * @throws Exception
      */
     public function postToggleChargeStatAction() : void {
         echo $this->_httpRequestHandler->callAPI('postToggleChargeStat', false);

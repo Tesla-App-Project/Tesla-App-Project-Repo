@@ -2,6 +2,12 @@
 
 class HttpRequestHandlerModel
 {
+    private string $_token;
+
+    public function __construct($token) {
+        $this->_token = $token;
+    }
+
     /**
      * @param array $keys
      * @return array
@@ -19,11 +25,12 @@ class HttpRequestHandlerModel
     /**
      * @param string $APICallFunction
      * @param bool $isGET
-     * @return string|false
-     * @throws Exception
+     * @return string|false Either the API response as a string-represented JSON or false if the call fails due to a wrong route or missing argument
      */
-    public function callAPI(string $APICallFunction, bool $isGET) : bool|string {
+    public function callAPI(string $APICallFunction, bool $isGET) : string|bool {
         $apiModel = new ApiModel();
+        $apiModel->setToken($this->_token);
+
         if ($isGET) {
             $response = match ($APICallFunction) {
                 'getAllVehicles' => $apiModel->getAllVehicles(),
@@ -77,16 +84,31 @@ class HttpRequestHandlerModel
                     $response = $apiModel->postResetValetPin();
                     break;
                 case 'postSetValetMode' :
-                    $params = $this->getPOSTParams(['mode', 'password']);
-                    $response = $apiModel->postSetValetMode($params['mode'], $params['password']);
+                    try {
+                        $params = $this->getPOSTParams(['mode', 'password']);
+                        $response = $apiModel->postSetValetMode($params['mode'], $params['password']);
+                    } catch (Exception $e) {
+                        $response = false;
+                        echo $e->getMessage();
+                    }
                     break;
                 case 'postSetChargeLimit' :
-                    $params = $this->getPOSTParams(['percent']);
-                    $response = $apiModel->postSetChargeLimit($params['percent']);
+                    try {
+                        $params = $this->getPOSTParams(['percent']);
+                        $response = $apiModel->postSetChargeLimit($params['percent']);
+                    } catch (Exception $e) {
+                        $response = false;
+                        echo $e->getMessage();
+                    }
                     break;
                 case 'postSetBothTemps' :
-                    $params = $this->getPOSTParams(['driverTemp', 'passengerTemp']);
-                    $response = $apiModel->postSetBothTemps($params['driverTemp'], $params['passengerTemp']);
+                    try {
+                        $params = $this->getPOSTParams(['driverTemp', 'passengerTemp']);
+                        $response = $apiModel->postSetBothTemps($params['driverTemp'], $params['passengerTemp']);
+                    } catch (Exception $e) {
+                        $response = false;
+                        echo $e->getMessage();
+                    }
                     break;
                 case 'postSpeedLimitActivate' :
                     $response = $apiModel->postSpeedLimitActivate();
@@ -107,8 +129,13 @@ class HttpRequestHandlerModel
                     $response = $apiModel->postStopCharge();
                     break;
                 case 'postSunRoofControl' :
-                    $params = $this->getPOSTParams(['state', 'percent']);
-                    $response = $apiModel->postSunRoofControl($params['state'], $params['percent']);
+                    try {
+                        $params = $this->getPOSTParams(['state', 'percent']);
+                        $response = $apiModel->postSunRoofControl($params['state'], $params['percent']);
+                    } catch (Exception $e) {
+                        $response = false;
+                        echo $e->getMessage();
+                    }
                     break;
                 default :
                     $response = null;

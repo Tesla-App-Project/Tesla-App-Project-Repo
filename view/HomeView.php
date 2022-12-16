@@ -189,6 +189,7 @@
     <hr>
     <img src="./assets/images/model3-logo.png" alt="Model3 Title">
   </footer>
+  <script async src="httprequest.js"></script>
 </body>
 
 </html>

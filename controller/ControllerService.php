@@ -1,10 +1,12 @@
 <?php
 
-class ServiceController
+use JetBrains\PhpStorm\Pure;
+
+class ControllerService
 {
     private HttpRequestHandlerModel $_httpRequestHandler;
 
-    public function __construct()
+    #[Pure] public function __construct()
     {
         $this->_httpRequestHandler = new HttpRequestHandlerModel();
     }
@@ -12,7 +14,6 @@ class ServiceController
     /**
      * @API_route /api/1/vehicles/id_vehicle/service_data
      * @return void
-     * @throws Exception
      */
     public function getServiceDataAction() : void {
         echo $this->_httpRequestHandler->callAPI('getServiceData', true);
