@@ -15,7 +15,7 @@ Documentation sur les Observables
         2.2.3. [MergeMap](#mergemap)\
         2.2.4. [Take](#take)\
         2.2.5. [TakeUntil](#takeuntil)\
-        2.2.6. [PipeInterval](#pipeinterval)\
+        2.2.6. [PipeInterval](#pipeinterval)
 # Introduction
 ## Observer
 Pour utiliser un observable, on aura besoin d'un observer. Un observer est un objet possédant 3 
