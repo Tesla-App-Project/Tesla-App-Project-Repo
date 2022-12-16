@@ -18,4 +18,13 @@ class API {
         }
     }
 
+    async getBatteryLevel() {
+        let controller = "Charge";
+        let action = "getChargeStateData";
+
+        let data = await this.apiRequest(this.base_url, controller, action);
+        return data.response.battery_level;
+    }
+
+
 }
