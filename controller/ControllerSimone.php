@@ -12,7 +12,7 @@ final class ControllerSimone
 
     //http://localhost:8080/index.php?url=helloworld/boat
     //new way
-    //http://tesloggy/simone/boat
+    //http://teslapp/simone/boat
     public function boatAction()
     {
         $O_helloWorld =  new Example();
