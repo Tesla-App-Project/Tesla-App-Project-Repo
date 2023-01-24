@@ -44,4 +44,15 @@ final class ControllerSimone
     {
         View::show('default/frog');
     }
+
+    //Example of url with my own domain name : http://tesloggy/simone/validForm
+    public function validFormAction()
+    {
+        $O_helloWorld =  new Example();
+        var_dump('validFormAction');
+
+        View::show('default/see', array('helloworld' =>  $O_helloWorld->giveMessage()));
+    }
+
+
 }

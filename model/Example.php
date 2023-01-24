@@ -42,8 +42,71 @@ final class Example
          * if the value => 1, this means that the value exists in the DB otherwise, it does not exist in the database
          * **/
 
-        // $value = $db->queryGetAction(['username' => 'Dracula', 'password' => 'forget_@hey'], 'users'); //mdp bcrypte
-        // print_r($value);
+
+        /**
+         * CREATE ([['column'=>'value'], ['second column'=>'value']], table name)
+         * **/
+        
+        $email = '';
+        $username = '';
+        $firstname = '';
+        $lastname = '';
+        $token = '';
+        $password = '';
+        $captcha = '';
+        if(isset($_POST['email'])){
+          $email=$_POST['email'];
+        }
+        if(isset($_POST['username'])){
+          $username=$_POST['username'];
+        }
+        if(isset($_POST['firstname'])){
+          $firstname=$_POST['firstname'];
+        }
+        if(isset($_POST['lastname'])){
+            $lastname=$_POST['lastname'];
+        }
+        if(isset($_POST['token'])){
+            $token=$_POST['token'];
+        }
+        if(isset($_POST['password'])){
+            $password=$_POST['password'];
+        }
+        if(isset($_POST['g-recaptcha-response'])){
+          $captcha=$_POST['g-recaptcha-response'];
+        }
+        if(!$captcha){
+          echo 'Please check the the captcha form.';
+          exit;
+        }
+        $secretKey = "6LeY9gQkAAAAAOMmNvu03Pd_USgNFjq3Pe-klC37";
+        $ip = $_SERVER['REMOTE_ADDR'];
+        // post request to server
+        $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($captcha);
+        $response = file_get_contents($url);
+        $responseKeys = json_decode($response,true);    
+        // should return JSON with success as true
+        if($responseKeys["success"]) {
+            var_dump('CAPTCHA SUCCESS');
+        } else {
+            var_dump('ERROR');
+        }
+         
+
+
+         
+        $users = $db->queryCreateAction(
+            [
+                //colum name / DATA
+                'email' => $email,
+                'username' => $username,
+                'firstname' => $firstname,
+                'lastname' => $lastname,
+                'token' => $token,
+                'password' => $password,
+            ],
+            'users'
+        );
 
 
         /**
