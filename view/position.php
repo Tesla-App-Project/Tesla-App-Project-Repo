@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
         integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
         crossorigin="" />
-    <link rel="stylesheet" href="./assets/css/style.scss">
-    <link rel="stylesheet" href="./assets/css/position.scss">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/position.css">
     <style type="text/css">
         #map {
             /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
@@ -21,7 +21,7 @@
 <body>
   <header>
       <section class="header-section-control">
-          <a href="./index.html"><img class="header-arrow hover-img" src="assets/images/symbole-fleche-droite-noir.png" alt="Retour"></a>
+          <a href="index.php?url=DevTest/index"><img class="header-arrow hover-img" src="assets/images/symbole-fleche-droite-noir.png" alt="Retour"></a>
           <h1>Position</h1>
       </section>
   </header>

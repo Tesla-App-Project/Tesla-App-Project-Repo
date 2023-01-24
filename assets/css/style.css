@@ -1,4 +1,4 @@
-/*
+
 body, button{
     background-color: #161717;
     margin:1rem;
@@ -22,10 +22,10 @@ p, img, small {
 
 }
 
-/*h2 {
+h2 {
     visibility: hidden;
-}*/
-/*
+}
+
 img {
     width : 2rem;
 }
@@ -47,7 +47,7 @@ li  {
 }
 
 /* Section voiture img*/
-/*
+
 #voiture {
     display: flex;
     justify-content: center;
@@ -58,7 +58,7 @@ li  {
 }
 
 /* Header */
-/*
+
 header{
     display: flex;
     align-items: center;
@@ -102,5 +102,3 @@ header > h1 {
     margin: 0%;
     width: 100%;
 }
-
-*/

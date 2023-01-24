@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-  <link href="./assets/css/style.css" rel="stylesheet">
-  <script src="./assets/js/index.js"></script>
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <script src="../assets/js/index.js"></script>
   <title>Accueil</title>
 </head>
 
@@ -20,8 +20,10 @@
   </header>
   <section class="fixed">
     <section class="flex_batterie">
-      <meter class="meter" min="0" max="100" value="50"></meter>
-      <p>71%</p>
+      <meter class="meter" min="0" max="100" value="<?php echo $A_view["batteryCharge"]; ?>"></meter>
+      <p><?php
+        echo $A_view["batteryCharge"] . "%";
+      ?></p>
     </section>
     <p>Stationnée</p>
   </section>
@@ -70,7 +72,7 @@
       <ul>
         <!-- Contrôles -->
         <li>
-          <button class="Flex_Button" onClick='window.location.href = "/control.php";'>
+          <button class="Flex_Button" onClick='window.location.href = "index.php?url=DevTest/control";'>
             <section class="Flex_Cadre">
               <img src="./assets/images/controle.png" height="28%" width="28%">
               <div class="Flex_Text">
@@ -83,7 +85,7 @@
 
         <!-- Ventilation -->
         <li>
-          <button class="Flex_Button" onClick='window.location.href = "/fan.php";'>
+          <button class="Flex_Button" onClick='window.location.href = "index.php?url=DevTest/fan";'>
             <section class="Flex_Cadre">
               <img src="./assets/images/Fan.png" height="28%" width="28%">
               <div class="Flex_Text">
@@ -100,7 +102,7 @@
 
         <!-- Position -->
         <li>
-          <button class="Flex_Button" onClick='window.location.href = "/position.php";'>
+          <button class="Flex_Button" onClick='window.location.href = "index.php?url=DevTest/position";'>
             <section class="Flex_Cadre">
               <img src="./assets/images/position.png" height="28%" width="28%">
               <div class="Flex_Text">
@@ -114,7 +116,7 @@
 
         <!-- Planifier -->
         <li>
-          <button class="Flex_Button" onClick='window.location.href = "/planning.php";'>
+          <button class="Flex_Button" onClick='window.location.href = "index.php?url=DevTest/planning";'>
             <section class="Flex_Cadre">
               <img src="./assets/images/planifier.png" height="28%" width="28%">
               <div class="Flex_Text">
@@ -144,7 +146,7 @@
 
         <!-- Stats recharge -->
         <li>
-          <button class="Flex_Button" onClick='window.location.href = "/stats_reload.php";'>
+          <button class="Flex_Button" onClick='window.location.href = "index.php?url=DevTest/stats";'>
             <section class="Flex_Cadre">
               <img src="./assets/images/statsrecharge.png" height="28%" width="28%">
               <div class="Flex_Text">
@@ -189,7 +191,6 @@
     <hr>
     <img src="./assets/images/model3-logo.png" alt="Model3 Title">
   </footer>
-  <script async src="httprequest.js"></script>
 </body>
 
 </html>
