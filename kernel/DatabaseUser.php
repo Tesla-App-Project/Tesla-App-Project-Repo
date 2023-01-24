@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-final class Database
+final class DatabaseUser
 {
     private string $dsn;
     private string $user;
@@ -39,8 +39,8 @@ final class Database
         return $S_base;
     }
 
-    //GET :
-    public function queryGetAction(array $keyValueMap, string $table)
+    //GET USER :
+    public function queryGetUserAction(string $email, string $password)
     {
         try {
             $S_base = new PDO($this->dsn, $this->user, $this->password);
@@ -49,27 +49,18 @@ final class Database
         }
         $S_base->exec("SET CHARACTER SET utf8");
 
-        $keys = array_keys($keyValueMap);
-        $values = array_values($keyValueMap);
-
-        $preparedStatementExpressionArray = array_map(
-            fn (string $keyName) => "{$keyName} = ?",
-            $keys,
-        );
-        $preparedStatementExpression = join(',', $preparedStatementExpressionArray);
-        $preparedStatementData = join(',', $preparedStatementExpressionArray);
-
-        $statement = $S_base->prepare("SELECT $preparedStatementData FROM $table;");
-
-        $statement->execute($values);
-        $statement->setFetchMode(PDO::FETCH_ASSOC);
-
-        return $statement->fetch();
+        $sql = "SELECT id, email, password FROM `users` WHERE `email`=:email";
+        $request = $S_base->prepare($sql);
+        $request->bindParam(":email", $email, PDO::PARAM_STR);
+        $request->execute();
+        $user = $request->fetch();
+        $verification = password_verify($password, $user['password']);
+        return $verification;
     }
 
 
-    //UPDATE :
-    public function queryUpdateAction(int $id, array $keyValueMap, string $table)
+    //UPDATE USER :
+    public function queryUpdateUserAction(string $email, string  $firstname, string  $username, string  $lastname, $id)
     {
         try {
             $S_base = new PDO($this->dsn, $this->user, $this->password);
@@ -78,27 +69,22 @@ final class Database
         }
         $S_base->exec("SET CHARACTER SET utf8");
 
-        $keys = array_keys($keyValueMap);
-        $values = array_values($keyValueMap);
+        $sql = "UPDATE `users` SET `email`=:email, `firstname`=:firstname, `username`=:username, `lastname`=:lastname WHERE id= :id;";
+        $request = $S_base->prepare($sql);
+        $request->bindParam(":email", $email, PDO::PARAM_STR);
+        $request->bindParam(":firstname", $firstname, PDO::PARAM_STR);
+        $request->bindParam(":username", $username, PDO::PARAM_STR);
+        $request->bindParam(":lastname", $lastname, PDO::PARAM_STR);
+        $request->bindParam(":id", $id, PDO::PARAM_STR);
 
-        ControllerException::formError($keyValueMap);
-
-        $preparedStatementExpressionArray = array_map(
-            fn (string $keyName) => "{$keyName} = ?",
-            $keys,
-        );
-        $preparedStatementExpression = join(',', $preparedStatementExpressionArray);
-        $preparedStatementData = join(',', $preparedStatementExpressionArray);
-
-        $statement = $S_base->prepare("UPDATE $table SET $preparedStatementExpression WHERE id= {$id};");
-        $create =$statement->execute($values);
+        $request->execute();
 
         echo 'Success, nice update';
     }
 
 
-    //CREATE :
-    public function queryCreateAction(array $keyValueMap, string $table)
+    //CREATE USER :
+    public function queryCreateUserAction(string $email, string  $firstname, string  $username, string  $lastname, string  $passwordUser)
     {
         try {
             $S_base = new PDO($this->dsn, $this->user, $this->password);
@@ -108,25 +94,26 @@ final class Database
 
         $S_base->exec("SET CHARACTER SET utf8");
 
-        $keys = array_keys($keyValueMap);
-        $values = array_values($keyValueMap);
+        $sql = "INSERT INTO `users` SET `email`=:email, `firstname`=:firstname, `username`=:username, `lastname`=:lastname, `password`=:password";
+        $request = $S_base->prepare($sql);
+        $request->bindParam(":email", $email, PDO::PARAM_STR);
+        $request->bindParam(":firstname", $firstname, PDO::PARAM_STR);
+        $request->bindParam(":username", $username, PDO::PARAM_STR);
+        $request->bindParam(":lastname", $lastname, PDO::PARAM_STR);
+        $passwordHashed = password_hash($passwordUser, PASSWORD_BCRYPT);
+        $request->bindParam(":password", $passwordHashed, PDO::PARAM_STR);
 
-        $preparedStatementExpressionArray = array_map(
-            fn (string $keyName) => "{$keyName} = ?",
-            $keys,
-        );
-        $preparedStatementExpression = join(',', $preparedStatementExpressionArray);
-
-        $statement = $S_base->prepare("INSERT INTO $table SET $preparedStatementExpression;");
-        $create =$statement->execute($values);
+        $request->execute();
 
         echo 'Success, data got inserted';
     }
 
 
-    // DELETE :
-    public function queryDeleteAction(int $id, string $table)
+    // DELETE USER :
+    public function queryDeleteUserAction(int $id)
     {
+        var_dump('hey');
+
         try {
             $S_base = new PDO($this->dsn, $this->user, $this->password);
         } catch (exception $S_e) {
@@ -134,7 +121,7 @@ final class Database
         }
         $S_base->exec("SET CHARACTER SET utf8");
 
-        $sql = "DELETE FROM `$table` WHERE `id`=:id";
+        $sql = "DELETE FROM `users` WHERE `id`=:id";
         $request = $S_base->prepare($sql);
         $request->bindParam(":id", $id, PDO::PARAM_STR);
         $request->execute();
