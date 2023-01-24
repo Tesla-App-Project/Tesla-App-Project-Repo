@@ -7,7 +7,7 @@ final class ControllerSimone
         //http://localhost:8080/index.php?url=helloworld/smthg
         $O_helloWorld =  new Simone();
 
-        View::show('default/see', array('helloworld' =>  $O_helloWorld->giveMessage()));
+        View::show('connexion', array('helloworld' =>  $O_helloWorld->giveMessage()));
     }
 
     //http://localhost:8080/index.php?url=helloworld/boat
