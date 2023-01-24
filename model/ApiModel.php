@@ -129,7 +129,7 @@ class ApiModel
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $requestType);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $requestBody);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($requestBody));
 
         try {
             $result = curl_exec($ch);
