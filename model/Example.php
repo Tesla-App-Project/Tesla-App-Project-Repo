@@ -7,37 +7,40 @@ final class Example
         //EXAMPLE
 
         $db = new Database();
-        //if that's not working read the README, you have to apply the migrations
-
+        //if that's not working read the README (you have to apply the migrations)
 
         /**
          * CREATE (['column'=>'value', 'second column'=>'value'], table name)
          * **/
-        // $users = $db->queryCreateAction(
+
+        // $message = $db->queryCreateAction(
         //     [
         //         //colum name / DATA
         //         'email' => 'lucky@luke.com',
-        //         'username' => 'jollyjumper',
+        //         'username' => 'Dracula',
         //         'firstname' => 'Mary',
         //         'lastname' => 'Jane',
         //         'token' => 'peanut',
-        //         'password' => 'forget',
+        //         'password' => 'forget_@hey',
         //     ],
         //     'users'
         // );
 
+
         /**
          * UPDATE (id, ['column'=>'value', 'second column'=>'value'], table name)
          * **/
-        // $users = $db->queryUpdateAction(1, ['username' => 'Dracula', 'email' => 'archibald@haddock.com'], 'users');
+
+        // $message = $db->queryUpdateAction(1, ['username' => 'Dracula', 'email' => 'archibald@haddock.com'], 'users');
+
 
         /**
-         *  GET  (id, ['column'=>'value', 'second column'=>'value'], table name)
+         *  READ  (id, ['column'=>'value', 'second column'=>'value'], table name)
          * // not working if you don't have the correspond data in you table
+         * RETURN :
+         * queryGetAction give you back an array like that : [username = 'Dracula'] => 1 [email = 'archibald@haddock.com'] => 1
+         * if the value => 1, this means that the value exists in the DB otherwise, it does not exist in the database
          * **/
-        // return $db->queryGetAction(4, ['username' => 'jollyjumper', 'email' => 'lucky@luke.com'], 'users');
-        // $users = $db->queryUpdateAction(1, [['email' => 'Toto'], ['token' => 'Mimi']], 'users');
-        // print_r($users);
 
 
         /**
@@ -109,6 +112,7 @@ final class Example
         /**
          * DELETE (id, table name) //not working if you don't have the correspond data in you table
          * **/
-        // $users = $db->queryDeleteAction(5, 'users');
+
+        // $message = $db->queryDeleteAction(5, 'users');
     }
 }

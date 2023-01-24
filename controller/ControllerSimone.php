@@ -30,6 +30,15 @@ final class ControllerSimone
         View::show('default/see', array('helloworld' =>  $O_helloWorld->giveMessage()));
     }
 
+    //Example of url with my own domain name : http://tesloggy/simone/example
+    public function exampleUserAction()
+    {
+        $O_helloWorld =  new ExampleUser();
+        var_dump('exempleAction');
+
+        View::show('default/see', array('helloworld' =>  $O_helloWorld->giveMessage()));
+    }
+
     //http://localhost:8080/index.php?url=helloworld/peanut
     public function frogAction()
     {
