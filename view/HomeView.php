@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-  <link href="./assets/css/style.css" rel="stylesheet">
+  <link href="./assets/css/index.css" rel="stylesheet">
   <script src="./assets/js/index.js"></script>
   <title>Accueil</title>
 </head>
@@ -70,7 +70,7 @@
       <ul>
         <!-- Contrôles -->
         <li>
-          <button class="Flex_Button" onClick='window.location.href = "/control.php";'>
+          <button class="Flex_Button" onClick='window.location.href = "/index.php?url=OtherControls";'>
             <section class="Flex_Cadre">
               <img src="./assets/images/controle.png" height="28%" width="28%">
               <div class="Flex_Text">
