@@ -14,4 +14,6 @@ class ControllerHome
         View::show('template', $A_content);
         //View::show('HomeView', array());
     }
+
+
 }

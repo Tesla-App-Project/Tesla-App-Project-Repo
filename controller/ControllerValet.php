@@ -2,15 +2,8 @@
 
 use JetBrains\PhpStorm\Pure;
 
-class ControllerValet
+class ControllerValet extends ControllerAPI
 {
-    private HttpRequestHandlerModel $_httpRequestHandler;
-
-    #[Pure] public function __construct()
-    {
-        $this->_httpRequestHandler = new HttpRequestHandlerModel();
-    }
-
     /**
      * @API_route /api/1/vehicles/id_vehicle/command/reset_valet_pin
      * @return void

@@ -2,15 +2,8 @@
 
 use JetBrains\PhpStorm\Pure;
 
-class ControllerOtherControls
+class ControllerOtherControls extends ControllerAPI
 {
-    private HttpRequestHandlerModel $_httpRequestHandler;
-
-    #[Pure] public function __construct()
-    {
-        $this->_httpRequestHandler = new HttpRequestHandlerModel();
-    }
-
     /**
      * @API_route /api/1/vehicles/id_vehicle/command/flash_lights
      * @return void
