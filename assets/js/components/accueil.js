@@ -1,6 +1,6 @@
 import InputDetect from "../model_client/client_model";
-import ConnexionOnClick from "../assets/js/index_functions";
-import FanOnClick from "../assets/js/index_functions";
+import ConnexionOnClick from "../assets/js/accueil_functions";
+import FanOnClick from "../assets/js/accueil_functions";
 
 let data = document.getElementById('charge_battery').dataset.action;
 var json = await InputDetect.GetDataFromServer(data);
