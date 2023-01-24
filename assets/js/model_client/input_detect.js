@@ -1,72 +1,43 @@
-class InputDetect{
+export default class InputDetect{
+
     static ACTION_TESLA = {
-        "wake_up":"wake_upAction",
-        "door_unlock":"",
-        "door_lock":"postActuateDoorLockAction",
-        "honk_horn":"postHonkHornAction",
-        "flash_lights":"postFlashLightsAction",
-        "auto_conditioning_start":"postToggleConditioningStateAction",
-        "auto_conditioning_stop":"",
-        "set_temps":"postSetBothTempsAction",
-        "set_charge_limit":"postSetChargeLimitAction",
-        "charge_max_range":"postChargeMaxRangeAction",
-        "charge_standard":"",
-        "sun_roof_control":"postSunRoofControlAction",
-        "actuate_trunk":"postActuateTrunkAction",
-        "remote_start_drive":"postRemoteStartDriveAction",
-        "charge_port_door_open":"postActuateChargePortAction",
-        "charge_port_door_close":"",
-        "charge_start":"postToggleChargeStatAction",
-        "charge_stop":"",
-        "upcoming_calendar_entries":"",
-        "set_valet_mode":"postSetValetModeAction",
-        "reset_valet_pin":"postResetValetPinAction",
-        "speed_limit_activate":"postSpeedLimitToggleStateAction",
-        "speed_limit_deactivate":"",
-        "speed_limit_set_limit":"postSpeedLimitSetLimitAction",
-        "speed_limit_clear_pin":"postSpeedLimitClearPinAction",
-        "backup":"",
-        "site_name":"",
-        "operation":"",
-        "time_of_use_settings":"",
-        "storm_mode":"",
-        "service_data":"getServiceDataAction",
-        "gui_settings":"getDriveGUIDataAction",
-        "mobile_enabled":"getIsMobileEnabledAction",
-        "vehicles":"getAllVehiclesAction",
-        "id_vehicle":"getVehiculeDataAction",
-        "vehicle_data":"getVehicleDataAction",
-        "drive_state":"getDriveStateDataAction"
+        "wake_up":"HelloworldController.php/wake_up",
+        "door_unlock":"ControllerOpenings.php/postActuateDoorLock",
+        "door_lock":"ControllerOpenings.php/postActuateDoorLock",
+        "honk_horn":"ControllerOtherControls.php/postHonkHorn",
+        "flash_lights":"ControllerOtherControls.php/postFlashLights",
+        "auto_conditioning_start":"postToggleConditioningState",
+        "auto_conditioning_stop":"ControllerClimate.php/postToggleConditioningState",
+        "set_temps":"ControllerClimate.php/postSetBothTemps",
+        "set_charge_limit":"ControllerCharge.php/postSetChargeLimit",
+        "charge_max_range":"ControllerCharge.php/postChargeMaxRange",
+        "sun_roof_control":"ControllerOpenings.php/postSunRoofControl",
+        "actuate_trunk":"ControllerOpenings.php/postActuateTrunk",
+        "remote_start_drive":"ControllerOtherControls.php/postRemoteStartDrive",
+        "charge_port_door_open":"postActuateChargePort",
+        "charge_port_door_close":"ControllerCharge.php/postActuateChargePort",
+        "charge_start":"postToggleChargeStat",
+        "set_valet_mode":"ControllerValet.php/postSetValetMode",
+        "reset_valet_pin":"ControllerValet.php/postResetValetPin",
+        "speed_limit_activate":"postSpeedLimitToggleState",
+        "speed_limit_deactivate":"ControllerSpeedLimit.php/postSpeedLimitToggleState",
+        "speed_limit_set_limit":"ControllerSpeedLimit.php/postSpeedLimitSetLimit",
+        "speed_limit_clear_pin":"ControllerSpeedLimit.php/postSpeedLimitClearPin",
+        "service_data":"ControllerService.php/getServiceData",
+        "gui_settings":"ControllerSettings.php/getDriveGUIData",
+        "mobile_enabled":"ControllerSettings.php/getIsMobileEnabled",
+        "vehicles":"ControllerVehicle.php/getAllVehicles",
+        "id_vehicle":"ControllerVehicle.php/getVehiculeData",
+        "vehicle_data":"ControllerVehicle.php/getVehicleData",
+        "drive_state":"ControllerVehicle.php/getDriveStateData",
+        "charge_state":"ControllerCharge.php/getChargeStateData",
+        "stop_charge":"ControllerCharge.php/postToggleChargeStat",
+        "climate_state":"ControllerClimate.php/getChargeClimateState"
     };
     constructor(){
-        
-        this.GetDataFromComponant();
-        
     }
 
-    GetDataFromComponant(){
-
-        // Récupère tous les composants boutons et liens sous forme de tableau
-        let boutons = document.querySelectorAll("button, a");
-
-        // Parcourt le tableau de composants
-        boutons.forEach(bouton => {
-
-            let testdata = Object.keys(bouton.dataset).length==0;
-            // si data pas vide
-            if(!testdata){
-                bouton.addEventListener('click', () => {
-                    let data = bouton.dataset.action;
-                    let test = InputDetect.ACTION_TESLA[data];
-                    console.log(InputDetect.ACTION_TESLA[data]);
-                    data = this.GetDataFromServer(api_function);
-                    this.TreatData();
-
-                });
-            }
-        });
-    }
-    GetDataFromServer(api_function) {
+    static GetDataFromServer(api_function) {
         /*
         fetch("http://urlversmonserveur",
 		{
@@ -87,9 +58,7 @@ class InputDetect{
 
         });
         */
-    }
-    TreatData(){
-        
+        return null;
     }
 }
 new InputDetect();
