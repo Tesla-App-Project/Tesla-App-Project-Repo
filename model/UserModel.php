@@ -5,31 +5,26 @@ require_once ($filepath."/../kernel/Database.php");
 
 final class UserModel
 {
-    public function update()
+    public function updateUser($user_mail,$user_first_name,$user_username,$lastname)
     {
-
         $db = new Database();
+        //UPDATE user
 
-        //UPDATE
-        // //param = (field + value) soit [['pseudo' => 'Toto'],['other' => 'Mimi']]
-        // return $db->queryUpdateAction(1, [['email' => 'Toto'], ['lastname' => 'Mimi']], 'user');
-
+         return $db->queryUpdateUserAction(['email' => $user_mail, 'firstname' => $user_first_name,'username'=>$user_username,'lastname' => $lastname]);
     }
-    public function getuser()
+
+    public function getUser($user_mail,$user_password)
     {
-
         $db = new Database();
-
-        $users = $db->queryUpdateAction(1, [['email' => 'Toto'], ['token' => 'Mimi']], 'users');
-        // print_r($users);
+        //login user
+        $users = $db->queryGetUserAction(['email' => $user_mail, 'password' => $user_password]);
     }
-    public function newuser($user_first_name,$user_last_name,$user_username,$user_password,$user_mail,$user_token)
+
+    public function newUser($user_first_name,$user_last_name,$user_username,$user_password,$user_mail,$user_token)
     {
         $db = new Database();
-
-        //CREATE user for example
-
-        $users = $db->queryCreateAction(
+        //CREATE user
+        $users = $db->queryCreateUserAction(
             [
                 //colum name / DATA
                 'email' => $user_mail,
@@ -41,6 +36,8 @@ final class UserModel
             ],
             'users'
         );
+
     }
+
 }
 
