@@ -10,26 +10,18 @@ final class ControllerSimone
         View::show('default/see', array('helloworld' =>  $O_helloWorld->giveMessage()));
     }
 
+    public function loginAction()
+    {
+        //http://localhost:8080/index.php?url=helloworld/smthg
+        $O_helloWorld =  new Simone();
+
+        View::show('default/login', array('helloworld' =>  $O_helloWorld->giveMessage()));
+    }
+
     //http://localhost:8080/index.php?url=helloworld/boat
     //new way
     //http://teslapp/simone/boat
-    public function boatAction()
-    {
-        $O_helloWorld =  new Example();
-        var_dump('boatAction');
-
-        View::show('default/see', array('helloworld' =>  $O_helloWorld->giveMessage()));
-    }
-
-    //Example of url with my own domain name : http://tesloggy/simone/example
-    public function exampleAction()
-    {
-        $O_helloWorld =  new Example();
-        var_dump('exempleAction');
-
-        View::show('default/see', array('helloworld' =>  $O_helloWorld->giveMessage()));
-    }
-
+    
     //Example of url with my own domain name : http://tesloggy/simone/example
     public function exampleUserAction()
     {
@@ -46,13 +38,22 @@ final class ControllerSimone
     }
 
     //Example of url with my own domain name : http://tesloggy/simone/validForm
-    public function validFormAction()
+    public function validFormSignupAction()
     {
-        $O_helloWorld =  new Example();
+        $O_helloWorld =  new validForm();
+        var_dump('validFormSignupAction');
+
+        View::show('default/see', array('helloworld' =>  $O_helloWorld->signup()));
+    }
+
+    public function validFormLoginAction()
+    {
+        $O_helloWorld =  new validForm();
         var_dump('validFormAction');
 
-        View::show('default/see', array('helloworld' =>  $O_helloWorld->giveMessage()));
+        View::show('default/login', array('helloworld' =>  $O_helloWorld->login()));
     }
+
 
 
 }
