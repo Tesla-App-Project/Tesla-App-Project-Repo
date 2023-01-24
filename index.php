@@ -17,8 +17,8 @@ to use our MVC, you have to enter inside your navbar
 // $S_controller = $_GET['ctrl'] ?? null;
 // $S_action = isset($_GET['action']) ? $_GET['action'] : null;
 
-$S_urlADecortiquer = $_GET['url'] ?? null;
-$A_postSettings = $_POST ?? null;
+$S_urlADecortiquer = $_GET['url'] ?? "";
+$A_postSettings = $_POST ?? "";
 
 // $S_url = isset($_GET['url']) ? $_GET['url'] : null;
 
