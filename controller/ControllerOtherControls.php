@@ -2,15 +2,8 @@
 
 use JetBrains\PhpStorm\Pure;
 
-class ControllerOtherControls
+class ControllerOtherControls extends ControllerAPI
 {
-    private HttpRequestHandlerModel $_httpRequestHandler;
-
-    #[Pure] public function __construct()
-    {
-        $this->_httpRequestHandler = new HttpRequestHandlerModel("1493131276665295");
-    }
-
     public function defautAction() : void {
         $A_content = ['header' => 'test', 'content' => 'OtherControlsView', 'footer' => 'test'];
         View::show('control', $A_content);

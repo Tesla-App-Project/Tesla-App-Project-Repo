@@ -4,7 +4,6 @@ class ControllerUser
 {
     public function loginAction()
     {
-
         //http://localhost:8080/index.php?url=login
         View::show('login', array());
     }

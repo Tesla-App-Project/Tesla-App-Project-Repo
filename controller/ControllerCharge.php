@@ -2,18 +2,8 @@
 
 use JetBrains\PhpStorm\Pure;
 
-class ControllerCharge
+class ControllerCharge extends ControllerAPI
 {
-    private HttpRequestHandlerModel $_httpRequestHandler;
-
-    #[Pure] public function __construct()
-    {
-        //$_SESSION['user_id']
-        //$user = new User();
-        //$token =
-        $this->_httpRequestHandler = new HttpRequestHandlerModel('1493131276665295');
-    }
-
     /**
      * @API_route /api/1/vehicles/id_vehicle/data_request/charge_state
      * @return void

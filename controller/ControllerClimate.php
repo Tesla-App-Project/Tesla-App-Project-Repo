@@ -2,15 +2,8 @@
 
 use JetBrains\PhpStorm\Pure;
 
-class ControllerClimate
+class ControllerClimate extends ControllerAPI
 {
-    private HttpRequestHandlerModel $_httpRequestHandler;
-
-    #[Pure] public function __construct()
-    {
-        $this->_httpRequestHandler = new HttpRequestHandlerModel();
-    }
-
     /**
      * @API_route /api/1/vehicles/id_vehicle/data_request/climate_state
      * @return void

@@ -1,14 +1,14 @@
 <?php
 
 $filepath = realpath(dirname(__FILE__));
-require_once ($filepath."/../kernel/Database.php");
+require_once ($filepath."/../kernel/DatabaseUser.php");
 
 final class UserModel
 {
     public function update()
     {
 
-        $db = new Database();
+        $db = new DatabaseUser();
 
         //UPDATE
         // //param = (field + value) soit [['pseudo' => 'Toto'],['other' => 'Mimi']]
@@ -18,14 +18,14 @@ final class UserModel
     public function getuser()
     {
 
-        $db = new Database();
+        $db = new DatabaseUser();
 
         $users = $db->queryUpdateAction(1, [['email' => 'Toto'], ['token' => 'Mimi']], 'users');
         // print_r($users);
     }
     public function newuser($user_first_name,$user_last_name,$user_username,$user_password,$user_mail,$user_token)
     {
-        $db = new Database();
+        $db = new DatabaseUser();
 
         //CREATE user for example
 
