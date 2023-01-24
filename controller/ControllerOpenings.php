@@ -2,15 +2,8 @@
 
 use JetBrains\PhpStorm\Pure;
 
-class ControllerOpenings
+class ControllerOpenings extends ControllerAPI
 {
-    private HttpRequestHandlerModel $_httpRequestHandler;
-
-    #[Pure] public function __construct()
-    {
-        $this->_httpRequestHandler = new HttpRequestHandlerModel();
-    }
-
     //TODO : Rename this function when locking and unlocking routes are used together
     /**
      * @API_route /api/1/vehicles/id_vehicle/command/door_lock | /api/1/vehicles/id_vehicle/command/door_unlock

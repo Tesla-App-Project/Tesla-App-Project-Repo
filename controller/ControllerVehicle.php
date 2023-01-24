@@ -2,15 +2,8 @@
 
 use JetBrains\PhpStorm\Pure;
 
-class ControllerVehicle
+class ControllerVehicle extends ControllerAPI
 {
-    private HttpRequestHandlerModel $_httpRequestHandler;
-
-    #[Pure] public function __construct()
-    {
-        $this->_httpRequestHandler = new HttpRequestHandlerModel();
-    }
-
     /**
      * @API_route /api/1/vehicles
      * @return void
