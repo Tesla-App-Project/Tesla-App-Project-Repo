@@ -15,19 +15,20 @@ class ControllerOpenings extends ControllerAPI
 
     /**
      * @API_route /api/1/vehicles/id_vehicle/command/actuate_trunk
+     * @param $whichTrunk string[] which trunk to open
      * @return void
      */
-    public function postActuateFrontAction() : void {
-        echo $this->_httpRequestHandler->callAPI('postActuateTrunk(front)', false);
+    public function postActuateTrunkAction(array $whichTrunk) : void {
+        echo $this->_httpRequestHandler->callAPI('postActuateTrunk', false, $whichTrunk);
     }
 
-    /**
-     * @API_route /api/1/vehicles/id_vehicle/command/actuate_trunk
-     * @return void
-     */
-    public function postActuateRearAction() : void {
-        echo $this->_httpRequestHandler->callAPI('postActuateTrunk(rear)', false);
-    }
+//    /**
+//     * @API_route /api/1/vehicles/id_vehicle/command/actuate_trunk
+//     * @return void
+//     */
+//    public function postActuateRearAction() : void {
+//        echo $this->_httpRequestHandler->callAPI('postActuateTrunk(rear)', false);
+//    }
 
     /**
      * @API_route /api/1/vehicles/id_vehicle/command/sun_roof_control

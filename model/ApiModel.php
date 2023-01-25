@@ -253,11 +253,11 @@ class ApiModel
 
     /**
      * @return array
-     * @param string $chosenTrunk choose if front or rear
+     * @param array $chosenTrunk choose if front or rear
      */
-    public function postActuateTrunk(string $chosenTrunk): array {
+    public function postActuateTrunk(array $params): array {
 
-        $result = $this->makeAPIRequest($this->idCar, "command/actuate_trunk?which_trunk={$chosenTrunk}" , "POST", array("which_trunk" => $chosenTrunk));
+        $result = $this->makeAPIRequest($this->idCar, "command/actuate_trunk" , "POST", array("which_trunk" => $params[0][2]));
         return array("result" => $result["response"]["result"],"reason" => $result["response"]["reason"]);
 
     }

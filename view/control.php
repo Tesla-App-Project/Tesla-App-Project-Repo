@@ -19,10 +19,10 @@
             if(req.readyState === 4) {
                 console.log(req.responseText)
                 const res = JSON.parse(req.responseText)
-                if(res.result){
+                if(res?.result){
                     return window.alert(`Action : ${req.responseURL} réalisé avec succes`)
                 }
-                return window.alert(`error`)
+                return window.alert(`Erreur mdr`)
             }
         }
 
@@ -53,9 +53,9 @@
         ?>
     </section>
     <div>
-        <button id="CACA" onclick="sendRequest('http://<?php echo $A_view['servAdresse'] ?>/index.php?url=Openings/postActuateFront')">
+        <button onclick="sendRequest('http://<?php echo $A_view['servAdresse'] ?>/index.php?url=Openings/postActuateTrunk/front')">
         </button>
-        <button onclick="sendRequest('http://<?php echo $A_view['servAdresse'] ?>/index.php?url=Openings/postActuateRear')">
+        <button onclick="sendRequest('http://<?php echo $A_view['servAdresse'] ?>/index.php?url=Openings/postActuateTrunk/rear')">
             Ouvrir
         </button>
     </div>
@@ -76,7 +76,7 @@
     <menu class="horizontal border1">
 
         <li>
-            <button class="buttontype1" onclick="sendRequest('http://<?php echo $A_view['servAdresse'] ?>/index.php?url=DevTest/flash_light')">
+            <button class="buttontype1" onclick="sendRequest('http://<?php echo $A_view['servAdresse'] ?>/index.php?url=OtherControls/postFlashLights')">
                 <img class="hover-img" src="assets/images/headlight.png" height="55" width="55" alt="rondlogo">
             </button>
         </li>
