@@ -4,8 +4,12 @@ use JetBrains\PhpStorm\Pure;
 
 class ControllerOtherControls extends ControllerAPI
 {
+    /**
+     * @API_route /api/1/vehicles/id_vehicle/
+     * @return void
+     */
     public function defautAction() : void {
-        $A_content = ['header' => 'test', 'content' => 'OtherControlsView', 'footer' => 'test'];
+        $A_content = ['header' => 'test', 'content' => 'OtherControlsView', 'footer' => 'test', 'servAdresse' => "teslaapp", 'isCharging' => $this->_httpRequestHandler->callAPI('isCharging', true)];
         View::show('control', $A_content);
     }
 

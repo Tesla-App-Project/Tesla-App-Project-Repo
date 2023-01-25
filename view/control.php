@@ -17,6 +17,7 @@
 
         req.onreadystatechange = () => {
             if(req.readyState === 4) {
+                console.log(req.responseText)
                 const res = JSON.parse(req.responseText)
                 if(res.result){
                     return window.alert(`Action : ${req.responseURL} réalisé avec succes`)
@@ -31,7 +32,7 @@
 </script>
 <header>
     <section class="box-controle" >
-        <nav class="rotateArrow" class="one-controle">
+        <nav class="rotateArrow">
             <a href="index.php?url=DevTest/index"><img class="hover-img" src="assets/images/symbole-fleche-droite-noir.png" height="40" width="40" alt="cerclelogo"></a>
         </nav>
     </section>
@@ -48,11 +49,16 @@
             <p class="p-padding-r">Ouvrir</p>
         </section>
         <?php
-        $A_view["ischarging"] ? $chargeIcon = "<img src='assets/images/ThunderLight.png' class='eclair' alt='eclairlogo'>" : $chargeIcon = "<img src='assets/images/Thunder.png' class='eclair' alt='eclairlogo'>";
-        echo $chargeIcon;
+            echo !$A_view["isCharging"] ? "<img src='assets/images/ThunderLight.png' class='eclair' alt='eclairlogo'>" : "<img src='assets/images/Thunder.png' class='eclair' alt='eclairlogo'>";
         ?>
     </section>
-
+    <div>
+        <button id="CACA" onclick="sendRequest('http://<?php echo $A_view['servAdresse'] ?>/index.php?url=Openings/postActuateFront')">
+        </button>
+        <button onclick="sendRequest('http://<?php echo $A_view['servAdresse'] ?>/index.php?url=Openings/postActuateRear')">
+            Ouvrir
+        </button>
+    </div>
     <section class="cacher">
         <section class="vertical-controle">
             <p class="p-padding-h">Ouvrir</p>

@@ -11,6 +11,6 @@ abstract class ControllerAPI
         //$_SESSION['user_id']
         //$user = new User();
         //$token =
-        $this->_httpRequestHandler = new HttpRequestHandlerModel('1493131276665295');
+        $this->_httpRequestHandler = new HttpRequestHandlerModel("letokendelatesla");
     }
 }

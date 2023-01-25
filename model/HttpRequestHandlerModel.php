@@ -42,13 +42,17 @@ class HttpRequestHandlerModel
                 'getIsMobileEnabled' => $apiModel->getIsMobileEnabled(),
                 'getServiceData' => $apiModel->getServiceData(),
                 'getVehicleData' => $apiModel->getVehicleData(),
+                'isCharging' => $apiModel->isCharging(),
                 default => null,
             };
         }
         else {
             switch ($APICallFunction) {
-                case 'postActuateTrunk' :
-                    $response = $apiModel->postActuateTrunk();
+                case 'postActuateTrunk(front)' :
+                    $response = $apiModel->postActuateTrunk("front");
+                    break;
+                case 'postActuateTrunk(rear)' :
+                    $response = $apiModel->postActuateTrunk("rear");
                     break;
                 case 'postConditioningStart' :
                     $response = $apiModel->postConditioningStart();
