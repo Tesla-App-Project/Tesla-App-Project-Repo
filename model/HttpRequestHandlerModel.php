@@ -24,15 +24,14 @@ class HttpRequestHandlerModel
 
     /**
      * @param string $APICallFunction
-     * @param bool $isGET
-     * @param string[] ...$params
+     * @param mixed ...$params
      * @return string|false Either the API response as a string-represented JSON or false if the call fails due to a wrong route or missing argument
      */
-    public function callAPI(string $APICallFunction, bool $isGET, array ...$params) : string|bool {
+    public function callAPI(string $APICallFunction, array ...$params) : string|bool {
         $apiModel = new ApiModel();
         $apiModel->setToken($this->_token);
 
-        $response = $apiModel->{$APICallFunction}($params);
+        return json_encode($apiModel->{$APICallFunction}($params));
 
 //        if ($isGET) {
 //          $response = match ($APICallFunction) {
@@ -149,6 +148,6 @@ class HttpRequestHandlerModel
 //                    break;
 //            }
 //        }
-        return json_encode($response);
+//        return json_encode($response);
     }
 }

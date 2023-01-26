@@ -10,7 +10,7 @@ class ControllerOpenings extends ControllerAPI
      * @return void
      */
     public function postActuateDoorLockAction() : void {
-        echo $this->_httpRequestHandler->callAPI('postActuateDoorLock', false);
+        echo $this->_httpRequestHandler->callAPI('postActuateDoorLock');
     }
 
     /**
@@ -19,7 +19,7 @@ class ControllerOpenings extends ControllerAPI
      * @return void
      */
     public function postActuateTrunkAction(array $whichTrunk) : void {
-        echo $this->_httpRequestHandler->callAPI('postActuateTrunk', false, $whichTrunk);
+        echo $this->_httpRequestHandler->callAPI('postActuateTrunk', $whichTrunk);
     }
 
 //    /**
@@ -35,6 +35,6 @@ class ControllerOpenings extends ControllerAPI
      * @return void
      */
     public function postSunRoofControlAction() : void {
-        echo $this->_httpRequestHandler->callAPI('postSunRoofControl', false);
+        echo $this->_httpRequestHandler->callAPI('postSunRoofControl');
     }
 }

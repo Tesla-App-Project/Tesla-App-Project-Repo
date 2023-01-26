@@ -9,7 +9,7 @@ class ControllerVehicle extends ControllerAPI
      * @return void
      */
     public function getAllVehiclesAction() : void {
-        echo $this->_httpRequestHandler->callAPI('getAllVehicles', true);
+        echo $this->_httpRequestHandler->callAPI('getAllVehicles');
     }
 
     //TODO : This method name could be renamed
@@ -18,7 +18,7 @@ class ControllerVehicle extends ControllerAPI
      * @return void
      */
     public function getVehiculeDataAction() : void {
-        echo $this->_httpRequestHandler->callAPI('getVehiculeData', true);
+        echo $this->_httpRequestHandler->callAPI('getVehiculeData');
     }
 
     /**
@@ -26,7 +26,6 @@ class ControllerVehicle extends ControllerAPI
      * @return void
      */
     public function getVehicleDataAction() : void {
-        echo $this->_httpRequestHandler->callAPI('getVehicleData', true);
     }
 
     /**
@@ -34,6 +33,6 @@ class ControllerVehicle extends ControllerAPI
      * @return void
      */
     public function getDriveStateDataAction() : void {
-        echo $this->_httpRequestHandler->callAPI('getDriveStateData', true);
+        echo $this->_httpRequestHandler->callAPI('getDriveStateData');
     }
 }

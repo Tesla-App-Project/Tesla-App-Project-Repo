@@ -9,7 +9,7 @@ class ControllerOtherControls extends ControllerAPI
      * @return void
      */
     public function defautAction() : void {
-        $A_content = ['header' => 'test', 'content' => 'OtherControlsView', 'footer' => 'test', 'servAdresse' => "teslaapp", 'isCharging' => $this->_httpRequestHandler->callAPI('isCharging', true)];
+        $A_content = ['header' => 'test', 'content' => 'OtherControlsView', 'footer' => 'test', 'servAdresse' => "localhost:8080", 'isCharging' => $this->_httpRequestHandler->callAPI('isCharging')];
         View::show('control', $A_content);
     }
 
@@ -18,7 +18,7 @@ class ControllerOtherControls extends ControllerAPI
      * @return void
      */
     public function postFlashLightsAction() : void {
-        echo $this->_httpRequestHandler->callAPI('postFlashLights', false);
+        echo $this->_httpRequestHandler->callAPI('postFlashLights');
     }
 
     /**
@@ -26,7 +26,7 @@ class ControllerOtherControls extends ControllerAPI
      * @return void
      */
     public function postHonkHornAction() : void {
-        echo $this->_httpRequestHandler->callAPI('postHonkHorn', false);
+        echo $this->_httpRequestHandler->callAPI('postHonkHorn' );
     }
 
     /**
@@ -34,6 +34,6 @@ class ControllerOtherControls extends ControllerAPI
      * @return void
      */
     public function postRemoteStartDriveAction() : void {
-        echo $this->_httpRequestHandler->callAPI('postRemoteStartDrive', false);
+        echo $this->_httpRequestHandler->callAPI('postRemoteStartDrive');
     }
 }
