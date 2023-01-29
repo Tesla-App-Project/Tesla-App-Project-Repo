@@ -118,13 +118,20 @@ class ApiModel
             throw new Exception('failed to initialize');
         }
 
+        $wakeUp = $this->postWakeUp('http://78.123.242.51:25000/api/1/vehicles/' . $requestIdCar . '/wake_up');
+
+        if(($wakeUp["response"]["id"] ?? "") != $requestIdCar) {
+            throw new Exception("failed to wake up car");
+        }
+
         curl_setopt($ch, CURLOPT_URL, $urlRequest);
 
         // Bearer token and data type
 
-        $headers = [];
-        $headers[] = 'Content-Type: application/json; charset=utf-8';
-        $headers[] = "Authorization: Bearer {$this->token}";
+        $headers = [
+            0 => 'Content-Type: application/json; charset=utf-8',
+            1 => "Authorization: Bearer {$this->token}",
+        ];
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $requestType);
@@ -242,12 +249,41 @@ class ApiModel
     // <------------------- POST methods ------------------->
 
     /**
+     * Allows you to wake up the car
+     * @param string $requestUrl
      * @return array
      * @throws Exception
      */
-    public function postWakeUp(): array {
+    public function postWakeUp(string $requestUrl): array {
 
-        return $this->makeAPIRequest($this->idCar, "wake_up" , "POST", array());
+        $ch = curl_init();
+
+        if ($ch === false) {
+            throw new Exception('failed to initialize');
+        }
+
+        curl_setopt($ch, CURLOPT_URL, $requestUrl);
+
+        $headers = [
+            0 => 'Content-Type: application/json; charset=utf-8',
+            1 => "Authorization: Bearer {$this->token}"
+        ];
+//       $headers[] = 'Content-Type: application/json; charset=utf-8';
+//       $headers[] = "Authorization: Bearer {$this->token}";
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+
+        try {
+            $result = curl_exec($ch);
+        } catch (Exception $e) {
+            var_dump($e->getCode() . " " . $e->getMessage());
+        } finally {
+            curl_close($ch);
+            if(json_decode($result, true) === null) return [];
+            return json_decode($result, true);
+        }
 
     }
 
