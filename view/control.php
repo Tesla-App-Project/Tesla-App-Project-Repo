@@ -42,14 +42,19 @@
     </section>
 
     <section class="cacher-tablet">
-        <section class="horizontal-controle">
-            <p class="p-padding-l">Ouvrir</p>
-            <img class="voiture-controle" src="assets/images/voitureteslaHaut-horizontal.png" alt="voituretesla">
-            <img class="cadenasPos hover-img"  src="assets/images/cadenaslock.png" alt="cadenasLock" onclick="sendRequest('http://<?php echo $A_view['servAdresse'] ?>/index.php?url=DevTest/control_doors')">
-            <p class="p-padding-r">Ouvrir</p>
-        </section>
+        <div style="position: relative; display: flex; justify-content: center">
+
+            <img src="assets/images/voitureteslaHaut-horizontal.png" alt="voituretesla">
+
+            <div style="position: absolute; top: 0">
+                <button style="height: 2vh; width: 5vw">Ouvrir</button>
+                <img class="hover-img" src="assets/images/cadenaslock.png" alt="cadenasLock" onclick="sendRequest('http://<?php echo $A_view['servAdresse'] ?>/index.php?url=DevTest/control_doors')">
+                <button style="height: 2vh; width: 5vw">Ouvrir</button>
+            </div>
+
+        </div>
         <?php
-            echo !$A_view["isCharging"] ? "<img src='assets/images/ThunderLight.png' class='eclair' alt='eclairlogo'>" : "<img src='assets/images/Thunder.png' class='eclair' alt='eclairlogo'>";
+            echo $A_view["isCharging"] ? "<img src='assets/images/Thunder.png' class='eclair' alt='eclairlogo'>" : "<img src='assets/images/ThunderLight.png' class='eclair' alt='eclairlogo'>";
         ?>
     </section>
     <div>
