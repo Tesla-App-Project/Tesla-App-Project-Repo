@@ -1,6 +1,6 @@
 <?php
 
-class ControllerHome
+class ControllerHome extends ControllerAPI
 {
     public function defautAction()
     {
@@ -33,7 +33,11 @@ class ControllerHome
             ['title' => 'Accueil',
             'header' => 'HomeHeaderView',
             'content' => 'HomeView',
-            'footer' => 'HomeFooterView'];
+            'footer' => 'HomeFooterView',
+            'batteryPercent' => json_decode($this->_httpRequestHandler->callAPI('batteryLevelData'), true),
+            'climPercent' => $this->_httpRequestHandler->callAPI('getTemperatureData'),
+            'addressPosition' => (isset($response["address"]["house_number"]) ? $response["address"]["house_number"] . " " . $response["address"]["road"] . ", " . $response["address"]["city"] : isset($response["address"]["amenity"])) ? $response["address"]["amenity"] . " " . $response["address"]["road"] . ", " . $response["address"]["city"] : $response["address"]["road"] . ", " . $response["address"]["city"],
+            ];
         View::show('HomeView', $A_content);
 
         //View::show('template', $A_content);

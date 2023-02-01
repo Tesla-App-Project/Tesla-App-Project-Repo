@@ -22,8 +22,8 @@
   </header>
   <section class="fixed">
     <section class="flex_batterie">
-      <meter class="meter" min="0" max="100" value="50"></meter>
-      <p>71%</p>
+      <meter class="meter" min="0" max="100" value="<?php echo $A_view["batteryPercent"]["level"] ?>"></meter>
+      <p><?php echo $A_view["batteryPercent"]["level"] ?>%</p>
     </section>
     <p>Stationnée</p>
   </section>
@@ -92,7 +92,7 @@
                 <h3>Ventilation</h3>
                 <section style="display: flex; justify-content: start; align-items: center;">
                   <p id="OnText" style="color: #FFFFFF;" hidden>Active </p>
-                  <p id="InText">Interieur 23°C</p>
+                  <p id="InText">Interieur <?php echo $A_view['climPercent'] ?>°C</p>
                 </section>
               </div>
             </section>
@@ -107,7 +107,7 @@
               <img src="./assets/images/position.png" height="28%" width="28%">
               <div class="Flex_Text">
                 <h3>Position</h3>
-                <p>13 Rue Paul Guigou</p>
+                <p><?php echo $A_view["addressPosition"] ?></p>
               </div>
             </section>
             <img class="button-arrow" src="./assets/images/suivant.png" height="25px">
