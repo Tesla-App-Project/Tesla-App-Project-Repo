@@ -1,6 +1,6 @@
 
 function ConnexionOnClick() {
-  if (document.getElementById("ConnexionButton").srcset == "./assets/images/Connexion.png") {
+  if (document.getElementById("ConnexionButton").srcset === "./assets/images/Connexion.png") {
     document.getElementById("ConnexionButton").srcset = "./assets/images/ConnexionRed.png";
     document.getElementById("littleRedConnexion").hidden = false;
   } else {
@@ -10,7 +10,7 @@ function ConnexionOnClick() {
 }
 
 function FanOnClick() {
-  if (document.getElementById("FanButton").srcset == "./assets/images/Fan.png") {
+  if (document.getElementById("FanButton").srcset === "./assets/images/Fan.png") {
     document.getElementById("FanButton").srcset = "./assets/images/FanLight.png";
     document.getElementById("OnText").hidden = false;
 
@@ -27,7 +27,7 @@ function FanOnClick() {
 }
 
 function ElecOnClick() {
-  if (document.getElementById("ElecBouton").srcset == "./assets/images/Thunder.png") {
+  if (document.getElementById("ElecBouton").srcset === "./assets/images/Thunder.png") {
     document.getElementById("ElecBouton").srcset = "./assets/images/ThunderLight.png";
     document.getElementById("Elec_Aff").hidden = false;
   } else {
@@ -37,7 +37,7 @@ function ElecOnClick() {
 }
 
 function ChestOnClick() {
-  if (document.getElementById("simone").srcset == "./assets/images/voiture.png") {
+  if (document.getElementById("simone").srcset === "./assets/images/voiture.png") {
     document.getElementById("simone").srcset = "./assets/images/voiture1.png";
   } else {
     document.getElementById("simone").srcset = "./assets/images/voiture.png";
@@ -45,7 +45,7 @@ function ChestOnClick() {
 }
 
 function LeftButtonOnClick() {
-  str = document.getElementById("number").innerHTML;
+  let str = document.getElementById("number").innerHTML;
   str = str.substring(0, str.length - 2);
 
   if (str > 0) { str--; }
@@ -58,7 +58,7 @@ function LeftButtonOnClick() {
 }
 
 function RightButtonOnClick() {
-  str = document.getElementById("number").innerHTML;
+  let str = document.getElementById("number").innerHTML;
   str = str.substring(0, str.length - 2);
 
   if (str < 16) { str++; }

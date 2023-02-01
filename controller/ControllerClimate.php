@@ -4,6 +4,14 @@ use JetBrains\PhpStorm\Pure;
 
 class ControllerClimate extends ControllerAPI
 {
+
+    /**
+     * @return void
+     */
+    public function defautAction() : void {
+        View::show("fan", []);
+    }
+
     /**
      * @API_route /api/1/vehicles/id_vehicle/data_request/climate_state
      * @return void

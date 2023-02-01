@@ -9,7 +9,16 @@ class ControllerOtherControls extends ControllerAPI
      * @return void
      */
     public function defautAction() : void {
-        $A_content = ['header' => 'test', 'content' => 'OtherControlsView', 'footer' => 'test', 'servAdresse' => "localhost:8080", 'isCharging' => $this->_httpRequestHandler->callAPI('isCharging')];
+        $A_content = [
+            'header' => 'test',
+            'content' => 'OtherControlsView',
+            'footer' => 'test',
+            'servAdresse' => $this->servAdresse,
+            'isCharging' => $this->_httpRequestHandler->callAPI('isCharging'),
+            'isFrontTrunkOpen' => $this->_httpRequestHandler->callAPI('isTrunkOpen', ['whichTrunk' => 'front']),
+            'isRearTrunkOpen' => $this->_httpRequestHandler->callAPI('isTrunkOpen', ['whichTrunk' => 'rear']),
+            'isVehicleLocked' => $this->_httpRequestHandler->callAPI('isVehicleLocked'),
+        ];
         View::show('control', $A_content);
     }
 

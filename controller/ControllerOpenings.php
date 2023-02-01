@@ -6,11 +6,19 @@ class ControllerOpenings extends ControllerAPI
 {
     //TODO : Rename this function when locking and unlocking routes are used together
     /**
-     * @API_route /api/1/vehicles/id_vehicle/command/door_lock | /api/1/vehicles/id_vehicle/command/door_unlock
+     * @API_route /api/1/vehicles/id_vehicle/command/door_lock
      * @return void
      */
     public function postActuateDoorLockAction() : void {
-        echo $this->_httpRequestHandler->callAPI('postActuateDoorLock');
+        echo $this->_httpRequestHandler->callAPI('postDoorLock');
+    }
+
+    /**
+     * @API_route /api/1/vehicles/id_vehicle/command/door_unlock
+     * @return void
+     */
+    public function postActuateDoorUnlockAction() : void {
+        echo $this->_httpRequestHandler->callAPI('postDoorUnlock');
     }
 
     /**

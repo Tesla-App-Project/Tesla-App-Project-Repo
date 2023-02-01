@@ -21,7 +21,7 @@
 <body>
   <header>
       <section class="header-section-control">
-          <a href="index.php?url=DevTest/index"><img class="header-arrow hover-img" src="assets/images/symbole-fleche-droite-noir.png" alt="Retour"></a>
+          <a href="/Home"><img class="header-arrow hover-img" src="assets/images/symbole-fleche-droite-noir.png" alt="Retour"></a>
           <h1>Position</h1>
       </section>
   </header>

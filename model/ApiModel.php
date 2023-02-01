@@ -217,6 +217,13 @@ class ApiModel
     }
 
     /**
+     * @return int
+     */
+    public function getTemperatureData(): int {
+        return $this->makeAPIRequest($this->idCar, "data_request/climate_state", "GET", array())["response"]["inside_temp"];
+    }
+
+    /**
      * @return array
      */
     public function getDriveStateData(): array {
@@ -533,13 +540,13 @@ class ApiModel
 
 
     /**
-     * @param string $chosenTrunk choose if front or rear
+     * @param array $chosenTrunk choose if front or rear
      * @return bool
      */
-    public function isTrunkOpen(string $chosenTrunk): bool {
+    public function isTrunkOpen(array $chosenTrunk): bool {
         $result = $this->getAllData();
         $convert = ["front" => "ft", "rear" => "rt"];
-        return !!$result["response"]["vehicle_state"][$convert[$chosenTrunk]];
+        return !!$result["response"]["vehicle_state"][$convert[$chosenTrunk[0]["whichTrunk"]]];
     }
 
 

@@ -7,33 +7,11 @@
 </head>
 
 <body>
-<script>
-
-    function sendRequest(url){
-        const req = new XMLHttpRequest()
-        req.open("GET", url)
-        req.setRequestHeader("Accept", "application/json")
-        req.setRequestHeader("Content-Type", "application/json")
-
-        req.onreadystatechange = () => {
-            if(req.readyState === 4) {
-                console.log(req.responseText)
-                const res = JSON.parse(req.responseText)
-                if(res?.result){
-                    return window.alert(`Action : ${req.responseURL} réalisé avec succes`)
-                }
-                return window.alert(`Erreur mdr`)
-            }
-        }
-
-        req.send()
-
-    }
-</script>
+<script defer src="httprequest.js"></script>
 <header>
     <section class="box-controle" >
         <nav class="rotateArrow">
-            <a href="index.php?url=DevTest/index"><img class="hover-img" src="assets/images/symbole-fleche-droite-noir.png" height="40" width="40" alt="cerclelogo"></a>
+            <a href="/Home"><img class="hover-img" src="assets/images/symbole-fleche-droite-noir.png" height="40" width="40" alt="cerclelogo"></a>
         </nav>
     </section>
 
@@ -42,14 +20,30 @@
     </section>
 
     <section class="cacher-tablet">
-        <div style="position: relative; display: flex; justify-content: center">
+        <div class="carControlContainer">
 
             <img src="assets/images/voitureteslaHaut-horizontal.png" alt="voituretesla">
 
-            <div style="position: absolute; top: 0">
-                <button style="height: 2vh; width: 5vw">Ouvrir</button>
-                <img class="hover-img" src="assets/images/cadenaslock.png" alt="cadenasLock" onclick="sendRequest('http://<?php echo $A_view['servAdresse'] ?>/index.php?url=DevTest/control_doors')">
-                <button style="height: 2vh; width: 5vw">Ouvrir</button>
+            <div class="buttonContainer">
+
+                <label for="openRear" class="label-open" id="openRearLabel">
+                    <?php
+                        /** @var array $A_view */
+                        echo $A_view["isRearTrunkOpen"] ? "Ouvrir" : "Fermer"
+                    ?>
+                </label>
+
+                <button id="openRear" style="display: none" onclick="sendRequest('http://<?php echo $A_view['servAdresse'] ?>/index.php?url=Openings/postActuateTrunk/rear')"></button>
+
+                <img class="cadenasLock hover-img" src="assets/images/cadenaslock.png" alt="cadenasLock" onclick="sendRequest('http://<?php echo $A_view['servAdresse'] ?>/index.php?url=Openings/postActuateDoor<?php echo $A_view["isVehicleLocked"] ? "Unlock" : "Lock" ?>')">
+
+                <label for="openFront" class="label-open" id="openFrontLabel">
+                    <?php
+                        echo $A_view["isFrontTrunkOpen"] ? "Ouvrir" : "Fermer"
+                    ?>
+                </label>
+                <button id="openFront" style="display: none"  onclick="sendRequest('http://<?php echo $A_view['servAdresse'] ?>/index.php?url=Openings/postActuateTrunk/front')"></button>
+
             </div>
 
         </div>
@@ -57,13 +51,6 @@
             echo $A_view["isCharging"] ? "<img src='assets/images/Thunder.png' class='eclair' alt='eclairlogo'>" : "<img src='assets/images/ThunderLight.png' class='eclair' alt='eclairlogo'>";
         ?>
     </section>
-    <div>
-        <button onclick="sendRequest('http://<?php echo $A_view['servAdresse'] ?>/index.php?url=Openings/postActuateTrunk/front')">
-        </button>
-        <button onclick="sendRequest('http://<?php echo $A_view['servAdresse'] ?>/index.php?url=Openings/postActuateTrunk/rear')">
-            Ouvrir
-        </button>
-    </div>
     <section class="cacher">
         <section class="vertical-controle">
             <p class="p-padding-h">Ouvrir</p>

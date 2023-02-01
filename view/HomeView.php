@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="fr">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,6 +11,9 @@
 </head>
 
 <body>
+<?php
+    /** @var array $A_view */
+?>
   <header class="menu sticky">
     <h1>Simone</h1>
     <nav>
@@ -70,7 +72,7 @@
       <ul>
         <!-- Contrôles -->
         <li>
-          <button class="Flex_Button" onClick='window.location.href = "/index.php?url=OtherControls";'>
+          <a class="Flex_Button" href="/OtherControls">
             <section class="Flex_Cadre">
               <img src="./assets/images/controle.png" height="28%" width="28%">
               <div class="Flex_Text">
@@ -78,12 +80,12 @@
               </div>
             </section>
             <img class="button-arrow" src="./assets/images/suivant.png" height="25px">
-          </button>
+          </a>
         </li>
 
         <!-- Ventilation -->
         <li>
-          <button class="Flex_Button" onClick='window.location.href = "/fan.php";'>
+          <a class="Flex_Button" href="/Climate">
             <section class="Flex_Cadre">
               <img src="./assets/images/Fan.png" height="28%" width="28%">
               <div class="Flex_Text">
@@ -95,12 +97,12 @@
               </div>
             </section>
             <img class="button-arrow" src="./assets/images/suivant.png" height="25px">
-          </button>
+          </a>
         </li>
 
         <!-- Position -->
         <li>
-          <button class="Flex_Button" onClick='window.location.href = "/position.php";'>
+          <a class="Flex_Button" href="/Service">
             <section class="Flex_Cadre">
               <img src="./assets/images/position.png" height="28%" width="28%">
               <div class="Flex_Text">
@@ -109,12 +111,12 @@
               </div>
             </section>
             <img class="button-arrow" src="./assets/images/suivant.png" height="25px">
-          </button>
+          </a>
         </li>
 
         <!-- Planifier -->
         <li>
-          <button class="Flex_Button" onClick='window.location.href = "/planning.php";'>
+          <a class="Flex_Button" href="/Planning">
             <section class="Flex_Cadre">
               <img src="./assets/images/planifier.png" height="28%" width="28%">
               <div class="Flex_Text">
@@ -122,12 +124,12 @@
               </div>
             </section>
             <img class="button-arrow" src="./assets/images/suivant.png" height="25px">
-          </button>
+          </a>
         </li>
 
         <!-- Sécurité et conducteurs -->
         <li>
-          <button class="Flex_Button" onClick='window.location.href = "/#";'>
+          <a class="Flex_Button" href="/Security">
             <section class="Flex_Cadre">
               <img src="./assets/images/securite.png" height="28%" width="28%">
               <div class="Flex_Text">
@@ -139,12 +141,12 @@
               </div>
             </section>
             <img class="button-arrow" src="./assets/images/suivant.png" height="25px">
-          </button>
+          </a>
         </li>
 
         <!-- Stats recharge -->
         <li>
-          <button class="Flex_Button" onClick='window.location.href = "/stats_reload.php";'>
+          <a class="Flex_Button" href="/Stats">
             <section class="Flex_Cadre">
               <img src="./assets/images/statsrecharge.png" height="28%" width="28%">
               <div class="Flex_Text">
@@ -152,12 +154,12 @@
               </div>
             </section>
             <img class="button-arrow" src="./assets/images/suivant.png" height="25px">
-          </button>
+          </a>
         </li>
 
         <!-- Mises à niveau -->
         <li>
-          <button class="Flex_Button" onClick='window.location.href = "/#";'>
+          <a class="Flex_Button" href="/Update">
             <section class="Flex_Cadre">
               <img src="./assets/images/miseaniveau.png" height="28%" width="28%">
               <div class="Flex_Text">
@@ -165,12 +167,12 @@
               </div>
             </section>
             <img class="button-arrow" src="./assets/images/suivant.png" height="25px">
-          </button>
+          </a>
         </li>
 
         <!-- Service -->
         <li>
-          <button class="Flex_Button" onClick='window.location.href = "/#";'>
+          <a class="Flex_Button" href="/Service">
             <section class="Flex_Cadre">
               <img src="./assets/images/service.png" height="28%" width="28%">
               <div class="Flex_Text">
@@ -178,7 +180,7 @@
               </div>
             </section>
             <img class="button-arrow" src="./assets/images/suivant.png" height="25px">
-          </button>
+          </a>
         </li>
 
       </ul>
