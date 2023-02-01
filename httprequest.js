@@ -27,13 +27,13 @@ function sendRequest(url){
             const res = JSON.parse(req.responseText)
             if(res?.result){
                 //window.alert(`Action : ${req.responseURL} réalisé avec succes ${res?.result}`)
-                switch (req.responseURL) {
-                    case "http://teslaapp/index.php?url=Openings/postActuateTrunk/rear":
+                switch (true) {
+                    case req.responseURL.includes("Openings/postActuateTrunk/rear"):
                         if(res?.result) {
                             document.querySelector("#openRearLabel").innerText === "OUVRIR" ? document.querySelector("#openRearLabel").innerText = "FERMER" : document.querySelector("#openRearLabel").innerText = "OUVRIR"
                         }
                         break
-                    case "http://teslaapp/index.php?url=Openings/postActuateTrunk/front":
+                    case req.responseURL.includes("Openings/postActuateTrunk/front"):
                         if(res?.result) {
                             document.querySelector("#openFrontLabel").innerText === "OUVRIR" ? document.querySelector("#openFrontLabel").innerText = "FERMER" : document.querySelector("#openFrontLabel").innerText = "OUVRIR"
                         }
