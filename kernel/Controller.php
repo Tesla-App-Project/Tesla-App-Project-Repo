@@ -57,8 +57,6 @@ final class Controller
     public function execute()
     {
         if (!class_exists($this->_A_dissectUrl['controller'])) {
-            header('Location: /404.html');
-            exit();
             throw new ControllerException($this->_A_dissectUrl['controller'] . " n'est pas un controleur valide.");
         }
 

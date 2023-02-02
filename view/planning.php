@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-  <link href="./assets/css/style.css" rel="stylesheet">
-  <link href="./assets/css/planning.css" rel="stylesheet">
+  <link href="./assets/css/style.scss" rel="stylesheet">
+  <link href="./assets/css/planning.scss" rel="stylesheet">
   <script src="./assets/js/script.js"></script>
   <title>Planning</title>
 </head>
@@ -15,7 +15,7 @@
 <body>
   <header>
       <section class="header-section-control">
-          <a href="index.php?url=DevTest/index"><img class="header-arrow hover-img" src="assets/images/symbole-fleche-droite-noir.png" alt="Retour"></a>
+          <a href="./index.html"><img class="header-arrow hover-img" src="assets/images/symbole-fleche-droite-noir.png" alt="Retour"></a>
           <h1>Planning</h1>
       </section>
   </header>

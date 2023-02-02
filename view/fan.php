@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Ventilation</title>
+<!--     <link rel="stylesheet" href="./assets/css/fan.scss"> -->
     <link rel="stylesheet" href="./assets/css/fan.css">
 </head>
 
@@ -10,11 +11,17 @@
   <main>
     <section class="tempBod">
       <h2 class="deleteTitle">Voiture et puissance de la ventilation</h2>
-      <img src="./assets/images/seat-heat/no_heat.png" id="img-seat-heat-l" onclick="onClickChangeImage()" alt="">
-      <img src="./assets/images/seat-heat/no_heat.png" id="img-seat-heat-r" onclick="onClickChangeImage2()" alt="">
+      
+      <section class="heat-button">
+        <img src="./assets/images/seat-heat/no_heat.png" id="img-seat-heat-l" onclick="onClickChangeImage()" alt="">
+        <small>Auto</small>
+        <img src="./assets/images/seat-heat/no_heat.png" id="img-seat-heat-r" onclick="onClickChangeImage2()" alt="">
+        <small>Auto</small>
+      </section>
+      
       <img src="./assets/images/interior_view_tesla.png" class="model3Int" alt="">
       <input type="image" onclick="history.back()" class="return hover-img" alt="return" src="./assets/images/symbole-fleche-droite-noir.png">
-
+      
     </section>
     <br><br>
     <section class="tempCont">

@@ -1,8 +1,8 @@
 body {
-  background-color: #161718;
-  color: aliceblue;
-  margin-left: 3%;
-  margin-right: 3%; }
+  background-color: #898524;
+  margin: 10px;
+  border: none;
+  vertical-align: top; }
 
 h1 {
   color: #F3F3F3;
@@ -149,8 +149,7 @@ li.infos {
 footer hr {
   /* top | right | bottom | left */
   margin: 1.5rem 2.5rem 1rem 2.5rem;
-  border-top: 3px solid white;
-  bottom: 0; }
+  border-top: 3px solid white; }
 
 footer img {
   display: flex;
