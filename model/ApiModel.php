@@ -14,8 +14,8 @@ class ApiModel
         //data from the .env
         $config = [
             'tokens' => [
-                'devToken' => $_ENV['DEV_TOKEN'],
-                'prodToken' => $_ENV['PROD_TOKEN'],
+                'devToken' => $_ENV['DEV_TOKEN'] ?? 'TOKEN',
+                'prodToken' => $_ENV['PROD_TOKEN'] ?? 'TOKEN',
             ]
         ];
 

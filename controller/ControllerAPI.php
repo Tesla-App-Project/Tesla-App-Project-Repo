@@ -14,7 +14,24 @@ abstract class ControllerAPI
         //$_SESSION['user_id']
         //$user = new User();
         //$token =
-        $this->servAdresse = $_ENV["SERV_ADRESSE"];
+        //
+        //recuperer le base url du serveur
+        if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+            $url = "https";
+        else
+            $url = "http";
+
+        // Ajoutez // à l'URL.
+        $url .= "://";
+
+        // Ajoutez l'hôte (nom de domaine, ip) à l'URL.
+        $url .= $_SERVER['HTTP_HOST'];
+
+        // Ajouter l'emplacement de la ressource demandée à l'URL
+        $url .= $_SERVER['REQUEST_URI'];
+
+        $this->servAdresse = $url;
+        //$this->servAdresse = $_ENV["SERV_ADRESSE"];
         $this->_httpRequestHandler = new HttpRequestHandlerModel("letokendelatesla");
     }
 }
