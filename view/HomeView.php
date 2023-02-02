@@ -23,7 +23,7 @@
   <section class="fixed">
     <section class="flex_batterie">
       <meter class="meter" min="0" max="100" value="<?php echo $A_view["batteryPercent"]["level"] ?>"></meter>
-      <p><?php echo $A_view["batteryPercent"]["level"] ?>%</p>
+      <p style="margin-left: 1rem"><?php echo $A_view["batteryPercent"]["level"] ?>%</p>
     </section>
     <p>Stationnée</p>
   </section>
@@ -191,6 +191,14 @@
     <hr>
     <img src="./assets/images/model3-logo.png" alt="Model3 Title">
   </footer>
+  <script>
+      <?php if ($A_view["batteryPercent"]["level"] < 20) { ?>
+        document.querySelector(".meter::-webkit-meter-optimum-value").style.backgroundColor = "red";
+      <?php } else { ?>
+        document.querySelector(".meter::-webkit-meter-optimum-value").style.backgroundColor = "green";
+      <?php } ?>
+
+  </script>
   <script async src="httprequest.js"></script>
 </body>
 
