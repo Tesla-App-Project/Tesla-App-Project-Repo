@@ -19,6 +19,7 @@ Configurer votre base de données (via .env)
 - Copier, coller ".env.example"
 - Modifier le nom en ".env"
 - Modifier les données du .env, selon la configuration de votre base de données
+- Veillez à bien ajouter les variables d'environnement dans votre fichier .env (DEV_TOKEN, PROD_TOKEN...)
 
 Migration :
 
