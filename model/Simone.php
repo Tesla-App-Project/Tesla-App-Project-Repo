@@ -5,6 +5,6 @@ final class Simone
     public function giveMessage()
     {
         //Default
-        print_r('Default');
+        //print_r('Default');
     }
 }

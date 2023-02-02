@@ -1,6 +1,26 @@
 .hover-img:hover {
   filter: invert(0%) sepia(93%) saturate(0%) hue-rotate(335deg) brightness(150%) contrast(108%); }
 
+body {
+  background-color: #171717;
+  font-family: Arial, Helvetica, sans-serif; }
+
+h1 {
+  color: #f3f3f3;
+  grid-column-start: 1;
+  grid-row-start: 1;
+  font-size: 1.5rem;
+  justify-self: flex-start;
+  align-self: flex-end; }
+
+h2 {
+  font-size: 0px;
+  position: relative;
+  left: -9000px; }
+
+p {
+  color: #8b8b8b; }
+
 .header-section-control {
   display: flex;
   justify-content: center;

@@ -1,18 +1,17 @@
 <?php
 
-class ControllerService
-{
-    private HttpRequestHandlerModel $_httpRequestHandler;
+use JetBrains\PhpStorm\Pure;
 
-    public function __construct()
-    {
-        $this->_httpRequestHandler = new HttpRequestHandlerModel();
+class ControllerService extends ControllerAPI
+{
+
+    public function defautAction() : void {
+        View::show("position", []);
     }
 
     /**
      * @API_route /api/1/vehicles/id_vehicle/service_data
      * @return void
-     * @throws Exception
      */
     public function getServiceDataAction() : void {
         echo $this->_httpRequestHandler->callAPI('getServiceData', true);

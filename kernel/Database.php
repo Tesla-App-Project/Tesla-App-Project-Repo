@@ -1,8 +1,6 @@
 <?php
 
-
 require_once __DIR__ . '/../vendor/autoload.php';
-
 
 final class Database
 {
@@ -41,9 +39,8 @@ final class Database
         return $S_base;
     }
 
-    // TODO : pb d'affichage de retour de la valeur
-    //GET - exemple : $users = $db->queryGetAction(1, ['pseudo', 'other'], 'user');
-    public function queryGetAction(int $id, array $keyValueMap, string $table)
+    //GET :
+    public function queryGetAction(array $keyValueMap, string $table)
     {
         try {
             $S_base = new PDO($this->dsn, $this->user, $this->password);
@@ -62,20 +59,16 @@ final class Database
         $preparedStatementExpression = join(',', $preparedStatementExpressionArray);
         $preparedStatementData = join(',', $preparedStatementExpressionArray);
 
-        $statement = $S_base->prepare("SELECT $preparedStatementData FROM $table WHERE id= {$id};");
-        var_dump($statement);
+        $statement = $S_base->prepare("SELECT $preparedStatementData FROM $table;");
+
         $statement->execute($values);
-        $A_selection = $statement->fetchAll();
-        var_dump($A_selection);
-        // $A_selection = $S_base->query("SELECT " . $query . " FROM ". $table ." WHERE id = '" . $id . "'");
-        // var_dump($A_selection);
-        // while ($data = $A_selection->fetch(PDO::FETCH_ASSOC)) {
-        //     return $data;
-        // }
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
+
+        return $statement->fetch();
     }
 
 
-    //UPDATE - exemple : return $db->queryUpdateAction(1, [['pseudo' => 'Toto'], ['other' => 'Mimi']], 'user');
+    //UPDATE :
     public function queryUpdateAction(int $id, array $keyValueMap, string $table)
     {
         try {
@@ -87,6 +80,8 @@ final class Database
 
         $keys = array_keys($keyValueMap);
         $values = array_values($keyValueMap);
+
+        ControllerException::formError($keyValueMap);
 
         $preparedStatementExpressionArray = array_map(
             fn (string $keyName) => "{$keyName} = ?",
@@ -102,7 +97,7 @@ final class Database
     }
 
 
-    //CREATE - exemple :
+    //CREATE :
     public function queryCreateAction(array $keyValueMap, string $table)
     {
         try {
@@ -115,79 +110,6 @@ final class Database
 
         $keys = array_keys($keyValueMap);
         $values = array_values($keyValueMap);
-
-
-        //==========DEBUT TEST FORMULAIRE============
-        if (isset($keyValueMap['email'])) {
-            if (filter_var($keyValueMap['email'], FILTER_VALIDATE_EMAIL)) {
-            } else {
-                echo "Sorry! Invalid Email Format!";
-                die;
-            }
-        }
-
-        if (isset($keyValueMap['password'])) {
-            if (strlen($keyValueMap['password']) >= 8) {
-            } else {
-                echo "Sorry! Password too short!";
-                die;
-            }
-        }
-
-        $illegalusername = "#$%^&*()+=[]';,./{}|:<>?!~ ";
-
-        if (isset($keyValueMap['username'])) {
-            if (strlen($keyValueMap['username']) >= 2) {
-                if (strpbrk($keyValueMap['username'], $illegalusername)) {
-                    echo "No special characters allowed!";
-                    die;
-                }
-            } else {
-                echo "Sorry! Username too short!";
-                die;
-            }
-        }
-
-        $illegalname = "#$%^&*()+=[]';,./{}|:<>?!~";
-
-        if (isset($keyValueMap['firstname'])) {
-            if (strlen($keyValueMap['firstname']) >= 1) {
-                if (strpbrk($keyValueMap['firstname'], $illegalname)) {
-                    echo "No special characters allowed!";
-                    die;
-                }
-            } else {
-                echo "Sorry! First Name too short!";
-                die;
-            }
-        }
-
-        if (isset($keyValueMap['lastname'])) {
-            if (strlen($keyValueMap['lastname']) >= 1) {
-                if (strpbrk($keyValueMap['lastname'], $illegalname)) {
-                    echo "No special characters allowed!";
-                    die;
-                }
-            } else {
-                echo "Sorry! Last Name too short!";
-                die;
-            }
-        }
-
-        $illegaltoken = " ";
-
-        if (isset($keyValueMap['token'])) {
-            if (strlen($keyValueMap['token']) >= 1) {
-                if (strpbrk($keyValueMap['token'], $illegaltoken)) {
-                    echo "No space allowed!";
-                    die;
-                }
-            } else {
-                echo "Sorry! Token too short!";
-                die;
-            }
-        }
-        //==========FIN TEST FORMULAIRE============
 
         $preparedStatementExpressionArray = array_map(
             fn (string $keyName) => "{$keyName} = ?",
@@ -202,7 +124,7 @@ final class Database
     }
 
 
-    // DELETE - exemple :
+    // DELETE :
     public function queryDeleteAction(int $id, string $table)
     {
         try {

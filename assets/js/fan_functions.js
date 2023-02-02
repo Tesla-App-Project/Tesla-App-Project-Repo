@@ -27,7 +27,7 @@ function changeVentilateButton() {
 }
 
 function onClickLeftButton() {
-  str = document.getElementById("number").innerHTML;
+  let str = document.getElementById("number").innerHTML;
   str = str.substring(0, str.length - 2);
 
   if (str > 10) { str--; }
@@ -40,7 +40,7 @@ function onClickLeftButton() {
 }
 
 function onClickRightButton() {
-  str = document.getElementById("number").innerHTML;
+  let str = document.getElementById("number").innerHTML;
   str = str.substring(0, str.length - 2);
 
   if (str < 30) { str++; }

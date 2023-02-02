@@ -118,18 +118,25 @@ class ApiModel
             throw new Exception('failed to initialize');
         }
 
+        $wakeUp = $this->postWakeUp('http://78.123.242.51:25000/api/1/vehicles/' . $requestIdCar . '/wake_up');
+
+        if(($wakeUp["response"]["id"] ?? "") != $requestIdCar) {
+            throw new Exception("failed to wake up car");
+        }
+
         curl_setopt($ch, CURLOPT_URL, $urlRequest);
 
         // Bearer token and data type
 
-        $headers = [];
-        $headers[] = 'Content-Type: application/json; charset=utf-8';
-        $headers[] = "Authorization: Bearer {$this->token}";
+        $headers = [
+            0 => 'Content-Type: application/json; charset=utf-8',
+            1 => "Authorization: Bearer {$this->token}",
+        ];
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $requestType);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $requestBody);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($requestBody));
 
         try {
             $result = curl_exec($ch);
@@ -210,6 +217,13 @@ class ApiModel
     }
 
     /**
+     * @return int
+     */
+    public function getTemperatureData(): int {
+        return $this->makeAPIRequest($this->idCar, "data_request/climate_state", "GET", array())["response"]["inside_temp"];
+    }
+
+    /**
      * @return array
      */
     public function getDriveStateData(): array {
@@ -242,22 +256,51 @@ class ApiModel
     // <------------------- POST methods ------------------->
 
     /**
+     * Allows you to wake up the car
+     * @param string $requestUrl
      * @return array
      * @throws Exception
      */
-    public function postWakeUp(): array {
+    public function postWakeUp(string $requestUrl): array {
 
-        return $this->makeAPIRequest($this->idCar, "wake_up" , "POST", array());
+        $ch = curl_init();
+
+        if ($ch === false) {
+            throw new Exception('failed to initialize');
+        }
+
+        curl_setopt($ch, CURLOPT_URL, $requestUrl);
+
+        $headers = [
+            0 => 'Content-Type: application/json; charset=utf-8',
+            1 => "Authorization: Bearer {$this->token}"
+        ];
+//       $headers[] = 'Content-Type: application/json; charset=utf-8';
+//       $headers[] = "Authorization: Bearer {$this->token}";
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+
+        try {
+            $result = curl_exec($ch);
+        } catch (Exception $e) {
+            var_dump($e->getCode() . " " . $e->getMessage());
+        } finally {
+            curl_close($ch);
+            if(json_decode($result, true) === null) return [];
+            return json_decode($result, true);
+        }
 
     }
 
     /**
      * @return array
-     * @param string $chosenTrunk choose if front or rear
+     * @param array $chosenTrunk choose if front or rear
      */
-    public function postActuateTrunk(string $chosenTrunk): array {
+    public function postActuateTrunk(array $params): array {
 
-        $result = $this->makeAPIRequest($this->idCar, "command/actuate_trunk?which_trunk={$chosenTrunk}" , "POST", array("which_trunk" => $chosenTrunk));
+        $result = $this->makeAPIRequest($this->idCar, "command/actuate_trunk" , "POST", array("which_trunk" => $params[0][2]));
         return array("result" => $result["response"]["result"],"reason" => $result["response"]["reason"]);
 
     }
@@ -497,13 +540,13 @@ class ApiModel
 
 
     /**
-     * @param string $chosenTrunk choose if front or rear
+     * @param array $chosenTrunk choose if front or rear
      * @return bool
      */
-    public function isTrunkOpen(string $chosenTrunk): bool {
+    public function isTrunkOpen(array $chosenTrunk): bool {
         $result = $this->getAllData();
         $convert = ["front" => "ft", "rear" => "rt"];
-        return !!$result["response"]["vehicle_state"][$convert[$chosenTrunk]];
+        return !!$result["response"]["vehicle_state"][$convert[$chosenTrunk[0]["whichTrunk"]]];
     }
 
 
