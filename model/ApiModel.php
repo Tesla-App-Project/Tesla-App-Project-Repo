@@ -198,13 +198,6 @@ class ApiModel
     /**
      * @return array
      */
-    public function getAllDataLegacy(): array {
-        return $this->makeAPIRequest($this->idCar, "data", "GET", array());
-    }
-
-    /**
-     * @return array
-     */
     public function getChargeStateData(): array {
         return $this->makeAPIRequest($this->idCar, "data_request/charge_state", "GET", array());
     }
