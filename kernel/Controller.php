@@ -65,6 +65,8 @@ final class Controller
         }
 
         if (!method_exists($this->_A_dissectUrl['controller'], $this->_A_dissectUrl['action'])) {
+            header('Location: /404.html');
+            exit();
             throw new ControllerException($this->_A_dissectUrl['action'] . " du contrôleur " .
                 $this->_A_dissectUrl['controller'] . " n'est pas une action valide.");
         }
