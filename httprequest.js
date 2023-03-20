@@ -14,3 +14,8 @@ function consoleLogAjaxResponse(method, url){
     ajaxCall.open(method, url, true);
     ajaxCall.send();
 }
+
+
+//consoleLogAjaxResponse(GET, url_getcharge)
+//Traite la valeur de retour
+////consoleLogAjaxResponse(GET, url_postcharge)

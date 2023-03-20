@@ -5,12 +5,13 @@ require_once ($filepath."/../kernel/DatabaseUser.php");
 
 final class UserModel
 {
-    public function updateUser($user_mail,$user_first_name,$user_username,$lastname)
+
+    public function updateUser($user_mail,$user_first_name,$user_username,$lastname,$id)
     {
         $db = new DatabaseUser();
         //UPDATE user
 
-        $db->queryUpdateUserAction(['email' => $user_mail, 'firstname' => $user_first_name,'username'=>$user_username,'lastname' => $lastname]);
+        $db->queryUpdateUserAction(['email' => $user_mail, 'firstname' => $user_first_name,'username'=>$user_username,'lastname' => $lastname,'id'=>$id]);
     }
 
     public function getUser($user_mail,$user_password)
@@ -38,6 +39,11 @@ final class UserModel
         );
 
     }
-
+    public function deletUser($id)
+    {
+        $db = new DatabaseUser();
+        //DELETE user
+        $users = $db->queryDeleteUserAction(['id'=>$id]);
+    }
 }
 
