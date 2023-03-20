@@ -16,14 +16,14 @@ final class Database
         //data from the .env
         $config = [
             'db' => [
-                'dsn' => $_ENV['DB_DSN'],
-                'user' => $_ENV['DB_USER'],
-                'password' => $_ENV['DB_PASSWORD'],
+                'dsn'       => $_ENV['DB_DSN'],
+                'user'      => $_ENV['DB_USER'],
+                'password'  => $_ENV['DB_PASSWORD'],
             ]
         ];
 
-        $this->dsn = $config['db']['dsn'] ?? '';
-        $this->user = $config['db']['user'] ?? '';
+        $this->dsn      = $config['db']['dsn'] ?? '';
+        $this->user     = $config['db']['user'] ?? '';
         $this->password = $config['db']['password'] ?? '';
     }
 
@@ -39,7 +39,8 @@ final class Database
         return $S_base;
     }
 
-    //GET :
+    // TODO : pb d'affichage de retour de la valeur
+    //GET - exemple : $users = $db->queryGetAction(1, ['pseudo', 'other'], 'user');
     public function queryGetAction(array $keyValueMap, string $table)
     {
         try {
@@ -56,15 +57,26 @@ final class Database
             fn (string $keyName) => "{$keyName} = ?",
             $keys,
         );
-        $preparedStatementExpression = join(',', $preparedStatementExpressionArray);
-        $preparedStatementData = join(',', $preparedStatementExpressionArray);
+        $preparedStatementExpression = join(' AND ', $preparedStatementExpressionArray);
+        $preparedStatementData = join(' AND ', $preparedStatementExpressionArray);
 
-        $statement = $S_base->prepare("SELECT $preparedStatementData FROM $table;");
+        
+        $params = "";
+        foreach ($keys as $key => $element) {   
+            if ($key === array_key_last($keys)) {
+                $params = $params.$element;
+            }
+            else{
+                $params = $params.$element.", ";
+            }
+        }
+          
 
+        $statement = $S_base->prepare("SELECT $params FROM $table WHERE $preparedStatementData");
+        var_dump($statement);
         $statement->execute($values);
-        $statement->setFetchMode(PDO::FETCH_ASSOC);
-
-        return $statement->fetch();
+        $A_selection = $statement->fetchAll();
+        var_dump($A_selection);
     }
 
 
@@ -110,6 +122,11 @@ final class Database
 
         $keys = array_keys($keyValueMap);
         $values = array_values($keyValueMap);
+
+
+        //==========DEBUT TEST FORMULAIRE============
+        ControllerException::formError($keyValueMap);
+        //==========FIN TEST FORMULAIRE============
 
         $preparedStatementExpressionArray = array_map(
             fn (string $keyName) => "{$keyName} = ?",

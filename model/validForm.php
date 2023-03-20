@@ -1,10 +1,9 @@
 <?php
 
-final class Example
+final class validForm
 {
-    public function giveMessage()
+    public function signup()
     {
-        //EXAMPLE
 
         $db = new Database();
         //if that's not working read the README (you have to apply the migrations)
@@ -46,6 +45,7 @@ final class Example
         /**
          * CREATE ([['column'=>'value'], ['second column'=>'value']], table name)
          * **/
+
         
         $email = '';
         $username = '';
@@ -79,7 +79,7 @@ final class Example
           echo 'Please check the the captcha form.';
           exit;
         }
-        $secretKey = "6LeY9gQkAAAAAOMmNvu03Pd_USgNFjq3Pe-klC37";
+        $secretKey = $_ENV['CAPTCHA_SERVER_KEY'];
         $ip = $_SERVER['REMOTE_ADDR'];
         // post request to server
         $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($captcha);
@@ -95,7 +95,7 @@ final class Example
 
 
          
-        $users = $db->queryCreateAction(
+        $create = $db->queryCreateAction(
             [
                 //colum name / DATA
                 'email' => $email,
@@ -108,6 +108,54 @@ final class Example
             'users'
         );
 
+    }
+
+
+    public function login()
+    {
+
+        $db = new Database();
+
+        
+        $username = '';
+        $password = '';
+        $captcha = '';
+        if(isset($_POST['username'])){
+          $username=$_POST['username'];
+        }
+        if(isset($_POST['password'])){
+            $password=$_POST['password'];
+        }
+        if(isset($_POST['g-recaptcha-response'])){
+          $captcha=$_POST['g-recaptcha-response'];
+        }
+        if(!$captcha){
+          echo 'Please check the the captcha form.';
+          exit;
+        }
+        $secretKey = $_ENV['CAPTCHA_SERVER_KEY'];
+        $ip = $_SERVER['REMOTE_ADDR'];
+        // post request to server
+        $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($captcha);
+        $response = file_get_contents($url);
+        $responseKeys = json_decode($response,true);    
+        // should return JSON with success as true
+        if($responseKeys["success"]) {
+            var_dump('CAPTCHA SUCCESS');
+        } else {
+            var_dump('ERROR');
+        }
+         
+
+
+         
+        $get = $db->queryGetAction(
+            [
+                'username' => $username,
+                'password' => $password,
+            ],
+            'users'
+        );
 
         /**
          * DELETE (id, table name) //not working if you don't have the correspond data in you table

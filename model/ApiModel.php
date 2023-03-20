@@ -14,8 +14,8 @@ class ApiModel
         //data from the .env
         $config = [
             'tokens' => [
-                'devToken' => $_ENV['DEV_TOKEN'],
-                'prodToken' => $_ENV['PROD_TOKEN'],
+                'devToken' => $_ENV['DEV_TOKEN'] ?? 'TOKEN',
+                'prodToken' => $_ENV['PROD_TOKEN'] ?? 'TOKEN',
             ]
         ];
 
@@ -193,13 +193,6 @@ class ApiModel
      */
     public function getAllData(): array {
         return $this->makeAPIRequest($this->idCar, "vehicle_data", "GET", array());
-    }
-
-    /**
-     * @return array
-     */
-    public function getAllDataLegacy(): array {
-        return $this->makeAPIRequest($this->idCar, "data", "GET", array());
     }
 
     /**

@@ -19,6 +19,7 @@ Configurer votre base de données (via .env)
 - Copier, coller ".env.example"
 - Modifier le nom en ".env"
 - Modifier les données du .env, selon la configuration de votre base de données
+- Veillez à bien ajouter les variables d'environnement dans votre fichier .env (DEV_TOKEN, PROD_TOKEN...)
 
 Migration :
 
@@ -57,3 +58,34 @@ Pour tester (avec le nom du virtualhost choisi):
 - http://VotreNomDuVirtualHost/simone/boat
 
 La page doit s'afficher.
+
+## SESSION :
+
+### Login
+
+After a user logs in for the first time, you can use session variables to set up certain variables, such as the user's email and ID:
+
+    var_dump($_SESSION['email']);
+    var_dump($_SESSION['id']);
+
+These variables are set up using the "queryGetUserAction" function. For example:
+
+$value = $db->queryGetUserAction('alucky@luke.com', 'PASSWD');
+
+In this code, "$value" corresponds to the response, while "alucky@luke.com" and "PASSWD" correspond to the email and password that the user provided during the login attempt.
+
+### Log out
+
+To log out you can call the logout function example:
+
+- public function logOut()
+
+FROM : DatabaseUser
+
+### Start session
+
+You can start a session in you page if you need any data from the user session by using that function :
+
+- public function sessionStart()
+
+FROM : DatabaseUser
