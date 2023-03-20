@@ -60,6 +60,7 @@ final class DatabaseUser
                 $this->initUser($email, $user['id']);
                 return 'GJ connection established';
             }
+            return 'Something went wrong';
         }
         return 'Something went wrong';
     }
