@@ -14,6 +14,11 @@ final class View
         return ob_get_clean();
     }
 
+    /**
+     * Envoie les données à la vue
+     * @param $S_location
+     * @param array $A_settings
+     */
     public static function show($S_location, $A_settings = array())
     {
         $S_file = Constants::directoryViews() . $S_location . '.php';

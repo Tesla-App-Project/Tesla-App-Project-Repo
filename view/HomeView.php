@@ -28,7 +28,6 @@
     <p>Stationnée</p>
   </section>
   <div class="bloc-gauche">
-
     <section class="fixed">
       <h2>Bloc Principal Image et Bouton</h2>
       <section class="bloc-voiture">

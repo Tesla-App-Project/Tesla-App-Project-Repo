@@ -2,6 +2,10 @@
 
 class ControllerUser
 {
+    /**
+     * Envoie vers la page de connection
+     * @return void
+     */
     public function newLoginAction()
     {
 
@@ -9,6 +13,10 @@ class ControllerUser
         View::show('newlogin', array());
     }
 
+    /**
+     * Récupère les données du formulaire de connection et stocke l'utilisateur en base de données
+     * @return void
+     */
     public function newUserAction()
     {
        if (isset($_POST['user_first_name'])and ($_POST['user_last_name']) and ($_POST['user_username'])and($_POST['user_password'])and
