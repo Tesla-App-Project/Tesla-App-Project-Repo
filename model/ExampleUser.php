@@ -45,6 +45,7 @@ final class ExampleUser
         if (isset($_SESSION['id'])) {
             var_dump($_SESSION['email']);
             var_dump($_SESSION['id']);
+            var_dump($_SESSION['csrf_token']);
         }
         var_dump($value);
 

@@ -49,6 +49,9 @@ final class DatabaseUser
         }
         $S_base->exec("SET CHARACTER SET utf8");
 
+        // Generate a CSRF token
+        $csrf_token = bin2hex(random_bytes(32));
+
         $sql = "SELECT id, email, password FROM `users` WHERE `email`=:email";
         $request = $S_base->prepare($sql);
         $request->bindParam(":email", $email, PDO::PARAM_STR);
@@ -57,13 +60,23 @@ final class DatabaseUser
         if ($user) {
             $verification = password_verify($password, $user['password']);
             if ($verification == true) {
-                $this->initUser($email, $user['id']);
-                return 'GJ connection established';
+                // Store the user's email and ID in session variables
+                $_SESSION['email'] = $email;
+                $_SESSION['id'] = $user['id'];
+
+                // Store the CSRF token in a session variable
+                $_SESSION['csrf_token'] = $csrf_token;
+
+                // Return the CSRF token along with a success message
+                return ['status' => 'success', 'message' => 'GJ connection established', 'csrf_token' => $csrf_token];
             }
-            return 'Something went wrong';
+            // Return an error message
+            return ['status' => 'error', 'message' => 'Something went wrong'];
         }
-        return 'Something went wrong';
+        // Return an error message
+        return ['status' => 'error', 'message' => 'Something went wrong'];
     }
+
 
     public function initUser($email, $id)
     {
