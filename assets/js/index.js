@@ -36,11 +36,23 @@ function ElecOnClick() {
   }
 }
 
-function ChestOnClick() {
-  if (document.getElementById("simone").srcset == "./assets/images/voiture.png") {
-    document.getElementById("simone").srcset = "./assets/images/voiture1.png";
+// function ChestOnClick() { 
+//   if (document.getElementById("simone").srcset == "./assets/images/voiture.png") {
+//     document.getElementById("simone").srcset = "./assets/images/voiture1.png";
+//     document.getElementById("ChestButton").classList.add("lightIcon");
+//   } else {
+//     document.getElementById("simone").srcset = "./assets/images/voiture.png";
+//     document.getElementById("ChestButton").classList.remove("lightIcon");
+//   }
+// }
+
+function ChestOnClick() { 
+  if (document.getElementById("simone").srcset == "./assets/images/tesla.png") {
+    document.getElementById("simone").srcset = "./assets/images/tesla-open.png";
+    document.getElementById("ChestButton").classList.add("lightIcon");
   } else {
-    document.getElementById("simone").srcset = "./assets/images/voiture.png";
+    document.getElementById("simone").srcset = "./assets/images/tesla.png";
+    document.getElementById("ChestButton").classList.remove("lightIcon");
   }
 }
 
@@ -68,4 +80,14 @@ function RightButtonOnClick() {
   if (str > 0) { document.getElementById("LeftButton").innerText = "&lt"; }
 
   document.getElementById("number").innerHTML = str + " A"
+}
+
+function UserOnClick() {
+  if (document.getElementById("User_button").srcset == "./assets/images/user.png") {
+    document.getElementById("User_button").srcset = "./assets/images/userLight.png";
+    document.getElementById("User_Aff").hidden = false;
+  } else {
+    document.getElementById("User_button").srcset = "./assets/images/user.png";
+    document.getElementById("User_Aff").hidden = true;
+  }
 }

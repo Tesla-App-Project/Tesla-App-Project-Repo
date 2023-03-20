@@ -3,14 +3,15 @@
 <head>
   <meta charset="utf-8">
   <title>Controle</title>
-  <link rel="stylesheet" href="assets/css/control.scss">
+<!--   <link rel="stylesheet" href="assets/css/control.scss"> -->
+  <link rel="stylesheet" href="assets/css/control.css">
 </head>
   
 <body>
   <header>
     <section class="box-controle" >
         <nav class="rotateArrow" class="one-controle">
-            <a href="index.html"><img class="hover-img" src="assets/images/symbole-fleche-droite-noir.png" height="40" width="40" alt="cerclelogo"></a>
+            <a href="iC"><img class="hover-img" src="assets/images/symbole-fleche-droite-noir.png" height="40" width="40" alt="cerclelogo"></a>
         </nav>
     </section>
     

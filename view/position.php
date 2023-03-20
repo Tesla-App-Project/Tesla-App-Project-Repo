@@ -7,71 +7,91 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
         integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
         crossorigin="" />
-    <link rel="stylesheet" href="./assets/css/style.scss">
-    <link rel="stylesheet" href="./assets/css/position.scss">
-    <style type="text/css">
-        #map {
-            /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
-            height: 400px;
-        }
-    </style>
+<!--     <link rel="stylesheet" href="./assets/css/style.scss"> -->
+    <link rel="stylesheet" href="./assets/css/base.css">
+<!--     <link rel="stylesheet" href="./assets/css/position.scss"> -->
+    <link rel="stylesheet" href="./assets/css/position.css">
+
     <title>Carte</title>
 </head>
 
 <body>
   <header>
       <section class="header-section-control">
-          <a href="./index.html"><img class="header-arrow hover-img" src="assets/images/symbole-fleche-droite-noir.png" alt="Retour"></a>
+          <a href="./index.php"><img class="header-arrow hover-img" src="assets/images/symbole-fleche-droite-noir.png" alt="Retour"></a>
           <h1>Position</h1>
       </section>
   </header>
-    <div id="map">
-        <!-- Ici s'affichera la carte -->
+  <div id="map">
+      <!-- Ici s'affichera la carte -->
+  </div>
 
-    </div>
-
-
-
-    <!-- Fichiers Javascript -->
-    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
+  <section class="bloc-adresse">
+    <h3 class="bloc-adresse-title">Votre adresse : </h3>
+    <p id="bloc-adresse-content">Loading...</p>
+  </section>
+    
+  <!-- Fichiers Javascript -->
+  <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
         integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
-        crossorigin=""></script>
+        crossorigin="">
+  </script>
     <script type="text/javascript">
-        // On initialise la latitude et la longitude de Paris (centre de la carte)
-        var lat = 48.852969;
-        var lon = 2.349903;
-        var macarte = null;
-        // Fonction d'initialisation de la carte
-        function initMap() {
-            // Créer l'objet "macarte" et l'insèrer dans l'élément HTML qui a l'ID "map"
-            macarte = L.map('map').setView([lat, lon], 11);
-            // Leaflet ne récupère pas les cartes (tiles) sur un serveur par défaut. Nous devons lui préciser où nous souhaitons les récupérer. Ici, openstreetmap.fr
-            L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
-                // Il est toujours bien de laisser le lien vers la source des données
-                attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
-                minZoom: 1,
-                maxZoom: 20
-            }).addTo(macarte);
+      let macarte = null;
+      // Fonction d'initialisation de la carte
+      function initMap(lat, lon) {
+          // Créer l'objet "macarte" et l'insèrer dans l'élément HTML qui a l'ID "map"
+          macarte = L.map('map').setView([lat, lon], 15);
+          // Leaflet ne récupère pas les cartes (tiles) sur un serveur par défaut. Nous devons lui préciser où nous souhaitons les récupérer. Ici, openstreetmap.fr
+          L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+              attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
+              minZoom: 10,
+              maxZoom: 20
+          }).addTo(macarte);
+
+     // Créer une nouvelle icône pour le marqueur
+let myIcon = L.icon({
+  iconUrl: 'https://tesla-app-php.tesla-app-ergo.repl.co/assets/images/cursor.png', // Chemin vers l'image de votre icône
+  iconSize: [90, 105], // Taille de l'icône en pixels
+  iconAnchor: [19, 38], // Point d'ancrage de l'icône
+  popupAnchor: [0, -30] // Point d'ancrage du popup
+});
+
+// Créer le marqueur avec votre nouvelle icône
+let marker = new L.marker([lat, lon], { icon: myIcon });
+marker.addTo(macarte);
+
+      }
+
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+          console.log("Geolocation is not supported by this browser.");
         }
-        window.onload = function () {
-            // Fonction d'initialisation qui s'exécute lorsque le DOM est chargé
-            initMap();
+      }
+        
+      function showPosition(position) {
+        initMap(position.coords.latitude, position.coords.longitude);
+        showDetails(position.coords.latitude, position.coords.longitude);
+      }
+    
+      window.onload = function () {
+        getLocation();
+      };
 
-            function geoloc() { // ou tout autre nom de fonction
-                var geoSuccess = function (position) { // Ceci s'exécutera si l'utilisateur accepte la géolocalisation
-                    startPos = position;
-                    userlat = startPos.coords.latitude;
-                    userlon = startPos.coords.longitude;
-                    console.log("lat: " + userlat + " - lon: " + userlon);
-                };
-                var geoFail = function () { // Ceci s'exécutera si l'utilisateur refuse la géolocalisation
-                    console.log("refus");
-                };
-                // La ligne ci-dessous cherche la position de l'utilisateur et déclenchera la demande d'accord
-                navigator.geolocation.getCurrentPosition(geoSuccess, geoFail);
-            }
-        };
+      function showDetails(lat, lon) {
+        let nominatimUrl = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`;
+        fetch(nominatimUrl)
+          .then(response => response.json())
+          .then(data => {
+            let address = data.address;
+            let addressString = `${address.quarter}, ${address.road}, ${address.postcode} - ${address.city}, ${address.state}`;
+            console.log(address)
+            document.getElementById("bloc-adresse-content").innerText = `${addressString}`;
+          });
+      }
     </script>
-</body>
-
+  </body>
 </html>
+

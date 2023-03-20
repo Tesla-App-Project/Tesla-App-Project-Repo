@@ -1,3 +1,24 @@
+function toggleStatus() {
+  var status = document.getElementById("status");
+  if (status.innerHTML === "Arrêt") {
+    status.innerHTML = "Marche";
+  } else {
+    status.innerHTML = "Arrêt";
+  }
+}
+
+
+
+function toggleVentilateStatus() {
+  var status = document.getElementById("ventilate-status");
+  if (status.innerHTML === "Aérer") {
+    status.innerHTML = "Fermer";
+  } else {
+    status.innerHTML = "Aérer";
+  }
+}
+
+
 function changeStopButton() {
   const btn = document.getElementById('btn');
 
@@ -86,3 +107,42 @@ function onClickChangeImage2() {
   if (state_2 == A_images.length)
     state_2 = 0;
 }
+
+let delayTime;
+let delayTime2;
+const auto_button = document.getElementById('seat-heat-l--auto')
+const auto_button2 = document.getElementById('seat-heat-r--auto')
+
+image.addEventListener("mousedown", function() {
+  delayTime = new Date().getTime();
+});
+
+image2.addEventListener("mousedown", function() {
+  delayTime2 = new Date().getTime();
+});
+
+image.addEventListener("click", function() {
+  let endTime = new Date().getTime();
+  let clickDuration = endTime - delayTime;
+
+  if (clickDuration < 300) {
+    auto_button.style.display = "none";
+  } else {
+    auto_button.style.display = "block";
+    state_1 = 0;
+    image.src = A_images[state_1];
+  }
+});
+
+image2.addEventListener("click", function() {
+  let endTime = new Date().getTime();
+  let clickDuration = endTime - delayTime2;
+
+  if (clickDuration < 300) {
+    auto_button2.style.display = "none";
+  } else {
+    auto_button2.style.display = "block";
+    state_2 = 0;
+    image2.src = A_images[state_2];
+  }
+});
