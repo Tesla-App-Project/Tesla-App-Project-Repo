@@ -21,7 +21,7 @@ final class ControllerSimone
     //http://localhost:8080/index.php?url=helloworld/boat
     //new way
     //http://teslapp/simone/boat
-    
+
     //Example of url with my own domain name : http://tesloggy/simone/example
     public function exampleUserAction()
     {
@@ -53,7 +53,4 @@ final class ControllerSimone
 
         View::show('default/login', array('helloworld' =>  $O_helloWorld->login()));
     }
-
-
-
 }

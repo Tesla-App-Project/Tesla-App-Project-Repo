@@ -49,15 +49,64 @@ final class DatabaseUser
         }
         $S_base->exec("SET CHARACTER SET utf8");
 
+        // Generate a CSRF token
+        $csrf_token = bin2hex(random_bytes(32));
+
         $sql = "SELECT id, email, password FROM `users` WHERE `email`=:email";
         $request = $S_base->prepare($sql);
         $request->bindParam(":email", $email, PDO::PARAM_STR);
         $request->execute();
         $user = $request->fetch();
-        $verification = password_verify($password, $user['password']);
-        return $verification;
+        if ($user) {
+            $verification = password_verify($password, $user['password']);
+            if ($verification == true) {
+                // Store the user's email and ID in session variables
+                $_SESSION['email'] = $email;
+                $_SESSION['id'] = $user['id'];
+
+                // Store the CSRF token in a session variable
+                $_SESSION['csrf_token'] = $csrf_token;
+
+                // Return the CSRF token along with a success message
+                return ['status' => 'success', 'message' => 'GJ connection established', 'csrf_token' => $csrf_token];
+            }
+            // Return an error message
+            return ['status' => 'error', 'message' => 'Something went wrong'];
+        }
+        // Return an error message
+        return ['status' => 'error', 'message' => 'Something went wrong'];
     }
 
+
+    public function initUser($email, $id)
+    {
+        $_SESSION['email'] = $email;
+        $_SESSION['id'] = $id;
+    }
+
+    //SESSION CREATION
+    public function sessionStart()
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+    }
+
+    //Log out USER :
+    public function logOut()
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if ($_SESSION['id']) {
+            $_SESSION = array();
+            session_destroy();
+            header('Location: login.php');
+        } else {
+            header('Location: index.php');
+        }
+    }
 
     //UPDATE USER :
     public function queryUpdateUserAction(string $email, string  $firstname, string  $username, string  $lastname, $id)
