@@ -53,6 +53,4 @@ final class ControllerSimone
 
         View::show('default/see', array('helloworld' =>  $O_helloWorld->giveMessage()));
     }
-
-
 }

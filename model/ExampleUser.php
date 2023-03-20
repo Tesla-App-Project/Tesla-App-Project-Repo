@@ -35,15 +35,19 @@ final class ExampleUser
         // );
 
         /**
-         *  READ  (id, ['column'=>'value', 'second column'=>'value'], table name)
-         * // not working if you don't have the correspond data in you table
-         * RETURN :
-         * queryGetAction give you back an array like that : [username = 'Dracula'] => 1 [email = 'archibald@haddock.com'] => 1
-         * if the value => 1, this means that the value exists in the DB otherwise, it does not exist in the database
+         *  READ  email + user password
+         * // not working if you don't have the correspond data in you table and return wrong
+         * RETURN : message + create user session
+         *
          * **/
 
         $value = $db->queryGetUserAction('alucky@luke.com', 'PASSWD'); //mdp bcrypte
+        if (isset($_SESSION['id'])) {
+            var_dump($_SESSION['email']);
+            var_dump($_SESSION['id']);
+        }
         var_dump($value);
+
 
         /**
          * DELETE (id)

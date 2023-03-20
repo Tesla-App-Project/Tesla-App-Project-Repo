@@ -16,14 +16,14 @@ final class Database
         //data from the .env
         $config = [
             'db' => [
-                'dsn' => $_ENV['DB_DSN'],
-                'user' => $_ENV['DB_USER'],
-                'password' => $_ENV['DB_PASSWORD'],
+                'dsn'       => $_ENV['DB_DSN'],
+                'user'      => $_ENV['DB_USER'],
+                'password'  => $_ENV['DB_PASSWORD'],
             ]
         ];
 
-        $this->dsn = $config['db']['dsn'] ?? '';
-        $this->user = $config['db']['user'] ?? '';
+        $this->dsn      = $config['db']['dsn'] ?? '';
+        $this->user     = $config['db']['user'] ?? '';
         $this->password = $config['db']['password'] ?? '';
     }
 

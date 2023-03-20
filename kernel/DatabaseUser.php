@@ -54,10 +54,21 @@ final class DatabaseUser
         $request->bindParam(":email", $email, PDO::PARAM_STR);
         $request->execute();
         $user = $request->fetch();
-        $verification = password_verify($password, $user['password']);
-        return $verification;
+        if ($user) {
+            $verification = password_verify($password, $user['password']);
+            if ($verification == true) {
+                $this->initUser($email, $user['id']);
+                return 'GJ connection established';
+            }
+        }
+        return 'Something went wrong';
     }
 
+    public function initUser($email, $id)
+    {
+        $_SESSION['email'] = $email;
+        $_SESSION['id'] = $id;
+    }
 
     //UPDATE USER :
     public function queryUpdateUserAction(string $email, string  $firstname, string  $username, string  $lastname, $id)
