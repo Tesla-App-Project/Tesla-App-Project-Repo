@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/../vendor/autoload.php';
+
 final class Controller
 {
     private $_A_dissectUrl;
@@ -10,26 +12,28 @@ final class Controller
 
     public function __construct($S_url, $A_postParams)
     {
-        if ('/' == substr($S_url, -1, 1)) {
-            $S_url = substr($S_url, 0, strlen($S_url) - 1);
-        }
-        $A_urlDecortique = explode('/', $S_url);
-        //  Controller / Action
-
-        if (!empty($A_urlDecortique[0])) {
-            $S_controller = $A_urlDecortique[0];
-            if (!empty($A_urlDecortique[1])) {
-                $S_action = $A_urlDecortique[1];
-            } else {
-                $S_action = null;
+        if (isset($S_url)) {
+            if (str_ends_with($S_url, '/')) {
+                $S_url = substr($S_url, 0, strlen($S_url) - 1);
             }
-        } else {
-            $S_controller = null;
+            $A_urlDecortique = explode('/', $S_url);
+            //  Controller / Action
+
+            if (!empty($A_urlDecortique[0])) {
+                $S_controller = $A_urlDecortique[0];
+                if (!empty($A_urlDecortique[1])) {
+                    $S_action = $A_urlDecortique[1];
+                } else {
+                    $S_action = null;
+                }
+            } else {
+                $S_controller = null;
+            }
         }
 
         if (empty($S_controller)) {
             // All controllers are prefixed by "Controller"
-            $this->_A_dissectUrl['controller'] = 'ControllerSimone';
+            $this->_A_dissectUrl['controller'] = 'ControllerHome';
         } else {
             $this->_A_dissectUrl['controller'] = 'Controller' . ucfirst($S_controller);
         }
@@ -46,7 +50,7 @@ final class Controller
         // Only the settings left
 
         // We store settings inside their instancied variable
-        $this->_A_urlSettings = $A_urlDecortique;
+        $this->_A_urlSettings = $A_urlDecortique ?? null;
 
         // We take care of the array $A_postParams
         $this->_A_postSettings = $A_postParams;

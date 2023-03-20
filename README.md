@@ -9,7 +9,7 @@ Composer :
 Configurer Composer
 
 - Installer Composer sur votre machine (https://getcomposer.org/)
-- Penser à ajouter une version de PHP supperieur à 7.1 dans vos variables d'environement en cas d'erreur
+- Penser à ajouter une version de PHP supérieure à 7.1 dans vos variables d'environnement en cas d'erreur
 - Lancer la commande d'installation dans le terminal du projet : composer install
 
 Env :
@@ -19,6 +19,7 @@ Configurer votre base de données (via .env)
 - Copier, coller ".env.example"
 - Modifier le nom en ".env"
 - Modifier les données du .env, selon la configuration de votre base de données
+- Veillez à bien ajouter les variables d'environnement dans votre fichier .env (DEV_TOKEN, PROD_TOKEN...)
 
 Migration :
 
@@ -26,7 +27,7 @@ Lancer la migration des tables / colonnes dans les tables
 
 - Lancer la commande d'exécution des migrations : "php migrations.php"
 
-### Pour les URL (les anciennes fonctionne toujours):
+### Pour les URL (les anciennes fonctionnent toujours):
 
 Ancienne : **localhost/votreprojet/index.php?url=controller/action**
 
@@ -46,9 +47,9 @@ ou en allant ici : http://localhost/add_vhost.php
 
 > Exemple : C:\wamp64\www\Tesla-App-Project-Repo
 
-- **_Vous clickez sur "Démarrer la création ou la modification du VirtualHost"_**
+- **_Vous cliquez sur "Démarrer la création ou la modification du VirtualHost"_**
 
-Enfin il faut redemarrer les DNS:
+Enfin il faut redémarrer les DNS:
 
 - **_Clic droit sur l'icon wamp => outils => Redémarrage DNS_**
 
