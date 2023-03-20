@@ -70,6 +70,30 @@ final class DatabaseUser
         $_SESSION['id'] = $id;
     }
 
+    //SESSION CREATION
+    public function sessionStart()
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+    }
+
+    //Log out USER :
+    public function logOut()
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if ($_SESSION['id']) {
+            $_SESSION = array();
+            session_destroy();
+            header('Location: login.php');
+        } else {
+            header('Location: index.php');
+        }
+    }
+
     //UPDATE USER :
     public function queryUpdateUserAction(string $email, string  $firstname, string  $username, string  $lastname, $id)
     {
