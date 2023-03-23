@@ -18,20 +18,24 @@ final class ControllerSimone
         View::show('default/login', array('helloworld' =>  $O_helloWorld->giveMessage()));
     }
 
-    //http://localhost:8080/index.php?url=helloworld/boat
-    //new way
-    //http://teslapp/simone/boat
-
     //Example of url with my own domain name : http://tesloggy/simone/example
     public function exampleUserAction()
     {
         $O_helloWorld =  new ExampleUser();
-        var_dump('exempleAction');
+        var_dump('exempleUserAction');
 
         View::show('default/see', array('helloworld' =>  $O_helloWorld->giveMessage()));
     }
 
-    //http://localhost:8080/index.php?url=helloworld/peanut
+    public function exampledbAction()
+    {
+        $O_helloWorld =  new ExampleDB();
+        var_dump('exempleDbAction');
+
+        View::show('default/see', array('helloworld' =>  $O_helloWorld->giveMessage()));
+    }
+
+
     public function frogAction()
     {
         View::show('default/frog');
