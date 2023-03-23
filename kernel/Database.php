@@ -39,8 +39,7 @@ final class Database
         return $S_base;
     }
 
-    // TODO : pb d'affichage de retour de la valeur
-    //GET - exemple : $users = $db->queryGetAction(1, ['pseudo', 'other'], 'user');
+    //GET - exemple : $value = $db->queryGetAction(['id' => '6'], 'users');
     public function queryGetAction(array $keyValueMap, string $table)
     {
         try {
@@ -57,27 +56,17 @@ final class Database
             fn (string $keyName) => "{$keyName} = ?",
             $keys,
         );
-        $preparedStatementExpression = join(' AND ', $preparedStatementExpressionArray);
-        $preparedStatementData = join(' AND ', $preparedStatementExpressionArray);
+        $preparedStatementExpression = join(',', $preparedStatementExpressionArray);
+        $preparedStatementData = join(',', $preparedStatementExpressionArray);
+        $statement = $S_base->prepare("SELECT * FROM $table WHERE $preparedStatementData;");
 
-        
-        $params = "";
-        foreach ($keys as $key => $element) {   
-            if ($key === array_key_last($keys)) {
-                $params = $params.$element;
-            }
-            else{
-                $params = $params.$element.", ";
-            }
-        }
-          
-
-        $statement = $S_base->prepare("SELECT $params FROM $table WHERE $preparedStatementData");
-        var_dump($statement);
         $statement->execute($values);
-        $A_selection = $statement->fetchAll();
-        var_dump($A_selection);
+
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
+
+        return $statement->fetch();
     }
+
 
 
     //UPDATE :
