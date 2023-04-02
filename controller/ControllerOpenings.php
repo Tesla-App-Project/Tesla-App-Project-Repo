@@ -1,6 +1,6 @@
 <?php
 
-use JetBrains\PhpStorm\Pure;
+
 
 class ControllerOpenings extends ControllerAPI
 {

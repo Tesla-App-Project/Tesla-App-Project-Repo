@@ -12,6 +12,7 @@
 
 <body>
 <?php
+
     /** @var array $A_view */
 ?>
   <header class="menu sticky">

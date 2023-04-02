@@ -1,6 +1,6 @@
 <?php
 
-use JetBrains\PhpStorm\Pure;
+
 
 class ControllerSpeedLimit extends ControllerAPI
 {

@@ -5,6 +5,12 @@ body {
   background-color: #171717;
   font-family: Arial, Helvetica, sans-serif; }
 
+.leaflet-marker-icon {
+  animation: blink 2s infinite; }
+
+@keyframes blink {
+  20% {
+    opacity: 0; } }
 h1 {
   color: #f3f3f3;
   grid-column-start: 1;
@@ -23,7 +29,7 @@ p {
 
 .header-section-control {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   margin: 0; }
 
@@ -38,5 +44,27 @@ p {
   width: 3rem;
   height: 3rem;
   margin: 0 5rem 0 3rem; }
+
+#map {
+  height: 600px; }
+  @media screen and (max-width: 767px) {
+    #map {
+      height: 1200px !important; } }
+
+.bloc-adresse {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #1E1F1F;
+  border-radius: 15px;
+  margin: 2em 12.5em 1em 12.5em;
+  padding: 0.75em; }
+  @media all and (max-width: 789px) {
+    .bloc-adresse {
+      margin: 1em 1.5em 1em 1.5em; } }
+
+@media all and (max-width: 800px) {
+  #map {
+    height: 1000px; } }
 
 /*# sourceMappingURL=position.css.map */

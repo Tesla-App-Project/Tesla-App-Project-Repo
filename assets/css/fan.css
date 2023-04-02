@@ -36,6 +36,9 @@ p {
   grid-row: 1;
   position: relative;
   z-index: -1; }
+  @media all and (max-width: 789px) {
+    .model3Int {
+      width: 50rem; } }
 
 .return {
   width: 3rem;
@@ -47,7 +50,10 @@ p {
   box-shadow: 0px -10px 8px #000000;
   display: grid;
   grid-template-rows: 25% 25% 25% 25%;
-  grid-template-columns: 20% 20% 20% 20% 20%; }
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  position: fixed;
+  width: 100%;
+  bottom: 25px; }
 
 .bar {
   width: 5rem;
@@ -98,16 +104,17 @@ p {
   align-self: center;
   font-size: 2.5rem; }
 
-#btn {
+#status {
   background-color: #171717;
   border: none;
   color: #8b8b8b;
   padding: 0%;
+  text-align: center;
   font-size: 0.8rem;
   grid-column: 1;
   grid-row: 4; }
 
-#btn2 {
+#ventilate-status {
   background-color: #171717;
   border: none;
   color: #8b8b8b;
@@ -119,20 +126,24 @@ p {
 
 #img-seat-heat-l {
   position: absolute;
-  left: calc(50% - 2.5rem);
-  top: 25%;
-  z-index: 2; }
+  left: calc(50.5% - 2.5rem);
+  top: 20%;
+  z-index: 2;
+  cursor: pointer; }
   @media all and (max-width: 789px) {
     #img-seat-heat-l {
       left: calc(43% - 2.5rem);
       top: 27%; } }
 
 #seat-heat-l--auto {
+  display: none;
   position: absolute;
-  left: calc(50.5% - 2.5rem);
-  top: 32%;
+  left: calc(50.75% - 2.5rem);
+  top: 27%;
   z-index: 2;
-  color: white; }
+  color: white;
+  cursor: pointer;
+  font-weight: 700; }
   @media all and (max-width: 789px) {
     #seat-heat-l--auto {
       left: calc(43% - 2.5rem);
@@ -140,23 +151,27 @@ p {
 
 #img-seat-heat-r {
   position: absolute;
-  left: calc(57.5% - 2.5rem);
-  top: 25%;
-  z-index: 2; }
+  left: calc(56.75% - 2.5rem);
+  top: 20%;
+  z-index: 2;
+  cursor: pointer; }
   @media all and (max-width: 789px) {
     #img-seat-heat-r {
       left: calc(74% - 2.5rem);
       top: 27%; } }
 
 #seat-heat-r--auto {
+  display: none;
   position: absolute;
-  left: calc(58% - 2.5rem);
-  top: 32%;
+  left: calc(57% - 2.5rem);
+  top: 27%;
   z-index: 2;
-  color: white; }
+  color: white;
+  cursor: pointer;
+  font-weight: 700; }
   @media all and (max-width: 789px) {
     #seat-heat-r--auto {
-      left: calc(43% - 2.5rem);
+      left: calc(75% - 2.5rem);
       top: 34%; } }
 
 /*# sourceMappingURL=fan.css.map */

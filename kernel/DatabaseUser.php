@@ -40,7 +40,26 @@ final class DatabaseUser
     }
 
     //GET USER :
-    public function queryGetUserAction(string $email, string $password)
+    public function queryGetUserTokenAction(string $email, string $id) {
+        try {
+            $S_base = new PDO($this->dsn, $this->user, $this->password);
+        } catch (exception $S_e) {
+            die('Erreur ' . $S_e->getMessage());
+        }
+        $S_base->exec("SET CHARACTER SET utf8");
+
+        // Generate a CSRF token
+        $csrf_token = bin2hex(random_bytes(32));
+
+        $sql = "SELECT token FROM `users` WHERE `email`=:email AND `id_user`=:id";
+        $request = $S_base->prepare($sql);
+        $request->bindParam(":email", $email, PDO::PARAM_STR);
+        $request->bindParam(":id", $id, PDO::PARAM_STR);
+        $request->execute();
+        return $request->fetch();
+    }
+
+    public function queryGetUserAction(string $email, string $password): array
     {
         try {
             $S_base = new PDO($this->dsn, $this->user, $this->password);
@@ -59,10 +78,14 @@ final class DatabaseUser
         $user = $request->fetch();
         if ($user) {
             $verification = password_verify($password, $user['password']);
-            if ($verification == true) {
+            if ($verification === true) {
+
                 // Store the user's email and ID in session variables
+
+                 $user['token'] !== null ? $_SESSION['token'] = true : $_SESSION['token'] = false;
+
                 $_SESSION['email'] = $email;
-                $_SESSION['id'] = $user['id'];
+                $_SESSION['id'] = $user['id_user'];
 
                 // Store the CSRF token in a session variable
                 $_SESSION['csrf_token'] = $csrf_token;
@@ -118,7 +141,7 @@ final class DatabaseUser
         }
         $S_base->exec("SET CHARACTER SET utf8");
 
-        $sql = "UPDATE `users` SET `email`=:email, `firstname`=:firstname, `username`=:username, `lastname`=:lastname WHERE id= :id;";
+        $sql = "UPDATE `users` SET `email`=:email, `firstname`=:firstname, `username`=:username, `lastname`=:lastname WHERE id_user= :id;";
         $request = $S_base->prepare($sql);
         $request->bindParam(":email", $email, PDO::PARAM_STR);
         $request->bindParam(":firstname", $firstname, PDO::PARAM_STR);
@@ -133,7 +156,7 @@ final class DatabaseUser
 
 
     //CREATE USER :
-    public function queryCreateUserAction(string $email, string  $firstname, string  $username, string  $lastname, string  $passwordUser)
+    public function queryCreateUserAction(string $email, string  $firstname, string  $username, string  $lastname, string  $passwordUser): void
     {
         try {
             $S_base = new PDO($this->dsn, $this->user, $this->password);
@@ -149,8 +172,9 @@ final class DatabaseUser
         $request->bindParam(":firstname", $firstname, PDO::PARAM_STR);
         $request->bindParam(":username", $username, PDO::PARAM_STR);
         $request->bindParam(":lastname", $lastname, PDO::PARAM_STR);
-        $passwordHashed = password_hash($passwordUser, PASSWORD_BCRYPT);
-        $request->bindParam(":password", $passwordHashed, PDO::PARAM_STR);
+//        $passwordHashed = password_hash($passwordUser, PASSWORD_BCRYPT);
+        $request->bindParam(":password", $passwordUser, PDO::PARAM_STR);
+//        $request->bindParam(":password", $passwordHashed, PDO::PARAM_STR);
 
         $request->execute();
 
@@ -170,7 +194,7 @@ final class DatabaseUser
         }
         $S_base->exec("SET CHARACTER SET utf8");
 
-        $sql = "DELETE FROM `users` WHERE `id`=:id";
+        $sql = "DELETE FROM `users` WHERE `id_user`=:id";
         $request = $S_base->prepare($sql);
         $request->bindParam(":id", $id, PDO::PARAM_STR);
         $request->execute();

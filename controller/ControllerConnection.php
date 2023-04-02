@@ -4,12 +4,22 @@ class ControllerConnection
 {
     public function defautAction()
     {
-        //http://localhost:8080/index.php?url=home
-        $A_content =
-            ['title' => 'Accueil',
-            'content' => 'ConnectionView',];
+        if(isset($_SESSION['isLogged']) && $_SESSION['isLogged'] === true){
+            header("Location: /home");
+            exit;
+        } else {
+            //http://localhost:8080/index.php
+            $A_View =
+                [
+                    'title' => 'Accueil',
+                    'header' => 'HomeHeaderView',
+                    'content' => 'ConnectionView',
+                    'footer' => 'HomeFooterView',
+                ];
 
-        View::show('template', $A_content);
+            View::show('connexion', $A_View);
+        }
+
         //View::show('HomeView', array());
     }
 }

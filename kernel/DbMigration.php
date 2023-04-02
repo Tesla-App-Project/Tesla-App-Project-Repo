@@ -1,12 +1,11 @@
 <?php
 
-
 class DbMigration
 {
     /**
-     * @var \PDO
+     * @var PDO
      */
-    public \PDO $pdo;
+    public PDO $pdo;
     // public $Root =;
     /**
      * Database constructor
@@ -29,7 +28,7 @@ class DbMigration
         $user = $config['db']['user'] ?? '';
         $password = $config['db']['password'] ?? '';
 
-        $this->pdo = new \PDO($dsn, $user, $password);
+        $this->pdo = new PDO($dsn, $user, $password);
         //if something goes wrong :
         $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }

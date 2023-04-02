@@ -2,9 +2,19 @@
 
 class ControllerHome extends ControllerAPI
 {
+    //http://localhost:8080/index.php?url=home
     public function defautAction()
     {
-        //http://localhost:8080/index.php?url=home
+
+        if(!isset($_SESSION['isLogged'])) {
+            header("Location: /");
+            exit;
+        }
+
+        if(!$_SESSION['token']){
+            View::show('popup', array());
+            return;
+        }
 
         $position = json_decode($this->_httpRequestHandler->callAPI('carPosition'), true);
 

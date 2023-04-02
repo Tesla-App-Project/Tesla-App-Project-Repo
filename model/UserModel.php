@@ -23,15 +23,19 @@ final class UserModel
 
     /**
      * Récupère un utilisateur en base de données
-     * @param $user_mail
-     * @param $user_password
-     * @return void
+     * @param string $user_mail
+     * @param string $user_password
+     * @return array
      */
-    public function getUser($user_mail,$user_password)
+    public function getUser(string $user_mail,string $user_password): array
     {
         $db = new DatabaseUser();
         //login user
-        $users = $db->queryGetUserAction(['email' => $user_mail, 'password' => $user_password]);
+        return $db->queryGetUserAction(
+            $user_mail,
+            $user_password
+        );
+
     }
 
     /**
@@ -41,24 +45,18 @@ final class UserModel
      * @param $user_username
      * @param $user_password
      * @param $user_mail
-     * @param $user_token
      * @return void
      */
     public function newUser($user_first_name,$user_last_name,$user_username,$user_password,$user_mail,$user_token)
     {
         $db = new DatabaseUser();
         //CREATE user
-        $users = $db->queryCreateUserAction(
-            [
-                //colum name / DATA
-                'email' => $user_mail,
-                'firstname' => $user_first_name,
-                'username' => $user_username,
-                'lastname' => $user_last_name,
-                'password' => $user_password,
-                'token' => $user_token,
-            ],
-            'users'
+        $db->queryCreateUserAction(
+            $user_mail,
+            $user_first_name,
+            $user_username,
+            $user_last_name,
+            $user_password
         );
 
     }

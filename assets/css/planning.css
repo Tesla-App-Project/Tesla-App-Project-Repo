@@ -200,4 +200,10 @@ input:checked + .slider:before {
   z-index: 1;
 }
 
+.h2_horaire {
+  text-align: center;
+  font-size: 30px;
+  
+}
+
 /*# sourceMappingURL=planning.css.map */

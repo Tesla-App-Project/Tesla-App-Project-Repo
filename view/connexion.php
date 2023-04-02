@@ -11,23 +11,34 @@
 <!--       <section class="center">
         <h1> Connexion / Inscription </h1>
     </section> -->
+<?php
+
+if(isset($_GET['error'])){
+    if($_GET['error'] === "badlogin"){
+        echo "<div class='alert alert-danger' role='alert'>
+                Identifiant ou mot de passe incorrect
+              </div>";
+    }
+}
+
+?>
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
 		<form action="#">
 			<h1>S'inscrire</h1>
-			<input type="text" placeholder="Identifiant">
-			<input type="email" placeholder="Nom">
-			<input type="password" placeholder="Prénom">
-      <input type="text" placeholder="Email">
-			<input type="email" placeholder="Mot de passe">
-			<button>S'inscrire</button>
+			<input type="text" placeholder="Identifiant" name="user_username" required>
+			<input type="text" placeholder="Nom" name="user_last_name" required>
+			<input type="text" placeholder="Prénom" name="user_first_name" required>
+            <input type="email" placeholder="Email" name="user_mail" required>
+			<input type="password" placeholder="Mot de passe" name="user_password" required>
+			<button type="submit">S'inscrire</button>
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
 		<form action="#">
 			<h1>Se connecter</h1>
-			<input type="email" placeholder="Email">
-			<input type="password" placeholder="Mot de passe">
+			<input type="email" placeholder="Email" name="user_mail" required>
+			<input type="password" placeholder="Mot de passe" name="user_password" required>
 			<a href="#">Mot de passe oublié ?</a>
 			<button>Se connecter</button>
 		</form>

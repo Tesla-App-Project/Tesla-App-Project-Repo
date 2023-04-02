@@ -1,13 +1,14 @@
 <?php
 
 // This file in the entry point of the application
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
 require 'kernel/AutoLoad.php';
 require_once __DIR__ . '/vendor/autoload.php';
 
-session_start();
-if (!isset($_SESSION['user_id'])) session_unset();
-
+@session_start();
+//if (!isset($_SESSION['id'])) session_unset();
 
 /*
 to use our MVC, you have to enter inside your navbar
