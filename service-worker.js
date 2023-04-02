@@ -2,10 +2,26 @@ const dataCacheName = 'tesla-app-data';
 const cacheName = 'tesla-app';
 const filesToCache = [
     '/',
-    '/index.html',
     '/icon.png',
+    // '/favicon.ico',
+    '/index.php',
+    '/404.html',
+    '/OtherControls',
+    '/Home',
+    '/Climate',
+    '/Service',
+    '/Planning',
+    '/Security',
+    '/Stats',
+    '/Update',
+    '/assets/css/style.css',
+    '/assets/css/position.css',
+    'https://unpkg.com/leaflet@1.3.1/dist/leaflet.js',
+    'https://unpkg.com/leaflet@1.3.1/dist/leaflet.css'
 ];
 
+
+// Étape 1 : installation du service worker
 self.addEventListener('install', function (e) {
     console.log('[ServiceWorker] Install');
     e.waitUntil(
@@ -16,13 +32,13 @@ self.addEventListener('install', function (e) {
     );
 });
 
-
+// Étape 2 : activation du service worker
 self.addEventListener('activate', function (e) {
     console.log('[ServiceWorker] Activate');
     e.waitUntil(
         caches.keys().then(function (keyList) {
             return Promise.all(keyList.map(function (key) {
-                if (key !== cacheName && key !== dataCacheName) {
+                if (key !== cacheName) {
                     console.log('[ServiceWorker] Removing old cache', key);
                     return caches.delete(key);
                 }
@@ -32,21 +48,20 @@ self.addEventListener('activate', function (e) {
     return self.clients.claim();
 });
 
-
+// Étape 3 : interception des requêtes réseau
 self.addEventListener('fetch', function (e) {
     console.log('[Service Worker] Fetch', e.request.url);
     e.respondWith(
         caches.match(e.request).then(function (response) {
-            return response || fetch(e.request);
+            if (response) {
+                return response;
+            }
+            return fetch(e.request).catch(function () {
+                console.log(e.request, "offline");
+                self.clients.forEach((client) => {
+                    client.postMessage('offline');
+                });
+            });
         })
     );
 });
-
-self.addEventListener('notificationclick', (event) => {
-    event.notification.close();
-    if (event.action === 'oui') {
-        alert("Super !!");
-    } else if (event.action === 'non') {
-        alert(":'(");
-    }
-}, false);
