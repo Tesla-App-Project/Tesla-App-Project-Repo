@@ -44,9 +44,10 @@ class ControllerHome extends ControllerAPI
             'header' => 'HomeHeaderView',
             'content' => 'HomeView',
             'footer' => 'HomeFooterView',
+            'carName' => $this->_httpRequestHandler->callAPI('getCarName'),
             'batteryPercent' => json_decode($this->_httpRequestHandler->callAPI('batteryLevelData'), true),
             'climPercent' => $this->_httpRequestHandler->callAPI('getTemperatureData'),
-            'addressPosition' => (isset($response["address"]["house_number"]) ? $response["address"]["house_number"] . " " . $response["address"]["road"] . ", " . $response["address"]["city"] : isset($response["address"]["amenity"])) ? $response["address"]["amenity"] . " " . $response["address"]["road"] . ", " . $response["address"]["city"] : $response["address"]["road"] . ", " . $response["address"]["city"],
+            'addressPosition' => (isset($response["address"]["house_number"]) ? $response["address"]["house_number"] . " " . $response["address"]["road"] . ", " . $response["address"]["city"] : isset($response["address"]["amenity"])) ? $response["address"]["amenity"] . " " . $response["address"]["road"] . ", " . $response["address"]["town"] : $response["address"]["road"] . ", " . $response["address"]["town"],
             ];
         View::show('HomeView', $A_content);
 

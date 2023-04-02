@@ -71,7 +71,7 @@ final class DatabaseUser
         // Generate a CSRF token
         $csrf_token = bin2hex(random_bytes(32));
 
-        $sql = "SELECT id, email, password FROM `users` WHERE `email`=:email";
+        $sql = "SELECT id_user, email, token, password FROM `users` WHERE `email`=:email";
         $request = $S_base->prepare($sql);
         $request->bindParam(":email", $email, PDO::PARAM_STR);
         $request->execute();
@@ -152,6 +152,26 @@ final class DatabaseUser
         $request->execute();
 
         echo 'Success, nice update';
+    }
+
+    //UPDATE TOKEN USER :
+    public function queryUpdateTokenUserAction(string $token, $id)
+    {
+        try {
+            $S_base = new PDO($this->dsn, $this->user, $this->password);
+        } catch (exception $S_e) {
+            die('Erreur ' . $S_e->getMessage());
+        }
+        $S_base->exec("SET CHARACTER SET utf8");
+
+        $sql = "UPDATE `users` SET `token`=:token WHERE id_user= :id;";
+        $request = $S_base->prepare($sql);
+        $request->bindParam(":token", $token, PDO::PARAM_STR);
+        $request->bindParam(":id", $id, PDO::PARAM_STR);
+
+        $request->execute();
+
+        //echo 'Success, nice update';
     }
 
 

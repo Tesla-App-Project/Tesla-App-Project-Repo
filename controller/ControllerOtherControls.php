@@ -9,6 +9,17 @@ class ControllerOtherControls extends ControllerAPI
      * @return void
      */
     public function defautAction() : void {
+
+        if(!isset($_SESSION['isLogged'])) {
+            header("Location: /");
+            exit;
+        }
+
+        if(!$_SESSION['token']){
+            View::show('popup', array());
+            return;
+        }
+
         $A_content = [
             'header' => 'test',
             'content' => 'OtherControlsView',

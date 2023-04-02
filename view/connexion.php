@@ -24,7 +24,7 @@ if(isset($_GET['error'])){
 ?>
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
-		<form action="#">
+		<form method="POST" action="/user/newUser/">
 			<h1>S'inscrire</h1>
 			<input type="text" placeholder="Identifiant" name="user_username" required>
 			<input type="text" placeholder="Nom" name="user_last_name" required>
@@ -35,12 +35,12 @@ if(isset($_GET['error'])){
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
-		<form action="#">
+		<form method="POST" action="/user/loginUser/">
 			<h1>Se connecter</h1>
 			<input type="email" placeholder="Email" name="user_mail" required>
 			<input type="password" placeholder="Mot de passe" name="user_password" required>
 			<a href="#">Mot de passe oublié ?</a>
-			<button>Se connecter</button>
+			<button type="submit">Se connecter</button>
 		</form>
 	</div>
 	<div class="overlay-container">

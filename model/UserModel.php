@@ -18,7 +18,20 @@ final class UserModel
         $db = new DatabaseUser();
         //UPDATE user
 
-        $db->queryUpdateUserAction(['email' => $user_mail, 'firstname' => $user_first_name,'username'=>$user_username,'lastname' => $lastname]);
+        $db->queryUpdateUserAction($user_mail, $user_first_name,$user_username,$lastname, $_SESSION["id"]);
+    }
+
+    /**
+     * Met à jour un token utilisateur en base de données
+     * @param $token
+     * @return void
+     */
+    public function updateToken($token): void
+    {
+        $db = new DatabaseUser();
+        $db->queryUpdateTokenUserAction($token, $_SESSION["id"]);
+
+
     }
 
     /**
@@ -39,6 +52,23 @@ final class UserModel
     }
 
     /**
+     * Récupère un token utilisateur en base de données
+     * @param string $user_mail
+     * @param string $user_id
+     * @return array
+     */
+    public function getUserToken(string $user_mail,string $user_id): array
+    {
+        $db = new DatabaseUser();
+        //login user
+        return $db->queryGetUserTokenAction(
+            $user_mail,
+            $user_id
+        );
+
+    }
+
+    /**
      * Créée un nouvel utilisateur en base de données
      * @param $user_first_name
      * @param $user_last_name
@@ -47,7 +77,7 @@ final class UserModel
      * @param $user_mail
      * @return void
      */
-    public function newUser($user_first_name,$user_last_name,$user_username,$user_password,$user_mail,$user_token)
+    public function newUser($user_first_name,$user_last_name,$user_username,$user_password,$user_mail)
     {
         $db = new DatabaseUser();
         //CREATE user

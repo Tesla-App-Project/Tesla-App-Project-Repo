@@ -21,7 +21,39 @@ class ApiModel
         ];
 
         //$this->setToken($config["tokens"]["prodToken"]);
-        $this->setToken($config["tokens"]["devToken"]);
+//        $this->setToken($config["tokens"]["devToken"]);
+        $user = new UserModel();
+        $this->setToken($user->getUserToken($_SESSION["email"], $_SESSION["id"])["token"]);
+
+        $ch = curl_init();
+
+        // Check if initialization had gone wrong*
+        if ($ch === false) {
+            throw new Exception('failed to initialize');
+        }
+
+        curl_setopt($ch, CURLOPT_URL, "https://owner-api.teslamotors.com/api/1/vehicles");
+
+        // Bearer token and data type
+
+        $headers = [
+            0 => 'Content-Type: application/json; charset=utf-8',
+            1 => "Authorization: Bearer {$this->getToken()}",
+        ];
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+
+        try {
+            $result = curl_exec($ch);
+        } catch (Exception $e) {
+            var_dump($e->getCode() . " " . $e->getMessage());
+        } finally {
+            curl_close($ch);
+            $this->idCar = json_decode($result)->response[0]->id;
+        }
+
     }
 
     /**
@@ -68,7 +100,8 @@ class ApiModel
         // TODO : DB Request to fetch encrypted token
         // Then decrypt it
 
-        return $this->token;
+        $user = new UserModel();
+        return $user->getUserToken($_SESSION["email"], $_SESSION["id"])["token"];
     }
 
     public function refreshTOken(): array
@@ -163,7 +196,7 @@ class ApiModel
         // TODO : 1493131276665295 has to be replaced by the actual car's id
         // One person can own multiple cars
 
-        $requestIdCar === null ? $urlRequest = "{$this->baseURLDEV}/" : $urlRequest = "{$this->baseURLDEV}/{$requestIdCar}/{$requestUrl}";
+        $requestIdCar === null ? $urlRequest = "{$this->baseURLPROD}/" : $urlRequest = "{$this->baseURLPROD}/{$requestIdCar}/{$requestUrl}";
 
         $ch = curl_init();
 
@@ -172,7 +205,8 @@ class ApiModel
             throw new Exception('failed to initialize');
         }
 
-        $wakeUp = $this->postWakeUp('http://78.123.242.51:25000/api/1/vehicles/' . $requestIdCar . '/wake_up');
+        $wakeUp = $this->postWakeUp("https://owner-api.teslamotors.com/api/1/vehicles/" . $requestIdCar . '/wake_up');
+//        die(var_dump($wakeUp));
 
         if(($wakeUp["response"]["id"] ?? "") != $requestIdCar) {
             throw new Exception("failed to wake up car");
@@ -184,7 +218,7 @@ class ApiModel
 
         $headers = [
             0 => 'Content-Type: application/json; charset=utf-8',
-            1 => "Authorization: Bearer {$this->token}",
+            1 => "Authorization: Bearer {$this->getToken()}",
         ];
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
@@ -235,6 +269,8 @@ class ApiModel
         }
     }
 
+
+
     /**
      * @return array
      */
@@ -273,7 +309,7 @@ class ApiModel
     /**
      * @return int
      */
-    public function getTemperatureData(): int {
+    public function getTemperatureData(): float {
         return $this->makeAPIRequest($this->idCar, "data_request/climate_state", "GET", array())["response"]["inside_temp"];
     }
 
@@ -327,7 +363,7 @@ class ApiModel
 
         $headers = [
             0 => 'Content-Type: application/json; charset=utf-8',
-            1 => "Authorization: Bearer {$this->token}"
+            1 => "Authorization: Bearer {$this->getToken()}"
         ];
 //       $headers[] = 'Content-Type: application/json; charset=utf-8';
 //       $headers[] = "Authorization: Bearer {$this->token}";

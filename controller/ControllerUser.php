@@ -43,11 +43,25 @@ class ControllerUser
 
     public function loginUserAction()
     {
-        if (($_POST['user_username']) and ($_POST['user_password'])){
+
+        if(isset($_SESSION['isLogged']) && $_SESSION['isLogged'] === true){
+            header("Location: /home");
+            exit;
+        }
+
+        if (isset($_POST['user_mail']) and isset($_POST['user_password'])){
             $user = new UserModel();
-            $user->getUser($_POST['user_username'],$_POST['user_password']);
+            $result = $user->getUser($_POST['user_mail'],$_POST['user_password']);
+            if($result['status'] === "success"){
+                $_SESSION['isLogged'] = true;
+                header("Location: /home");
+                exit;
+            }
+            else {
+                header("Location: /?error=badlogin");
+            }
         }else{
-            header("Location: http://localhost/projet/tesla-app-project-repo/index.php?url=user/login/");
+            header("Location: /");
         }
     }
 

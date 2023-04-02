@@ -14,9 +14,13 @@
 <?php
 
     /** @var array $A_view */
+        @session_start();
+//        echo '<pre style="color: white">';
+//        var_dump($_SESSION);
+//        echo '</pre>';
 ?>
   <header class="menu sticky">
-    <h1>Simone</h1>
+    <h1><?php echo $A_view["carName"] ?></h1>
     <nav>
         <a href="#"><img src="./assets/images/user.png" alt="icone user"></a>
     </nav>
