@@ -39,6 +39,15 @@ final class Database
         return $S_base;
     }
 
+    public function queryGetAll(array $attributes, string $table)
+    {
+        $S_base = $this->try_catch();
+        $attributes = join(', ', $attributes);
+        $statement = $S_base->prepare("SELECT $attributes FROM $table");
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     // TODO : pb d'affichage de retour de la valeur
     //GET - exemple : $users = $db->queryGetAction(1, ['pseudo', 'other'], 'user');
     public function queryGetAction(array $keyValueMap, string $table)
@@ -77,6 +86,7 @@ final class Database
         $statement->execute($values);
         $A_selection = $statement->fetchAll();
         var_dump($A_selection);
+        return $A_selection;
     }
 
 

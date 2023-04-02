@@ -6,7 +6,11 @@ require 'kernel/AutoLoad.php';
 require_once __DIR__ . '/vendor/autoload.php';
 
 session_start();
-if (!isset($_SESSION['user_id'])) session_unset();
+if (!isset($_SESSION['id']) and $_GET['url'] != 'user/login') {
+    session_unset();
+    /*header('Location: index.php?url=user/login');
+    exit();*/
+}
 
 
 /*

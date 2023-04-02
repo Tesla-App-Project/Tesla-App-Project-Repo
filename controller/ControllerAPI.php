@@ -32,6 +32,13 @@ abstract class ControllerAPI
 
         $this->servAdresse = $url;
         //$this->servAdresse = $_ENV["SERV_ADRESSE"];
-        $this->_httpRequestHandler = new HttpRequestHandlerModel("letokendelatesla");
+
+        $user = new UserModel();
+        if (isset($_SESSION['id'])) {
+            $user->getUser($_SESSION['id']);
+            //TODO fetch car id to SESSION on logging in
+            $this->_httpRequestHandler = new HttpRequestHandlerModel($user->getBearerToken(), '1493131276665295', null);
+        }
+        else $this->_httpRequestHandler = new HttpRequestHandlerModel('', '', null);
     }
 }

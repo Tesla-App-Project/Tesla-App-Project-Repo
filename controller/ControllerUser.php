@@ -24,8 +24,9 @@ class ControllerUser
            $user = new UserModel();
            $user->newUser($_POST['user_first_name'],$_POST['user_last_name'],
                $_POST['user_username'],password_hash($_POST['user_password'], CRYPT_SHA256),$_POST['user_mail'],$_POST['user_token']);
+           header("Location: ?url=user/login");
      }else{
-           header("Location: http://localhost/projet/tesla-app-project-repo/index.php?url=user/newlogin/");
+           header("Location: ?url=user/newlogin");
        }
     }
 
@@ -37,11 +38,13 @@ class ControllerUser
 
     public function loginUserAction()
     {
-        if (($_POST['user_username']) and ($_POST['user_password'])){
+        if (($_POST['user_email']) and ($_POST['user_password'])){
             $user = new UserModel();
-            $user->getUser($_POST['user_username'],password_hash($_POST['user_password'],CRYPT_SHA256));
+            $attempt = $user->connectUser($_POST['user_email'],password_hash($_POST['user_password'],CRYPT_SHA256));
+            if ($attempt['status'] == 'success') header("Location: ?url=home");
+            else header("Location: ?url=user/login");
         }else{
-            header("Location: http://localhost/projet/tesla-app-project-repo/index.php?url=user/login/");
+            header("Location: ?url=user/login");
 
         }
     }

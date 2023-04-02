@@ -2,7 +2,8 @@
 
 class ApiModel
 {
-    private $token;
+    private string $token;
+    private string $refreshToken;
     private string $idCar = "1493131276665295";
     private string $baseURLDEV = 'http:/78.123.242.51:25000/api/1/vehicles';
     private string $baseURLPROD = 'https://owner-api.teslamotors.com/api/1/vehicles';
@@ -20,7 +21,7 @@ class ApiModel
         ];
 
         //$this->setToken($config["tokens"]["prodToken"]);
-        $this->setToken($config["tokens"]["devToken"]);
+        //$this->setToken($config["tokens"]["devToken"]);
     }
 
     /**
@@ -35,6 +36,16 @@ class ApiModel
 
         $this->token = $tokenTesla;
     }
+
+    public function setRefreshToken(string $refreshToken): void {
+
+        // TODO : DB Request to fetch encrypted token
+        // Then decrypt it
+
+        $this->refreshToken = $refreshToken;
+    }
+
+
 
     /**
      * Allows you to set the car id
@@ -56,8 +67,50 @@ class ApiModel
 
         // TODO : DB Request to fetch encrypted token
         // Then decrypt it
-
         return $this->token;
+    }
+
+    public function refreshToken(): array
+    {
+
+        $ch = curl_init();
+
+        // Check if initialization had gone wrong*
+        if ($ch === false) {
+            throw new Exception('failed to initialize');
+        }
+
+        curl_setopt($ch, CURLOPT_URL, "https://auth.tesla.com/oauth2/v3/token");
+
+        // Bearer token and data type
+
+        $requestBody = [
+            "grant_type" => "refresh_token",
+            "client_id" => "ownerapi",
+            "refresh_token" => $this->refreshToken,
+            "scope" => "openid email offline_access"
+        ];
+
+        $headers = [
+            0 => 'Content-Type: application/json; charset=utf-8',
+            1 => "Authorization: Bearer {$this->token}",
+        ];
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($requestBody));
+
+        try {
+            $result = curl_exec($ch);
+        } catch (Exception $e) {
+            var_dump($e->getCode() . " " . $e->getMessage());
+        } finally {
+            curl_close($ch);
+            if(json_decode($result, true) === null) return [];
+            return json_decode($result, true);
+        }
+
     }
 
     /**
@@ -601,6 +654,7 @@ class ApiModel
      */
     public function carPosition(): array {
         $result = $this->getAllData();
+        var_dump($result);
         return array(
             "latitude" => $result["response"]["drive_state"]["latitude"],
             "longitude" => $result["response"]["drive_state"]["longitude"],

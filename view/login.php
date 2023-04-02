@@ -1,13 +1,13 @@
 <h1>Connexion</h1>
-<form action="http://localhost/projet/tesla-app-project-repo/index.php?url=user/getUser" method="post">
+<form action="index.php?url=user/loginUser" method="post">
 
     <div>
-        <label for="username">Username :</label>
-        <input type="text" id="username" name="user_username">
+        <label for="email">E-mail :</label>
+        <input type="email" id="email" name="user_email">
     </div></br>
     <div>
         <label for="password">Password :</label>
-        <input type="text" id="password" name="user_password">
+        <input type="password" id="password" name="user_password">
     </div></br>
     <div>
     <input type="submit" value="Envoyer le formulaire">

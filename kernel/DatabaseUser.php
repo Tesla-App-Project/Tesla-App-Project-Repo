@@ -40,14 +40,9 @@ final class DatabaseUser
     }
 
     //GET USER :
-    public function queryGetUserAction(string $email, string $password)
+    public function queryConnectUserAction(string $email, string $password)
     {
-        try {
-            $S_base = new PDO($this->dsn, $this->user, $this->password);
-        } catch (exception $S_e) {
-            die('Erreur ' . $S_e->getMessage());
-        }
-        $S_base->exec("SET CHARACTER SET utf8");
+        $S_base = $this->try_catch();
 
         // Generate a CSRF token
         $csrf_token = bin2hex(random_bytes(32));
@@ -108,14 +103,23 @@ final class DatabaseUser
         }
     }
 
+    //GET USER :
+    public function queryGetUserAction($id)
+    {
+        $S_base = $this->try_catch();
+
+        $sql = "SELECT * FROM `users` WHERE `id` = :id;";
+        $request = $S_base->prepare($sql);
+        $request->bindParam(":id", $id, PDO::PARAM_STR);
+
+        $request->execute();
+        return $request->fetch();
+    }
+
     //UPDATE USER :
     public function queryUpdateUserAction(string $email, string  $firstname, string  $username, string  $lastname, $id)
     {
-        try {
-            $S_base = new PDO($this->dsn, $this->user, $this->password);
-        } catch (exception $S_e) {
-            die('Erreur ' . $S_e->getMessage());
-        }
+        $S_base = $this->try_catch();
         $S_base->exec("SET CHARACTER SET utf8");
 
         $sql = "UPDATE `users` SET `email`=:email, `firstname`=:firstname, `username`=:username, `lastname`=:lastname WHERE id= :id;";
@@ -131,19 +135,26 @@ final class DatabaseUser
         echo 'Success, nice update';
     }
 
-
-    //CREATE USER :
-    public function queryCreateUserAction(string $email, string  $firstname, string  $username, string  $lastname, string  $passwordUser)
+    public function queryUpdateTokenAction(string $bearerToken, string $refreshToken)
     {
-        try {
-            $S_base = new PDO($this->dsn, $this->user, $this->password);
-        } catch (exception $S_e) {
-            die('Erreur ' . $S_e->getMessage());
-        }
-
+        $S_base = $this->try_catch();
         $S_base->exec("SET CHARACTER SET utf8");
 
-        $sql = "INSERT INTO `users` SET `email`=:email, `firstname`=:firstname, `username`=:username, `lastname`=:lastname, `password`=:password";
+        $sql = "UPDATE `users` SET `email`=:bearer_token, `firstname`=:refresh_token WHERE id= :id;";
+        $request = $S_base->prepare($sql);
+        $request->bindParam(":bearer_token", $bearerToken, PDO::PARAM_STR);
+        $request->bindParam(":refresh_token", $refreshToken, PDO::PARAM_STR);
+        $request->execute();
+    }
+
+
+    //CREATE USER :
+    public function queryCreateUserAction(string $email, string  $firstname, string  $username, string  $lastname, string  $passwordUser, string $token)
+    {
+        $S_base = $this->try_catch();
+        $S_base->exec("SET CHARACTER SET utf8");
+
+        $sql = "INSERT INTO `users` SET `email`=:email, `firstname`=:firstname, `username`=:username, `lastname`=:lastname, `password`=:password, `bearer_token`=:bearer_token";
         $request = $S_base->prepare($sql);
         $request->bindParam(":email", $email, PDO::PARAM_STR);
         $request->bindParam(":firstname", $firstname, PDO::PARAM_STR);
@@ -151,6 +162,7 @@ final class DatabaseUser
         $request->bindParam(":lastname", $lastname, PDO::PARAM_STR);
         $passwordHashed = password_hash($passwordUser, PASSWORD_BCRYPT);
         $request->bindParam(":password", $passwordHashed, PDO::PARAM_STR);
+        $request->bindParam(":bearer_token", $token, PDO::PARAM_STR);
 
         $request->execute();
 
@@ -163,11 +175,7 @@ final class DatabaseUser
     {
         var_dump('hey');
 
-        try {
-            $S_base = new PDO($this->dsn, $this->user, $this->password);
-        } catch (exception $S_e) {
-            die('Erreur ' . $S_e->getMessage());
-        }
+        $S_base = $this->try_catch();
         $S_base->exec("SET CHARACTER SET utf8");
 
         $sql = "DELETE FROM `users` WHERE `id`=:id";

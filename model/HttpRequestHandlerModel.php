@@ -2,10 +2,14 @@
 
 class HttpRequestHandlerModel
 {
-    private string $_token;
+    private string $_bearerTk;
+    private ?string $_refreshTk;
+    private string $_carId;
 
-    public function __construct($token) {
-        $this->_token = $token;
+    public function __construct(string $bearerTk, string $carId, ?string $refreshTk) {
+        $this->_bearerTk = $bearerTk;
+        $this->_carId = $carId;
+        $this->_refreshTk = $refreshTk ?? null;
     }
 
     /**
@@ -29,7 +33,9 @@ class HttpRequestHandlerModel
      */
     public function callAPI(string $APICallFunction, array ...$params) : string|bool {
         $apiModel = new ApiModel();
-        $apiModel->setToken($this->_token);
+        $apiModel->setToken($this->_bearerTk);
+        if (!is_null($this->_refreshTk)) $apiModel->setRefreshToken($this->_refreshTk);
+        $apiModel->setIdCar($this->_carId);
 
         return json_encode($apiModel->{$APICallFunction}($params));
 
