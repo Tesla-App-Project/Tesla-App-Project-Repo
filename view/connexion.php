@@ -6,6 +6,17 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
   <link href="./assets/css/connexion.css" rel="stylesheet">
   <title> Connexion </title>
+    <script>
+        if("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("service-worker.js")
+                .then(registration => {
+                    console.log("Service Worker Registered");
+                })
+                .catch(err => {
+                    console.log("Service Worker Failed to Register", err);
+                })
+        }
+    </script>
 </head>
 <body>
 <!--       <section class="center">
