@@ -8,6 +8,9 @@ class ApiModel
     private string $baseURLDEV = 'http:/78.123.242.51:25000/api/1/vehicles';
     private string $baseURLPROD = 'https://owner-api.teslamotors.com/api/1/vehicles';
 
+    /**
+     * @throws Exception
+     */
     public function __construct() {
         $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
         $dotenv->load();
@@ -20,8 +23,6 @@ class ApiModel
             ]
         ];
 
-        //$this->setToken($config["tokens"]["prodToken"]);
-//        $this->setToken($config["tokens"]["devToken"]);
         $user = new UserModel();
         $this->setToken($user->getUserToken($_SESSION["email"], $_SESSION["id"])["token"]);
 
@@ -104,6 +105,9 @@ class ApiModel
         return $user->getUserToken($_SESSION["email"], $_SESSION["id"])["token"];
     }
 
+    /**
+     * @throws Exception
+     */
     public function refreshTOken(): array
     {
 
@@ -147,37 +151,6 @@ class ApiModel
 
     }
 
-    /**
-     * Allows you to revoke the current token
-     * @return array
-     */
-//    public function revokeToken(string $tokenToRemoved): array {
-//        $ch = curl_init();
-//
-//        // Check if initialization had gone wrong*
-//        if ($ch === false) {
-//            throw new Exception('failed to initialize');
-//        }
-//
-//        curl_setopt($ch, CURLOPT_URL, "https://owner-api.teslamotors.com/oauth/revoke");
-//
-//        $headers = [];
-//        $headers[] = 'Content-Type: application/json; charset=utf-8';
-//
-//        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-//        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-//        curl_setopt($ch, CURLOPT_POSTFIELDS, '{"token": ' . $tokenToRemoved . '}');
-//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-//
-//        try {
-//            $result = curl_exec($ch);
-//        } catch (Exception $e) {
-//            var_dump($e->getCode() . " " . $e->getMessage());
-//        } finally {
-//            curl_close($ch);
-//            return json_decode($result, true);
-//        }
-//    }
 
     /**
      * @param string | null $requestIdCar id of the car you wish to interact with
@@ -196,7 +169,7 @@ class ApiModel
         // TODO : 1493131276665295 has to be replaced by the actual car's id
         // One person can own multiple cars
 
-        $requestIdCar === null ? $urlRequest = "{$this->baseURLPROD}/" : $urlRequest = "{$this->baseURLPROD}/{$requestIdCar}/{$requestUrl}";
+        $requestIdCar === null ? $urlRequest = "$this->baseURLPROD/" : $urlRequest = "$this->baseURLPROD/$requestIdCar/$requestUrl";
 
         $ch = curl_init();
 
@@ -243,6 +216,7 @@ class ApiModel
     /**
      * Allows you to get a list of all vehicles with the data
      * @return array
+     * @throws Exception
      */
     public function getAllVehiclesData(): array {
         return $this->makeAPIRequest(null, "", "GET", array());
@@ -280,6 +254,7 @@ class ApiModel
 
     /**
      * @return array
+     * @throws Exception
      */
     public function getAllData(): array {
         return $this->makeAPIRequest($this->idCar, "vehicle_data", "GET", array());
@@ -365,9 +340,6 @@ class ApiModel
             0 => 'Content-Type: application/json; charset=utf-8',
             1 => "Authorization: Bearer {$this->getToken()}"
         ];
-//       $headers[] = 'Content-Type: application/json; charset=utf-8';
-//       $headers[] = "Authorization: Bearer {$this->token}";
-
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
@@ -385,8 +357,9 @@ class ApiModel
     }
 
     /**
+     * @param array $params
      * @return array
-     * @param array $chosenTrunk choose if front or rear
+     * @throws Exception
      */
     public function postActuateTrunk(array $params): array {
 
@@ -397,6 +370,7 @@ class ApiModel
 
     /**
      * @return array
+     * @throws Exception
      */
     public function postConditioningStart(): array {
 
@@ -427,6 +401,7 @@ class ApiModel
 
     /**
      * @return array
+     * @throws Exception
      */
     public function postChargePortClose(): array {
 
@@ -446,6 +421,7 @@ class ApiModel
 
     /**
      * @return array
+     * @throws Exception
      */
     public function postDoorLock(): array {
 
