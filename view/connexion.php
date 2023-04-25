@@ -44,7 +44,7 @@ if(isset($_GET['error'])){
 
                 </div>
                 <div class="col-sm-6 col-xs-12">
-                    <div class="d-flex flex-column" style="height:100%">
+                    <div class="d-flex flex-column" style="height: auto">
 
                         <div class="text-center d-sm-none d-xs-block">
                             <div class="switch-button">
