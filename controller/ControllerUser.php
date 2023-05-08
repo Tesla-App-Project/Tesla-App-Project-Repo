@@ -43,8 +43,7 @@ class ControllerUser
 
     public function loginUserAction()
     {
-
-        if(isset($_SESSION['isLogged']) && $_SESSION['isLogged'] === true){
+        if(isset($_SESSION['isLogged']) && $_SESSION['isLogged'] === true) {
             header("Location: /home");
             exit;
         }

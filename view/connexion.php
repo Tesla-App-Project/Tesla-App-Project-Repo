@@ -63,15 +63,15 @@ if(isset($_GET['error'])){
                             <form method="post" action="/user/loginUser/">
                                 <div class="position-relative my-3 inputGroup text-center">
                                     <span class="position-absolute"><i class="far fa-user"></i></span>
-                                    <input type="email" class="border-0 border-bottom w-100" placeholder="Email" />
+                                    <input type="email" class="border-0 border-bottom w-100" placeholder="Email" name="user_mail"/>
                                 </div>
                                 <div class="position-relative my-3 inputGroup text-center">
                                     <span class="position-absolute"><i class="far fa-eye-slash"></i></span>
-                                    <input type="password" class="border-0 border-bottom w-100" placeholder="Mot de passe" />
+                                    <input type="password" class="border-0 border-bottom w-100" placeholder="Mot de passe" name="user_password"/>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between pt-2">
                                     <a class="linkFlare" href="#"><small>Mot de passe oublié ?</small></a>
-                                    <button class="btn btn-accent px-4 rounded-pill">Se connecter</button>
+                                    <button class="btn btn-accent px-4 rounded-pill" type="submit">Se connecter</button>
                                 </div>
                             </form>
                         </div>
