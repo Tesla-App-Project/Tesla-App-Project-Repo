@@ -121,6 +121,5 @@
   
   echo $date->format('d/m/Y H:i:s');
 ?>
-
 </body>
 </html>

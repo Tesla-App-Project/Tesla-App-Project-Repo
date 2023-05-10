@@ -8,17 +8,6 @@
     <meta name="viewport" content="width=device-width, target-densitydpi=dpi, initial-scale=1" />
     <script src="https://kit.fontawesome.com/b368ec75de.js" crossorigin="anonymous"></script>
     <title> Connexion </title>
-    <script>
-        if("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("service-worker.js")
-                .then(registration => {
-                    console.log("Service Worker Registered");
-                })
-                .catch(err => {
-                    console.log("Service Worker Failed to Register", err);
-                })
-        }
-    </script>
 </head>
 <body>
 
@@ -31,94 +20,104 @@ if(isset($_GET['error'])){
     }
 }
 ?>
-<div class="d-flex vh-100 justify-content-center align-items-center">
-    <div class="p-2 flex-grow">
-        <div class="smallContainer border shadow rounded">
-            <div class="row g-0">
-                <div class="col-sm-6 col-xs-12 d-none d-sm-block position-relative" id='leftCol'>
-                    <img src="/assets/images/tesla.jpg" height="100%"/>
-                    <div id="pt-5 text-end w-100" class="position-absolute end-0 top-0">
-                        <a href="#" id="connexion-btn" class="customBtn activeBtn">Connexion</a><br />
-                        <a href="#" id="inscription-btn" class="customBtn">Inscription</a>
-                    </div>
+<div class="container">
+    <section id="formHolder">
 
+        <div class="row">
+
+            <!-- Brand Box -->
+            <div class="col-sm-6 brand">
+                <a href="#" class="logo">22 - 23 <span>.</span></a>
+
+                <div class="heading">
+                    <h2>Tesla</h2>
+                    <p>Connecter votre voiture</p>
                 </div>
-                <div class="col-sm-6 col-xs-12">
-                    <div class="d-flex flex-column" style="height: auto">
 
-                        <div class="text-center d-sm-none d-xs-block">
-                            <div class="switch-button">
-                                <input class="switch-button-checkbox" type="checkbox">
-                                <label class="switch-button-label" for=""><span class="switch-button-label-span">Connexion</span></label>
-                            </div>
-                        </div>
-
-                        <div class="my-auto p-5" id="connexion">
-                            <div class="text-center">
-                                <div>
-                                    <img src="/assets/images/logo_tesla.png" height="66" />
-                                </div>
-                                <h2 class="h3 pb-3">Connexion</h2>
-                            </div>
-                            <form method="post" action="/user/loginUser/">
-                                <div class="position-relative my-3 inputGroup text-center">
-                                    <span class="position-absolute"><i class="far fa-user"></i></span>
-                                    <input type="email" class="border-0 border-bottom w-100" placeholder="Email" name="user_mail"/>
-                                </div>
-                                <div class="position-relative my-3 inputGroup text-center">
-                                    <span class="position-absolute"><i class="far fa-eye-slash"></i></span>
-                                    <input type="password" class="border-0 border-bottom w-100" placeholder="Mot de passe" name="user_password"/>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-between pt-2">
-                                    <a class="linkFlare" href="#"><small>Mot de passe oublié ?</small></a>
-                                    <button class="btn btn-accent px-4 rounded-pill" type="submit">Se connecter</button>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="my-auto p-5" id="inscription">
-                            <div class="text-center">
-                                <div>
-                                    <img src="/assets/images/logo_tesla.png" height="66" />
-                                </div>
-                                <h2 class="h3 pb-3">Inscription</h2>
-                                <form method="post" action="/user/newUser/">
-
-                                    <div class="position-relative my-3 inputGroup text-center">
-                                        <span class="position-absolute"><i class="far fa-user"></i></span>
-                                        <input type="text" class="border-0 border-bottom w-100" placeholder="Nom" />
-                                    </div>
-
-                                    <div class="position-relative my-3 inputGroup text-center">
-                                        <span class="position-absolute"><i class="far fa-user"></i></span>
-                                        <input type="text" class="border-0 border-bottom w-100" placeholder="Prénom" />
-                                    </div>
-
-                                    <div class="position-relative my-3 inputGroup text-center">
-                                        <span class="position-absolute"><i class="far fa-user"></i></span>
-                                        <input type="text" class="border-0 border-bottom w-100" placeholder="Identifiant" />
-                                    </div>
-
-                                    <div class="position-relative my-3 inputGroup text-center">
-                                        <span class="position-absolute"><i class="far fa-user"></i></span>
-                                        <input type="email" class="border-0 border-bottom w-100" placeholder="Email" />
-                                    </div>
-
-                                    <div class="position-relative my-3 inputGroup text-center">
-                                        <span class="position-absolute"><i class="far fa-eye-slash"></i></span>
-                                        <input type="password" class="border-0 border-bottom w-100" placeholder="Mot de passe" />
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between pt-2">
-                                        <button class="btn btn-accent px-4 rounded-pill">S'inscrire</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                <div class="success-msg">
+                    <p>Great! You are one of our members now</p>
+                    <a href="#" class="profile">Your Profile</a>
                 </div>
             </div>
+
+
+            <!-- Form Box -->
+            <div class="col-sm-6 form">
+
+                <!-- Login Form -->
+                <div class="login form-peice switched">
+                    <form class="login-form" action="/user/loginUser/" method="post">
+                        <div class="form-group">
+                            <label for="loginemail">Email</label>
+                            <input type="email" name="user_mail" id="loginemail" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="loginPassword">Mot de passe</label>
+                            <input type="password" name="user_password" id="loginPassword" required>
+                        </div>
+
+                        <div class="CTA">
+                            <input type="submit" value="Connexion">
+                            <a href="/PasswordChangeView.php" class="switchmod">Mot de passe oublié ?</a>
+                            <a href="#" class="switch">Vous n'avez pas de compte ?</a>
+                        </div>
+                    </form>
+                </div><!-- End Login Form -->
+
+
+                <!-- Signup Form -->
+                <div class="signup form-peice">
+                    <form class="signup-form" action="/user/newUser/" method="post">
+
+                        <div class="form-group">
+                            <label for="name">Nom</label>
+                            <input type="text" name="username" id="name" class="name">
+                            <span class="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prenom">Prénom</label>
+                            <input type="text" name="username" id="prenom" class="prenom">
+                            <span class="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="identifiant">Identifiant</label>
+                            <input type="text" name="username" id="identifiant" class="identifiant">
+                            <span class="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" name="emailAdress" id="email" class="email">
+                            <span class="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Mot de passe</label>
+                            <input type="password" name="password" id="password" class="pass">
+                            <span class="error"></span>
+                        </div>
+
+                        <div class="CTA">
+                            <input type="submit" value="Inscription" id="submit">
+                            <a href="#" class="switch">Déjà un compte ?</a>
+                        </div>
+                    </form>
+                </div><!-- End Signup Form -->
+            </div>
         </div>
-    </div>
+
+    </section>
+
+
+    <footer>
+        <p>
+            Créer par: <a href="https://github.com/Tesla-App-Project/Tesla-App-Project-Repo" target="_blank">Tesla App <i class="fa fa-github" aria-hidden="true"></i></a>
+        </p>
+    </footer>
+
 </div>
 
 <script src="assets/js/Boostrap/bootstrap.js"></script>
