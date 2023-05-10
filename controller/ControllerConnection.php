@@ -20,6 +20,5 @@ class ControllerConnection
             View::show('connexion', $A_View);
         }
 
-        //View::show('HomeView', array());
     }
 }
