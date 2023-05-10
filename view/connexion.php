@@ -86,27 +86,27 @@ if(isset($_GET['error'])){
 
                                     <div class="position-relative my-3 inputGroup text-center">
                                         <span class="position-absolute"><i class="far fa-user"></i></span>
-                                        <input type="text" class="border-0 border-bottom w-100" placeholder="Nom" />
+                                        <input type="text" class="border-0 border-bottom w-100" placeholder="Nom" name="user_last_name"/>
                                     </div>
 
                                     <div class="position-relative my-3 inputGroup text-center">
                                         <span class="position-absolute"><i class="far fa-user"></i></span>
-                                        <input type="text" class="border-0 border-bottom w-100" placeholder="Prénom" />
+                                        <input type="text" class="border-0 border-bottom w-100" placeholder="Prénom" name="user_first_name"/>
                                     </div>
 
                                     <div class="position-relative my-3 inputGroup text-center">
                                         <span class="position-absolute"><i class="far fa-user"></i></span>
-                                        <input type="text" class="border-0 border-bottom w-100" placeholder="Identifiant" />
+                                        <input type="text" class="border-0 border-bottom w-100" placeholder="Identifiant" name="user_username"/>
                                     </div>
 
                                     <div class="position-relative my-3 inputGroup text-center">
                                         <span class="position-absolute"><i class="far fa-user"></i></span>
-                                        <input type="email" class="border-0 border-bottom w-100" placeholder="Email" />
+                                        <input type="email" class="border-0 border-bottom w-100" placeholder="Email" name="user_mail"/>
                                     </div>
 
                                     <div class="position-relative my-3 inputGroup text-center">
                                         <span class="position-absolute"><i class="far fa-eye-slash"></i></span>
-                                        <input type="password" class="border-0 border-bottom w-100" placeholder="Mot de passe" />
+                                        <input type="password" class="border-0 border-bottom w-100" placeholder="Mot de passe" name="user_password"/>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between pt-2">
                                         <button class="btn btn-accent px-4 rounded-pill">S'inscrire</button>

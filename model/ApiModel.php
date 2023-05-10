@@ -45,6 +45,9 @@ class ApiModel
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
 
         try {
             $result = curl_exec($ch);
@@ -182,6 +185,7 @@ class ApiModel
 //        die(var_dump($wakeUp));
 
         if(($wakeUp["response"]["id"] ?? "") != $requestIdCar) {
+            die(var_dump($wakeUp));
             throw new Exception("failed to wake up car");
         }
 
@@ -198,6 +202,8 @@ class ApiModel
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $requestType);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($requestBody));
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
         try {
             $result = curl_exec($ch);
@@ -264,14 +270,15 @@ class ApiModel
      * @return array
      */
     public function getChargeStateData(): array {
-        return $this->makeAPIRequest($this->idCar, "data_request/charge_state", "GET", array());
+        return $this->getAllData()["response"]["charge_state"];
     }
 
     /**
      * @return array
      */
     public function getClimateData(): array {
-        return $this->makeAPIRequest($this->idCar, "data_request/climate_state", "GET", array());
+        return $this->getAllData()["response"]["climate_state"];
+        //return $this->makeAPIRequest($this->idCar, "data_request/climate_state", "GET", array());
     }
 
     /**
@@ -285,7 +292,8 @@ class ApiModel
      * @return int
      */
     public function getTemperatureData(): float {
-        return $this->makeAPIRequest($this->idCar, "data_request/climate_state", "GET", array())["response"]["inside_temp"];
+        return $this->getAllData()["response"]["climate_state"]["inside_temp"];
+        //return $this->makeAPIRequest($this->idCar, "data_request/climate_state", "GET", array())["response"]["inside_temp"];
     }
 
     /**
@@ -343,6 +351,8 @@ class ApiModel
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
         try {
             $result = curl_exec($ch);
@@ -689,8 +699,8 @@ class ApiModel
     public function batteryLevelData(): array {
         $result = $this->getChargeStateData();
         return array (
-            "level" => $result["response"]["battery_level"],
-            "usable_level" => $result["response"]["usable_battery_level"]
+            "level" => $result["battery_level"],
+            "usable_level" => $result["usable_battery_level"]
         );
     }
 
