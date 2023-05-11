@@ -1,5 +1,5 @@
 <h1> Nouvelle connexion </h1>
-<form action="http://localhost/projet/tesla-app-project-repo/index.php?url=user/newUser" method="post">
+<form action="/user/loginUser" method="post">
     <div>
         <label for="first_name">First name :</label>
         <input type="text" id="first_name" name="user_first_name">

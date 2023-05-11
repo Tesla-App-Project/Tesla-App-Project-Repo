@@ -55,9 +55,9 @@
                     ?>
                 </label>
 
-                <button id="openRear" style="display: none" onclick="sendRequest('http://<?php echo $A_view['servAdresse'] ?>/index.php?url=Openings/postActuateTrunk/rear')"></button>
+                <button id="openRear" style="display: none" onclick="sendRequest('Openings/postActuateTrunk/rear')"></button>
 
-                <img class="cadenasLock hover-img" src="assets/images/cadenaslock.png" alt="cadenasLock" onclick="sendRequest('http://<?php echo $A_view['servAdresse'] ?>/index.php?url=Openings/postActuateDoor<?php echo $A_view["isVehicleLocked"] ? "Unlock" : "Lock" ?>')">
+                <img class="cadenasLock hover-img" src="assets/images/cadenaslock.png" alt="cadenasLock" onclick="sendRequest('Openings/postActuateDoor<?php echo $A_view["isVehicleLocked"] ? "Unlock" : "Lock" ?>')">
 
                 <label for="openFront" class="label-open" id="openFrontLabel">
                     <?php

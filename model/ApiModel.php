@@ -46,6 +46,11 @@ class ApiModel
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 
+        if($_ENV['ENV'] === "dev"){
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        }
+
         try {
             $result = curl_exec($ch);
         } catch (Exception $e) {
@@ -139,6 +144,11 @@ class ApiModel
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($requestBody));
 
+        if($_ENV['ENV'] === "dev"){
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        }
+
         try {
             $result = curl_exec($ch);
         } catch (Exception $e) {
@@ -199,6 +209,11 @@ class ApiModel
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $requestType);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($requestBody));
+
+        if($_ENV['ENV'] === "dev"){
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        }
 
         try {
             $result = curl_exec($ch);
@@ -346,6 +361,11 @@ class ApiModel
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+
+        if($_ENV['ENV'] === "dev"){
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        }
 
         try {
             $result = curl_exec($ch);

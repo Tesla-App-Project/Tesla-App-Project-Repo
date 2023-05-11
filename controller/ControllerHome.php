@@ -34,10 +34,14 @@ class ControllerHome extends ControllerAPI
             CURLOPT_SSL_VERIFYPEER => 0,
         ));
 
-        $response = curl_exec($curl);
-        curl_close($curl);
+        $response = "";
+        if(!isset($_SESSION["position"])){
+            $response = curl_exec($curl);
+            curl_close($curl);
+        }
 
         $response = json_decode($response, true) ?? json_decode('{ "place_id": 125363882, "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright", "osm_type": "way", "osm_id": 90394420, "lat": "52.54877605", "lon": "-1.8162703328316416", "display_name": "137, Pilkington Avenue, Maney, Sutton Coldfield, Wylde Green, Birmingham, West Midlands Combined Authority, England, B72 1LH, United Kingdom", "address": { "house_number": "137", "road": "Pilkington Avenue", "hamlet": "Maney", "town": "Sutton Coldfield", "village": "Wylde Green", "city": "Birmingham", "ISO3166-2-lvl8": "GB-BIR", "state_district": "West Midlands Combined Authority", "state": "England", "ISO3166-2-lvl4": "GB-ENG", "postcode": "B72 1LH", "country": "United Kingdom", "country_code": "gb" }, "boundingbox": [ "52.5487321", "52.5488299", "-1.8163514", "-1.8161885" ] }', true);
+        $_SESSION["position"] = (isset($response["address"]["house_number"]) ? $response["address"]["house_number"] . " " . $response["address"]["road"] . ", " . $response["address"]["city"] : isset($response["address"]["amenity"])) ? $response["address"]["amenity"] . " " . $response["address"]["road"] . ", " . $response["address"]["town"] : $response["address"]["road"] . ", " . $response["address"]["town"];
 
         $A_content =
             ['title' => 'Accueil',
@@ -47,7 +51,7 @@ class ControllerHome extends ControllerAPI
             'carName' => $this->_httpRequestHandler->callAPI('getCarName'),
             'batteryPercent' => json_decode($this->_httpRequestHandler->callAPI('batteryLevelData'), true),
             'climPercent' => $this->_httpRequestHandler->callAPI('getTemperatureData'),
-            'addressPosition' => (isset($response["address"]["house_number"]) ? $response["address"]["house_number"] . " " . $response["address"]["road"] . ", " . $response["address"]["city"] : isset($response["address"]["amenity"])) ? $response["address"]["amenity"] . " " . $response["address"]["road"] . ", " . $response["address"]["town"] : $response["address"]["road"] . ", " . $response["address"]["town"],
+            'addressPosition' => $_SESSION["position"] ?? "Adresse inconnue",
             ];
         View::show('HomeView', $A_content);
 
