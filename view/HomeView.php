@@ -22,7 +22,7 @@
 //        echo '</pre>';
 ?>
   <header class="menu sticky">
-    <h1><?php echo $A_view["carName"] ?></h1>
+    <h1><?php echo trim($A_view["carName"], "\"") ?></h1>
     <nav>
         <a href="#"><img src="./assets/images/user.png" alt="icone user"></a>
     </nav>

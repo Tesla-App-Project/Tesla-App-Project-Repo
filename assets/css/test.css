@@ -216,7 +216,7 @@ section#formHolder {
 .form form .CTA {
     margin-top: 30px;
 }
-.form form .CTA input {
+.form form .CTA button {
     font-size: 12px;
     text-transform: uppercase;
     padding: 5px 30px;
