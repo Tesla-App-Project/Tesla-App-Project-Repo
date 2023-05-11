@@ -44,6 +44,7 @@ if(isset($_GET['error'])){
                     <h2>Tesla</h2>
                     <p>Connecter votre voiture</p>
                 </div>
+
                 <div class="success-msg">
                     <p>Great! You are one of our members now</p>
                     <a href="#" class="profile">Your Profile</a>

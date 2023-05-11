@@ -1,5 +1,5 @@
 <h1>Connexion</h1>
-<form action="http://localhost/projet/tesla-app-project-repo/index.php?url=user/getUser" method="post">
+<form action="/user/loginUser" method="post">
 
     <div>
         <label for="username">Username :</label>

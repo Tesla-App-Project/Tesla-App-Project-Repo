@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <link rel="manifest" href="/manifest.json">
-  <link rel="icon" href="assets/images/icon.png" type="image/png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="assets/images/icon.png" type="image/png" sizes="16x16">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"

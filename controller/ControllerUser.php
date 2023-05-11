@@ -95,6 +95,11 @@ class ControllerUser
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 
+            if($_ENV['ENV'] === "dev"){
+                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+            }
+
             try {
                 $result = curl_exec($ch);
             } catch (Exception $e) {

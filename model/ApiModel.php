@@ -46,13 +46,21 @@ class ApiModel
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 
+        if($_ENV['ENV'] === "dev"){
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        }
+
         try {
             $result = curl_exec($ch);
         } catch (Exception $e) {
             var_dump($e->getCode() . " " . $e->getMessage());
         } finally {
             curl_close($ch);
-            $this->idCar = json_decode($result)->response[0]->id;
+            $this->idCar = json_decode($result)->response[0]->id ?? 0;
+            if($this->idCar === 0){
+                $this->__construct();
+            }
         }
 
     }
@@ -139,6 +147,11 @@ class ApiModel
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($requestBody));
 
+        if($_ENV['ENV'] === "dev"){
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        }
+
         try {
             $result = curl_exec($ch);
         } catch (Exception $e) {
@@ -199,6 +212,11 @@ class ApiModel
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $requestType);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($requestBody));
+
+        if($_ENV['ENV'] === "dev"){
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        }
 
         try {
             $result = curl_exec($ch);
@@ -346,6 +364,11 @@ class ApiModel
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+
+        if($_ENV['ENV'] === "dev"){
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        }
 
         try {
             $result = curl_exec($ch);
