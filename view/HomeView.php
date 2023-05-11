@@ -29,8 +29,8 @@
   </header>
   <section class="fixed">
     <section class="flex_batterie">
-      <meter class="meter" min="0" max="100" value="<?php echo $A_view["batteryPercent"]["level"] ?>"></meter>
-      <p style="margin-left: 1rem"><?php echo $A_view["batteryPercent"]["level"] ?>%</p>
+      <meter class="meter" min="0" max="100" value="<?php echo $A_view["batteryPercent"] ?>"></meter>
+      <p style="margin-left: 1rem"><?php echo $A_view["batteryPercent"] ?>%</p>
     </section>
     <p>Stationnée</p>
   </section>
@@ -121,6 +121,7 @@
         </li>
 
         <!-- Planifier -->
+        <!--
         <li>
           <a class="Flex_Button" href="/Planning">
             <section class="Flex_Cadre">
@@ -132,8 +133,10 @@
             <img class="button-arrow" src="./assets/images/suivant.png" height="25px">
           </a>
         </li>
+        -->
 
         <!-- Sécurité et conducteurs -->
+        <!--
         <li>
           <a class="Flex_Button" href="/Security">
             <section class="Flex_Cadre">
@@ -149,8 +152,10 @@
             <img class="button-arrow" src="./assets/images/suivant.png" height="25px">
           </a>
         </li>
+        -->
 
         <!-- Stats recharge -->
+        <!--
         <li>
           <a class="Flex_Button" href="/Stats">
             <section class="Flex_Cadre">
@@ -162,8 +167,10 @@
             <img class="button-arrow" src="./assets/images/suivant.png" height="25px">
           </a>
         </li>
+        -->
 
         <!-- Mises à niveau -->
+        <!--
         <li>
           <a class="Flex_Button" href="/Update">
             <section class="Flex_Cadre">
@@ -175,6 +182,7 @@
             <img class="button-arrow" src="./assets/images/suivant.png" height="25px">
           </a>
         </li>
+        -->
 
         <!-- Service -->
         <li>

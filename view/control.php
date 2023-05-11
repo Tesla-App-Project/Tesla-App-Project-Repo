@@ -70,7 +70,7 @@
 
         </div>
         <?php
-            echo $A_view["isCharging"] ? "<img src='assets/images/Thunder.png' class='eclair' alt='eclairlogo'>" : "<img src='assets/images/ThunderLight.png' class='eclair' alt='eclairlogo'>";
+            echo $A_view["isCharging"] ? "<img src='assets/images/ThunderLight.png' class='eclair' alt='eclairlogo'>" : "<img src='assets/images/Thunder.png' class='eclair' alt='eclairlogo'>";
         ?>
     </section>
     <section class="cacher">

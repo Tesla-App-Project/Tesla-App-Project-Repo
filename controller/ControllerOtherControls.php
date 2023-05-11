@@ -20,15 +20,33 @@ class ControllerOtherControls extends ControllerAPI
             return;
         }
 
+        $allData = json_decode($this->_httpRequestHandler->callAPI('getAllData'), true)['response'];
+
+        $isFrontTrunkOpen = !($allData['vehicle_state']['ft'] === 0);
+        $isRearTrunkOpen = !($allData['vehicle_state']['rt'] === 0);
+
+        $convert = array(
+            "Disconnected" => false,
+            "Complete" => false,
+            "Charging" => true
+        );
+        $isCharging = $convert[$allData['charge_state']['charging_state']];
+
+        $isVehicleLocked = $allData["vehicle_state"]["locked"];
+
         $A_content = [
             'header' => 'test',
             'content' => 'OtherControlsView',
             'footer' => 'test',
             'servAdresse' => $this->servAdresse,
-            'isCharging' => $this->_httpRequestHandler->callAPI('isCharging'),
-            'isFrontTrunkOpen' => $this->_httpRequestHandler->callAPI('isTrunkOpen', ['whichTrunk' => 'front']),
-            'isRearTrunkOpen' => $this->_httpRequestHandler->callAPI('isTrunkOpen', ['whichTrunk' => 'rear']),
-            'isVehicleLocked' => $this->_httpRequestHandler->callAPI('isVehicleLocked'),
+            //'isCharging' => $this->_httpRequestHandler->callAPI('isCharging'),
+            'isCharging' => $isCharging,
+            //'isFrontTrunkOpen' => $this->_httpRequestHandler->callAPI('isTrunkOpen', ['whichTrunk' => 'front']),
+            //'isRearTrunkOpen' => $this->_httpRequestHandler->callAPI('isTrunkOpen', ['whichTrunk' => 'rear']),
+            'isFrontTrunkOpen' => $isFrontTrunkOpen,
+            'isRearTrunkOpen' => $isRearTrunkOpen,
+            //'isVehicleLocked' => $this->_httpRequestHandler->callAPI('isVehicleLocked'),
+            'isVehicleLocked' => $isVehicleLocked,
         ];
         View::show('control', $A_content);
     }

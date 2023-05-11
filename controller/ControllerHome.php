@@ -16,7 +16,9 @@ class ControllerHome extends ControllerAPI
             return;
         }
 
-        $position = json_decode($this->_httpRequestHandler->callAPI('carPosition'), true);
+        //$position = json_decode($this->_httpRequestHandler->callAPI('carPosition'), true);
+        $allData = json_decode($this->_httpRequestHandler->callAPI('getAllData'), true);
+        $position = $allData["response"]["drive_state"];
 
         if(!isset($_SESSION["position"])){
             $curl = curl_init();
@@ -47,9 +49,12 @@ class ControllerHome extends ControllerAPI
             'header' => 'HomeHeaderView',
             'content' => 'HomeView',
             'footer' => 'HomeFooterView',
-            'carName' => $this->_httpRequestHandler->callAPI('getCarName'),
-            'batteryPercent' => json_decode($this->_httpRequestHandler->callAPI('batteryLevelData'), true),
-            'climPercent' => $this->_httpRequestHandler->callAPI('getTemperatureData'),
+            //'carName' => $this->_httpRequestHandler->callAPI('getCarName'),
+            'carName' => $allData["response"]["display_name"],
+            //'batteryPercent' => json_decode($this->_httpRequestHandler->callAPI('batteryLevelData'), true),
+            'batteryPercent' => $allData["response"]["charge_state"]["battery_level"],
+            //'climPercent' => $this->_httpRequestHandler->callAPI('getTemperatureData'),
+            'climPercent' => $allData["response"]["climate_state"]["inside_temp"],
             'addressPosition' => $_SESSION["position"] ?? "Adresse inconnue",
             ];
         View::show('HomeView', $A_content);
