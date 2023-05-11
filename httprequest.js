@@ -17,7 +17,7 @@ function consoleLogAjaxResponse(method, url){
 
 function sendRequest(url){
     const req = new XMLHttpRequest()
-    req.open("GET", url)
+    req.open("GET", `https://tesla.feur.info/${url}`)
     req.setRequestHeader("Accept", "application/json")
     req.setRequestHeader("Content-Type", "application/json")
 

@@ -64,7 +64,7 @@
                         echo $A_view["isFrontTrunkOpen"] ? "Ouvrir" : "Fermer"
                     ?>
                 </label>
-                <button id="openFront" style="display: none"  onclick="sendRequest('http://<?php echo $A_view['servAdresse'] ?>/index.php?url=Openings/postActuateTrunk/front')"></button>
+                <button id="openFront" style="display: none"  onclick="sendRequest('Openings/postActuateTrunk/front')"></button>
 
             </div>
 
@@ -90,13 +90,13 @@
     <menu class="horizontal border1">
 
         <li>
-            <button class="buttontype1" onclick="sendRequest('http://<?php echo $A_view['servAdresse'] ?>/index.php?url=OtherControls/postFlashLights')">
+            <button class="buttontype1" onclick="sendRequest('OtherControls/postFlashLights')">
                 <img class="hover-img" src="assets/images/headlight.png" height="55" width="55" alt="rondlogo">
             </button>
         </li>
 
         <li>
-            <button class="buttontype1" onclick="sendRequest('http://<?php echo $A_view['servAdresse'] ?>/index.php?url=DevTest/honk_horn')">
+            <button class="buttontype1" onclick="sendRequest('OtherControls/postHonkHorn')">
                 <img class="hover-img" src="assets/images/horn.png" height="55" width="55" alt="ventilationlogo">
             </button>
         </li>

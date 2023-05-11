@@ -195,7 +195,6 @@ class ApiModel
 //        die(var_dump($wakeUp));
 
         if(($wakeUp["response"]["id"] ?? "") != $requestIdCar) {
-            die(var_dump($wakeUp));
             throw new Exception("failed to wake up car");
         }
 
