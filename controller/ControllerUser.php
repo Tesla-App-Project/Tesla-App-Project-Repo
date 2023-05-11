@@ -101,7 +101,6 @@ class ControllerUser
                 var_dump($e->getCode() . " " . $e->getMessage());
             } finally {
                 curl_close($ch);
-                //die(var_dump(isset(json_decode($result)->{"error"})));
                 if (isset(json_decode($result)->{"error"})) {
                     echo json_encode(["response" => "error"]);
                 } else {

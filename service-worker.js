@@ -1,10 +1,10 @@
 const dataCacheName = 'tesla-app-data';
 const cacheName = 'tesla-app';
 const filesToCache = [
-    '/',
+    // '/',
     '/assets/images/icon.png',
     // '/favicon.ico',
-    '/index.php',
+    // '/index.php',
     '/404.html',
     '/OtherControls',
     '/Climate',

@@ -30,8 +30,6 @@ final class UserModel
     {
         $db = new DatabaseUser();
         $db->queryUpdateTokenUserAction($token, $_SESSION["id"]);
-
-
     }
 
     /**

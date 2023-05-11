@@ -1,6 +1,3 @@
-<link rel="manifest" href="/manifest.json">
-<link rel="icon" href="assets/images/icon.png" type="image/png" sizes="16x16">
-
 <?php
 
 // This file in the entry point of the application
