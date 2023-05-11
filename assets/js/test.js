@@ -117,7 +117,7 @@ $(document).ready(function () {
 
 
     // Form submit
-    $('form.signup-form').submit(function (event) {
+    /*$('form.signup-form').submit(function (event) {
         event.preventDefault();
 
         if (usernameError == true || emailError == true || passwordError == true || passConfirm == true) {
@@ -132,7 +132,7 @@ $(document).ready(function () {
             setTimeout(function () { $('.success-msg a').addClass('active'); }, 1050);
             setTimeout(function () { $('.form').hide(); }, 700);
         }
-    });
+    });*/
 
     // Reload page
     $('a.profile').on('click', function () {

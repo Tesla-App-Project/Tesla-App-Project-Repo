@@ -44,7 +44,6 @@ if(isset($_GET['error'])){
                     <h2>Tesla</h2>
                     <p>Connecter votre voiture</p>
                 </div>
-
                 <div class="success-msg">
                     <p>Great! You are one of our members now</p>
                     <a href="#" class="profile">Your Profile</a>
@@ -57,7 +56,7 @@ if(isset($_GET['error'])){
 
                 <!-- Login Form -->
                 <div class="login form-peice switched">
-                    <form class="login-form" action="http://localhost/tesla/index.php?url=user/getUser" method="post">
+                    <form class="login-form" action="/user/loginUser/" method="post">
                         <div class="form-group">
                             <label for="loginemail">Email</label>
                             <input type="email" name="user_mail" id="loginemail" required>
@@ -69,7 +68,7 @@ if(isset($_GET['error'])){
                         </div>
 
                         <div class="CTA">
-                            <input type="submit" value="Connexion">
+                            <button class="btn rounded-3 btn-sm" style="color: white; background-color: #f95959;"  type="submit">Se connecter</button>
                             <a href="/PasswordChangeView.php" class="switchmod">Mot de passe oublié ?</a>
                             <a href="#" class="switch">Vous n'avez pas de compte ?</a>
                         </div>
@@ -79,40 +78,40 @@ if(isset($_GET['error'])){
 
                 <!-- Signup Form -->
                 <div class="signup form-peice">
-                    <form class="signup-form" action="http://localhost/tesla/index.php?url=user/newUser" method="post">
+                    <form class="signup-form" action="/user/newUser/" method="post">
 
                         <div class="form-group">
                             <label for="name">Nom</label>
-                            <input type="text" name="username" id="name" class="name">
+                            <input type="text" name="user_first_name" id="name" class="name">
                             <span class="error"></span>
                         </div>
 
                         <div class="form-group">
                             <label for="prenom">Prénom</label>
-                            <input type="text" name="username" id="prenom" class="prenom">
+                            <input type="text" name="user_last_name" id="prenom" class="prenom">
                             <span class="error"></span>
                         </div>
 
                         <div class="form-group">
                             <label for="identifiant">Identifiant</label>
-                            <input type="text" name="username" id="identifiant" class="identifiant">
+                            <input type="text" name="user_username" id="identifiant" class="identifiant">
                             <span class="error"></span>
                         </div>
 
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" name="emailAdress" id="email" class="email">
+                            <input type="email" name="user_mail" id="email" class="email">
                             <span class="error"></span>
                         </div>
 
                         <div class="form-group">
                             <label for="password">Mot de passe</label>
-                            <input type="password" name="password" id="password" class="pass">
+                            <input type="password" name="user_password" id="password" class="pass">
                             <span class="error"></span>
                         </div>
 
                         <div class="CTA">
-                            <input type="submit" value="Inscription" id="submit">
+                            <button class="btn rounded-3 btn-sm" style="color: white; background-color: #f95959;" type="submit">S'inscrire</button>
                             <a href="#" class="switch">Déjà un compte ?</a>
                         </div>
                     </form>

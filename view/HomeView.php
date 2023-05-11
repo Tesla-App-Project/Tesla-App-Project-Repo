@@ -13,6 +13,12 @@
 </head>
 
 <body>
+    <style>
+        .progress {
+            height: auto;
+            width: 35%;
+        }
+    </style>
 <?php
 
     /** @var array $A_view */
@@ -22,15 +28,15 @@
 //        echo '</pre>';
 ?>
   <header class="menu sticky">
-    <h1><?php echo $A_view["carName"] ?></h1>
+    <h1><?php echo trim($A_view["carName"], "\"") ?></h1>
     <nav>
         <a href="#"><img src="./assets/images/user.png" alt="icone user"></a>
     </nav>
   </header>
   <section class="fixed">
     <section class="flex_batterie">
-      <meter class="meter" min="0" max="100" value="<?php echo $A_view["batteryPercent"]["level"] ?>"></meter>
-      <p style="margin-left: 1rem"><?php echo $A_view["batteryPercent"]["level"] ?>%</p>
+        <meter class="meter" min="0" max="100" value="<?php echo $A_view["batteryPercent"]["level"] ?>"></meter>
+        <p style="margin-left: 1rem"><?php echo $A_view["batteryPercent"]["level"] ?>%</p>
     </section>
     <p>Stationnée</p>
   </section>
