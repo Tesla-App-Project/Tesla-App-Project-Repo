@@ -57,7 +57,7 @@ if(isset($_GET['error'])){
 
                 <!-- Login Form -->
                 <div class="login form-peice switched">
-                    <form class="login-form" action="/user/loginUser/" method="post">
+                    <form class="login-form" action="http://localhost/tesla/index.php?url=user/getUser" method="post">
                         <div class="form-group">
                             <label for="loginemail">Email</label>
                             <input type="email" name="user_mail" id="loginemail" required>
@@ -79,7 +79,7 @@ if(isset($_GET['error'])){
 
                 <!-- Signup Form -->
                 <div class="signup form-peice">
-                    <form class="signup-form" action="/user/newUser/" method="post">
+                    <form class="signup-form" action="http://localhost/tesla/index.php?url=user/newUser" method="post">
 
                         <div class="form-group">
                             <label for="name">Nom</label>
