@@ -57,7 +57,10 @@ class ApiModel
             var_dump($e->getCode() . " " . $e->getMessage());
         } finally {
             curl_close($ch);
-            $this->idCar = json_decode($result)->response[0]->id;
+            $this->idCar = json_decode($result)->response[0]->id ?? 0;
+            if($this->idCar === 0){
+                $this->__construct();
+            }
         }
 
     }
