@@ -73,6 +73,9 @@ class ControllerUser
 
     public function verifyTokenAction() {
 
+        $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+        $dotenv->load();
+
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $token = json_decode(file_get_contents('php://input'))->{'token'};
 
@@ -95,7 +98,7 @@ class ControllerUser
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 
-            if($_ENV['ENV'] === "dev"){
+            if($_ENV['DEV']){
                 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
                 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
             }
