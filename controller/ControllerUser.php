@@ -64,6 +64,20 @@ class ControllerUser
         }
     }
 
+    public function accountAction()
+    {
+        $apimodel = new ApiModel();
+        $usermodel = new UserModel();
+        $userdata = $usermodel->getUserData($_SESSION["email"], $_SESSION["id"]);
+        $list_vehicles = $apimodel->getVehiclesDatasList();
+//        $datas = array();
+//        foreach ($list_vehicles as $key => $vehicule) {
+//            $apimodel->postWakeUp("https://owner-api.teslamotors.com/api/1/vehicles/" . $vehicule['id'] . "/wake_up");
+//            $datas[$key]["charge"] = $apimodel->getAllDataById($vehicule['id'])["response"]["charge_state"];
+//        }
+        View::show('account', array($userdata,$list_vehicles));
+    }
+
     public function logoutAction()
     {
         session_unset();

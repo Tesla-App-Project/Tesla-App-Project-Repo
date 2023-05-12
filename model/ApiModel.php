@@ -261,6 +261,28 @@ class ApiModel
         }
     }
 
+    /**
+     * Allows you to get a list of the vehicles with their name
+     * Returns an array that contains only the name, the count() of this array is the amount of vehicle
+     * @return string | array
+     * @throws Exception
+     */
+    public function getVehiclesDatasList(): string | array {
+
+        $result = $this->getAllVehiclesData();
+        if($result["count"] === 0) {
+            return "No cars found";
+        }
+        else {
+            $carArray = [];
+            for($i = 0; $i < $result["count"]; $i++){
+                $carArray[$i]["name"] = $result["response"][$i]["display_name"];
+                $carArray[$i]["id"] = $result["response"][$i]["vehicle_id"];
+            }
+            return $carArray;
+        }
+    }
+
 
 
     /**
@@ -276,6 +298,14 @@ class ApiModel
      */
     public function getAllData(): array {
         return $this->makeAPIRequest($this->idCar, "vehicle_data", "GET", array());
+    }
+
+    /**
+     * @return array
+     * @throws Exception
+     */
+    public function getAllDataById(string $id): array {
+        return $this->makeAPIRequest($id, "vehicle_data", "GET", array());
     }
 
     /**

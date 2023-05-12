@@ -24,7 +24,7 @@
   <header class="menu sticky">
     <h1><?php echo trim($A_view["carName"], "\"") ?></h1>
     <nav>
-        <a href="#"><img src="./assets/images/user.png" alt="icone user"></a>
+        <a href="/user/account"><img src="./assets/images/user.png" alt="icone user"></a>
     </nav>
   </header>
   <section class="fixed">

@@ -126,6 +126,25 @@ final class DatabaseUser
         }
     }
 
+    //GET USER INFORMATIONS BY EMAIL
+    public function getUserByEmailAndId($email, $id) {
+        try {
+            $S_base = new PDO($this->dsn, $this->user, $this->password);
+        } catch (exception $S_e) {
+            die('Erreur ' . $S_e->getMessage());
+        }
+        $S_base->exec("SET CHARACTER SET utf8");
+
+        $sql = "SELECT * FROM `users` WHERE `email`=:email AND `id_user`=:id";
+        $request = $S_base->prepare($sql);
+        $request->bindParam(":email", $email, PDO::PARAM_STR);
+        $request->bindParam(":id", $id, PDO::PARAM_STR);
+
+        $request->execute();
+
+        return $request->fetchAll();
+    }
+
     //Log out USER :
     public function logOut()
     {
