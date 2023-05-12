@@ -1,0 +1,253 @@
+/* Reset des styles par défaut du navigateur */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "Museo Sans";
+    src: url("/assets/fonts/MuseoSans_700.otf");
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+/* Styles généraux */
+body {
+    font-family: 'Museo Sans', sans-serif;
+    background-color: #161717;
+    color: white;
+}
+
+.progress-bar {
+    margin: 6px 10px 6vh 0;
+    width: 100%;
+    background-color: #f1f1f1;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress {
+    background-color: #0087ca;
+    height: 10px;
+    width: 50%;
+    transition: width 0.5s ease-in-out;
+}
+
+.h3-profile {
+    display: inline-block;
+    position: relative;
+    color: white;
+    font-size: xx-large;
+}
+
+.h3-profile:hover {
+    cursor: pointer;
+}
+
+.h3-profile::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #0087ca;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.h3-profile:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+    cursor: pointer;
+}
+
+#profile-img-container {
+    width: 30%;
+    height: 30%;
+}
+
+.profile-input {
+    font-size: 14px;
+    border-radius: 6px;
+    line-height: 1.5;
+    padding: 5px 10px;
+    transition: box-shadow 100ms ease-in, border 100ms ease-in, background-color 100ms ease-in;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    background: rgba(255, 255, 255, 0.4);
+    display: block;
+    height: 36px;
+    margin-bottom: 15px;
+}
+.profile-input:hover {
+    border-color: #ccc;
+}
+.profile-input:focus{
+    border-color: #9147ff;
+    background: #fff;
+    color: black;
+}
+
+ol.gradient-list {
+    counter-reset: gradient-counter;
+    list-style: none;
+    margin: 1.75rem 0;
+    padding-left: 1rem;
+}
+ol.gradient-list > li {
+    background: white;
+    border-radius: 0 0.5rem 0.5rem 0.5rem;
+    counter-increment: gradient-counter;
+    margin-top: 1rem;
+    min-height: 3rem;
+    padding: 1rem 1rem 1rem 3rem;
+    position: relative;
+}
+ol.gradient-list > li::before, ol.gradient-list > li::after {
+    background: linear-gradient(135deg, #83e4e2 0%, #a2ed56 100%);
+    border-radius: 1rem 1rem 0 1rem;
+    content: '';
+    height: 3rem;
+    left: -1rem;
+    overflow: hidden;
+    position: absolute;
+    top: -1rem;
+    width: 3rem;
+}
+ol.gradient-list > li::before {
+    align-items: flex-end;
+    content: counter(gradient-counter);
+    color: #1d1f20;
+    display: flex;
+    font: 900 1.5em/1 'Montserrat';
+    justify-content: flex-end;
+    padding: 0.125em 0.25em;
+    z-index: 1;
+}
+
+ol.gradient-list > li,
+ol.gradient-list > li::before {
+    box-shadow: 0.25rem 0.25rem 0.6rem rgba(0, 0, 0, 0.05), 0 0.5rem 1.125rem rgba(75, 0, 0, 0.05);
+}
+ol.gradient-list > li:nth-child(10n+1):before {
+    background: linear-gradient(135deg, rgba(0, 135, 202, 0.2) 0%, rgba(253, 220, 50, 0.2) 100%);
+}
+ol.gradient-list > li:nth-child(10n+2):before {
+    background: linear-gradient(135deg, rgba(0, 135, 202, 0.4) 0%, rgba(253, 220, 50, 0.4) 100%);
+}
+ol.gradient-list > li:nth-child(10n+3):before {
+    background: linear-gradient(135deg, rgba(0, 135, 202, 0.6) 0%, rgba(253, 220, 50, 0.6) 100%);
+}
+ol.gradient-list > li:nth-child(10n+4):before {
+    background: linear-gradient(135deg, rgba(0, 135, 202, 0.8) 0%, rgba(253, 220, 50, 0.8) 100%);
+}
+ol.gradient-list > li:nth-child(10n+5):before {
+    background: linear-gradient(135deg, rgba(0, 135, 202, 1) 0%, rgba(253, 220, 50, 1) 100%);
+}
+ol.gradient-list > li:nth-child(10n+6):before {
+    background: linear-gradient(135deg, rgba(0, 135, 202, 0.8) 0%, rgba(253, 220, 50, 0.8) 100%);
+}
+ol.gradient-list > li:nth-child(10n+7):before {
+    background: linear-gradient(135deg, rgba(0, 135, 202, 0.6) 0%, rgba(253, 220, 50, 0.6) 100%);
+}
+ol.gradient-list > li:nth-child(10n+8):before {
+    background: linear-gradient(135deg, rgba(0, 135, 202, 0.4) 0%, rgba(253, 220, 50, 0.4) 100%);
+}
+ol.gradient-list > li:nth-child(10n+9):before {
+    background: linear-gradient(135deg, rgba(0, 135, 202, 0.2) 0%, rgba(253, 220, 50, 0.2) 100%);
+}
+ol.gradient-list > li:nth-child(10n+10):before {
+    background: linear-gradient(135deg, rgba(0, 135, 202, 0) 0%, rgba(253, 220, 50, 0) 100%);
+}
+ol.gradient-list > li + li {
+    margin-top: 2rem;
+}
+
+ol > li {
+    width: 95%;
+    height: 20vh;
+    text-align: center;
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.car-infos {
+    text-align: initial;
+    display:block;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #696969;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #696969;
+}
+
+@media screen and (max-width: 1122px) {
+    body {
+        overflow: scroll!important;
+    }
+
+    #left, #right {
+        width: 100% !important;
+    }
+
+    #left {
+        width: 75% !important;
+        height: fit-content !important;
+        margin: auto !important;
+        border: none !important;
+
+    }
+
+    #infos-container {
+        margin-bottom: 2vh !important;
+    }
+
+    #container-middle {
+        flex-direction: column;
+    }
+
+    #end-hr {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 538px){
+    #car-container {
+        /*height: 100vh !important;*/
+        overflow: scroll;
+        margin: 0 auto 1vh auto !important;
+    }
+
+    li {
+        height: 40% !important;
+        flex-direction: column !important;
+    }
+
+    li > div {
+        width: 90% !important;
+        margin: auto !important;
+    }
+}

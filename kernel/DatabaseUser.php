@@ -10,8 +10,6 @@ final class DatabaseUser
 
     public function __construct()
     {
-        $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
-        $dotenv->load();
 
         //data from the .env
         $config = [
@@ -100,6 +98,19 @@ final class DatabaseUser
         return ['status' => 'error', 'message' => 'Something went wrong'];
     }
 
+    public function queryGetAllUsersAction(){
+            try {
+            $S_base = new PDO($this->dsn, $this->user, $this->password);
+        } catch (exception $S_e) {
+            die('Erreur ' . $S_e->getMessage());
+        }
+        $S_base->exec("SET CHARACTER SET utf8");
+
+        $sql = "SELECT id_user, token FROM `users`";
+        $request = $S_base->prepare($sql);
+        $request->execute();
+        return $request->fetchAll();
+    }
 
     public function initUser($email, $id)
     {

@@ -116,7 +116,7 @@ class ApiModel
     /**
      * @throws Exception
      */
-    public function refreshTOken(): array
+    public function refreshToken(): array
     {
 
         $ch = curl_init();

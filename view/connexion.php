@@ -9,15 +9,15 @@
     <script src="https://kit.fontawesome.com/b368ec75de.js" crossorigin="anonymous"></script>
     <title> Connexion </title>
     <script>
-        if("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("service-worker.js")
-                .then(registration => {
-                    console.log("Service Worker Registered");
-                })
-                .catch(err => {
-                    console.log("Service Worker Failed to Register", err);
-                })
-        }
+        //if("serviceWorker" in navigator) {
+        //    navigator.serviceWorker.register("service-worker.js")
+        //        .then(registration => {
+        //            console.log("Service Worker Registered");
+        //        })
+        //        .catch(err => {
+        //            console.log("Service Worker Failed to Register", err);
+        //        })
+        //}
     </script>
 </head>
 <body>

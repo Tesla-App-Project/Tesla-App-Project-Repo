@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="fr">
 <head>
-    <link rel="manifest" href="/manifest.json">
+    <!--<link rel="manifest" href="/manifest.json">-->
     <link rel="icon" href="assets/images/icon.png" type="image/png" sizes="16x16">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -72,7 +72,7 @@
     </section>
   </div>
 
-  <section class="nav scroll">
+  <section class="nav scroll" style="position: absolute; bottom: 375px;">
     <h2>Navigation des options de la voiture</h2>
     <nav>
       <ul>

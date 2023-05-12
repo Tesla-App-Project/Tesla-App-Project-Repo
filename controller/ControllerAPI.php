@@ -1,7 +1,4 @@
 <?php
-
-
-
 abstract class ControllerAPI
 {
     protected HttpRequestHandlerModel $_httpRequestHandler;

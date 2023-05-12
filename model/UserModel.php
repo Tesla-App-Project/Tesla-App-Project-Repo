@@ -49,6 +49,18 @@ final class UserModel
 
     }
 
+    public function getAllUsers(): array
+    {
+        $db = new DatabaseUser();
+        return $db->queryGetAllUsersAction();
+    }
+
+    public function getUserData($email, $id): array
+    {
+        $db = new DatabaseUser();
+        return $db->getUserByEmailAndId($email, $id);
+    }
+
     /**
      * Récupère un token utilisateur en base de données
      * @param string $user_mail
